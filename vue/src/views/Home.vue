@@ -1,12 +1,16 @@
 <template>
   <div class="home">
     <h1>Home</h1>
-    <p>You must be authenticated to see this</p>
+    <video-game-list-vue/>
   </div>
 </template>
 
 <script>
+import videoGameListVue from '../components/videoGameList.vue';
 export default {
-  name: "home"
+  name: "home",
+  components:{
+    videoGameListVue
+  }
 };
 </script>
