@@ -7,5 +7,8 @@ import java.util.List;
 public interface VideoGameDAO {
 
     List<VideoGame> getVideoGameList();
+    VideoGame getVideoGameById(int Id);
+
+
 
 }

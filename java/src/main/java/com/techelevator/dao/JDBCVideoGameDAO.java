@@ -34,6 +34,20 @@ public class JDBCVideoGameDAO implements VideoGameDAO{
         return videoGames;
     }
 
+    @Override
+    public VideoGame getVideoGameById(int id) {
+        String sql = "SELECT id, title, release_date, release_price, description, company_name FROM video_game " +
+                "JOIN company ON publisher_id = company_id WHERE id=? ";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
+
+        VideoGame videoGame = new VideoGame();
+       if (results.next()) {
+           videoGame = mapRowToVideoGame(results);
+
+       }
+        return videoGame;
+    }
+
     private VideoGame mapRowToVideoGame(SqlRowSet sqlRowSet){
         VideoGame videoGame = new VideoGame();
 

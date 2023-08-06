@@ -3,10 +3,7 @@ package com.techelevator.controller;
 import com.techelevator.dao.JDBCVideoGameDAO;
 import com.techelevator.dao.VideoGameDAO;
 import com.techelevator.model.VideoGame;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,4 +24,12 @@ public class VideoGameController {
     public List<VideoGame> listOfVideoGames(){
         return videoGameDAO.getVideoGameList();
     }
+
+    @RequestMapping (path = "{id}", method = RequestMethod.GET)
+    public VideoGame getVideoGameById(@PathVariable int id) {
+        return videoGameDAO.getVideoGameById(id);
+
+
+    }
+
 }
