@@ -31,6 +31,7 @@ CREATE TABLE video_game (
 	release_price MONEY,
 	description TEXT,
 	publisher_id INT,
+	rating varchar(50),
 	CONSTRAINT PK_video_game PRIMARY KEY (id),
 	CONSTRAINT FK_publisher FOREIGN KEY (publisher_id) REFERENCES company (company_id)
 );
