@@ -31,9 +31,6 @@ public class JDBCVideoGameDAO implements VideoGameDAO{
             videoGames.add(mapRowToVideoGame(results));
 
         }
-
-        //TODO remove this!!!!!!!!!!
-        System.out.println(videoGames);
         return videoGames;
     }
 
