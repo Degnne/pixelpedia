@@ -1,7 +1,8 @@
 <template>
   <div>
-  <h2> video game list </h2>  
-  <div v-for="videogame in videoGameList" v-bind:key="videogame.id" class="videoGameCard"><router-link  v-bind:to="{name: 'videogamedetails', params: {id: videogame.id}}"> <video-game-card v-bind:videogame="videogame"/> </router-link></div>
+    <div id="videogamelist">  
+    <div v-for="videogame in videoGameList" v-bind:key="videogame.id" class="videoGameCard"><router-link  v-bind:to="{name: 'videogamedetails', params: {id: videogame.id}}"> <video-game-card v-bind:videogame="videogame"/> </router-link></div>
+    </div>
   </div>
 </template>
 
@@ -44,8 +45,17 @@ export default {
 <style scoped>
 .videoGameCard, a {
     text-decoration: none;
-    color: black;
+    color: whitesmoke;
     border: 1px solid grey;
+}
+.videoGameCard{
+    margin: 5px;
+    padding: 5px;
+}
+#videogamelist{
+    display: flex;
+    flex-wrap: wrap;
+
 }
 
 </style>
