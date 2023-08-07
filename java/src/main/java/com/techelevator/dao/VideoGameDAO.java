@@ -8,6 +8,7 @@ public interface VideoGameDAO {
 
     List<VideoGame> getVideoGameList();
     VideoGame getVideoGameById(int Id);
+    VideoGame addVideoGame(VideoGame videoGame);
 
 
 

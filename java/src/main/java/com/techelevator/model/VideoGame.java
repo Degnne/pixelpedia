@@ -14,19 +14,21 @@ public class VideoGame {
     private String[] genres;
     private String[] studios;
     private String[] systems;
+    private String rating;
 
 
     public VideoGame (){
 
     }
 
-    public VideoGame(int id, String title, LocalDate releaseDate, BigDecimal releasePrice, String description, String publisherName) {
+    public VideoGame(int id, String title, LocalDate releaseDate, BigDecimal releasePrice, String description, String publisherName, String rating) {
         this.id = id;
         this.title = title;
         this.releaseDate = releaseDate;
         this.releasePrice = releasePrice;
         this.description = description;
         this.publisherName = publisherName;
+        this.rating = rating;
     }
 
     public String[] getSystems() {
@@ -99,5 +101,13 @@ public class VideoGame {
 
     public void setPublisherName(String publisherName) {
         this.publisherName = publisherName;
+    }
+
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
     }
 }
