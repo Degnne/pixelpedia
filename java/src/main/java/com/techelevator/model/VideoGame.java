@@ -15,6 +15,7 @@ public class VideoGame {
     private String[] studios;
     private String[] systems;
     private String rating;
+    private String boxArt;
 
 
     public VideoGame (){
@@ -109,5 +110,13 @@ public class VideoGame {
 
     public void setRating(String rating) {
         this.rating = rating;
+    }
+
+    public String getBoxArt() {
+        return boxArt;
+    }
+
+    public void setBoxArt(String boxArt) {
+        this.boxArt = boxArt;
     }
 }

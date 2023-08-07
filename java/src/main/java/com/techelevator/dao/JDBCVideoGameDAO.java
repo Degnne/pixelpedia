@@ -135,6 +135,7 @@ public class JDBCVideoGameDAO implements VideoGameDAO{
         videoGame.setDescription(sqlRowSet.getString("description"));
         videoGame.setPublisherName(sqlRowSet.getString("company_name"));
         videoGame.setRating(sqlRowSet.getString("rating"));
+        videoGame.setBoxArt(sqlRowSet.getString("box_art"));
 
         return videoGame;
     }
