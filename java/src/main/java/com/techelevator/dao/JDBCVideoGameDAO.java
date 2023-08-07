@@ -21,7 +21,7 @@ public class JDBCVideoGameDAO implements VideoGameDAO{
     public List<VideoGame> getVideoGameList() {
         List<VideoGame> videoGames = new ArrayList<>();
 
-        String sql = "SELECT id, title, release_date, release_price, description, company_name, rating FROM video_game " +
+        String sql = "SELECT id, title, release_date, release_price, description, company_name, box_art, rating FROM video_game " +
                     "JOIN company ON publisher_id = company_id;";
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
@@ -36,7 +36,7 @@ public class JDBCVideoGameDAO implements VideoGameDAO{
 
     @Override
     public VideoGame getVideoGameById(int id) {
-        String sql = "SELECT id, title, release_date, release_price, description, company_name, rating FROM video_game " +
+        String sql = "SELECT id, title, release_date, release_price, description, company_name, box_art, rating FROM video_game " +
                 "JOIN company ON publisher_id = company_id WHERE id=? ";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
 
