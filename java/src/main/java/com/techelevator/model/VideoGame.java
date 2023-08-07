@@ -11,6 +11,10 @@ public class VideoGame {
     private BigDecimal releasePrice;
     private String description;
     private String publisherName;
+    private String[] genres;
+    private String[] studios;
+    private String[] systems;
+
 
     public VideoGame (){
 
@@ -23,6 +27,30 @@ public class VideoGame {
         this.releasePrice = releasePrice;
         this.description = description;
         this.publisherName = publisherName;
+    }
+
+    public String[] getSystems() {
+        return systems;
+    }
+
+    public void setSystems(String[] systems) {
+        this.systems = systems;
+    }
+
+    public String[] getStudios() {
+        return studios;
+    }
+
+    public void setStudios(String[] studios) {
+        this.studios = studios;
+    }
+
+    public String[] getGenres() {
+        return genres;
+    }
+
+    public void setGenres(String[] genres) {
+        this.genres = genres;
     }
 
     public int getId() {
