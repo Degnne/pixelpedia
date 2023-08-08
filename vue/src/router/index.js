@@ -7,6 +7,7 @@ import Register from '../views/Register.vue'
 import store from '../store/index'
 import videogamedetails from '../views/VideoGameDetailView.vue'
 import addvideogame from '../views/AddVideoGameView.vue'
+import deletevideogame from '../views/ConfirmDeleteView.vue'
 
 Vue.use(Router)
 
@@ -65,6 +66,11 @@ const router = new Router({
       path: '/addvideogame',
       name: "addvideogame",
       component: addvideogame
+    },
+    {
+      path: '/deletevideogame/:id',
+      name: 'deletevideogame',
+      component: deletevideogame
     }
   ]
 })

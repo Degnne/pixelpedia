@@ -28,6 +28,7 @@ export default {
     height: 175px;
     align-self: center;
     border-radius: 10px;
+    min-width: 100px;
   }
 
   .boxart-details {
