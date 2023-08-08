@@ -16,7 +16,9 @@
           </div>
           <div>
               <label for="publisher">Publisher: </label>
-              <select name="publisher" id="publisher" v-model="newVideoGame.publisherName"></select>
+              <select name="publisher" id="publisher" v-model="newVideoGame.publisherName">
+                  <option v-for="publisher in companies" :key="publisher" :value="publisher">{{publisher}}</option>
+              </select>
           </div>
           <div>
               <label for="rating">Rating: </label>
@@ -33,11 +35,17 @@
           </div>
           <div>
             <label for="genres">Genres: </label>
-            <i>Insert Checkboxes Here</i>
+            <div v-for="genre in genres" :key="genre">
+                <input type="checkbox" :value="genre" :name="genre" :id="genre" @change="toggleGenre(genre)">
+                <label :for="genre">{{genre}}</label>
+            </div>
           </div>
           <div>
             <label for="studios">Studios: </label>
-            <i>Insert Checkboxes Here</i>
+            <div v-for="studio in companies" :key="studio">
+                <input type="checkbox" :value="studio" :name="studio" :id="studio" @change="toggleStudio(studio)">
+                <label :for="studio">{{studio}}</label>
+            </div>
           </div>
           <div>
               <label for="description">Description: </label>
@@ -63,16 +71,34 @@ export default {
         }
     },
     methods: {
+        createNewVideoGame() {
+            return {genres: [], studios: [], systems: []}
+        },
         addNewVideoGame() {
             VideoGameService.addVideoGame(this.newVideoGame);
-            this.newVideoGame = {};
+            this.newVideoGame = this.createNewVideoGame();
+        },
+        toggleGenre(genre) {
+            if (this.newVideoGame.genres.includes(genre)) {
+                this.newVideoGame.genres.splice(this.newVideoGame.genres.indexOf(genre) , 1);
+            } else {
+                this.newVideoGame.genres.push(genre);
+            }
+        },
+        toggleStudio(studio) {
+            if (this.newVideoGame.studios.includes(studio)) {
+                this.newVideoGame.studios.splice(this.newVideoGame.studios.indexOf(studio), 1);
+            } else {
+                this.newVideoGame.studios.push(studio);
+            }
         }
     },
     created() {
+        this.newVideoGame = this.createNewVideoGame();
         VideoGameService.getGenres().then(response => {
             this.genres = response.data;
         });
-        VideoGameService.geSystems().then(response => {
+        VideoGameService.getSystems().then(response => {
             this.systems = response.data;
         });
         VideoGameService.getCompanies().then(response => {
