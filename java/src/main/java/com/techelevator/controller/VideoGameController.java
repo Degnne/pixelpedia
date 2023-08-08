@@ -29,7 +29,11 @@ public class VideoGameController {
     public VideoGame getVideoGameById(@PathVariable int id) {
         return videoGameDAO.getVideoGameById(id);
 
+    }
 
+    @RequestMapping (path = "", method = RequestMethod.POST)
+    public VideoGame addVideoGame(VideoGame videoGame){
+        return videoGameDAO.addVideoGame(videoGame);
     }
 
 }

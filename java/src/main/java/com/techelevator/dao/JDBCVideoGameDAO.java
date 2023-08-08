@@ -55,12 +55,12 @@ public class JDBCVideoGameDAO implements VideoGameDAO{
 
     @Override
     public VideoGame addVideoGame(VideoGame videoGame) {
-        String sql = "INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating) " +
-                    "VALUES (?,?, ?, ?, (SELECT publisher_id FROM video_game JOIN company ON video_game.publisher_id = company.company_id WHERE company_name = ?), ?) " +
+        String sql = "INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) " +
+                    "VALUES (?,?, ?, ?, (SELECT publisher_id FROM video_game JOIN company ON video_game.publisher_id = company.company_id WHERE company_name = ?), ?, ?) " +
                     "RETURNING id;";
 
         int newVideoGameId = jdbcTemplate.queryForObject(sql, int.class, videoGame.getTitle(), videoGame.getReleaseDate(),
-                        videoGame.getReleasePrice(), videoGame.getDescription(), videoGame.getPublisherName(), videoGame.getRating());
+                        videoGame.getReleasePrice(), videoGame.getDescription(), videoGame.getPublisherName(), videoGame.getRating(), videoGame.getBoxArt());
 
         videoGame.setId(newVideoGameId);
 
@@ -70,11 +70,25 @@ public class JDBCVideoGameDAO implements VideoGameDAO{
 
         //Loop through array add each item into DB
         for(int i = 0; i < genres.length; i++){
-            //TODO convert id, inserting into DB based off ID,
+            //TODO convert id, inserting into DB based off ID
             String genre = genres[i];
             int genreID = convertGenreNameToID(genre);
             //call a method that inserts into DB
+            addGenreToVideoGame(newVideoGameId, genreID);
+        }
 
+        //Same for studios
+        for(int i = 0; i < studios.length; i++){
+            String studio = studios[i];
+            int studioID = convertStudioNameToID(studio);
+            addStudioToVideoGame(newVideoGameId, studioID);
+        }
+
+        //Same for systems
+        for(int i = 0; i < systems.length; i++){
+            String system = systems[i];
+            int systemID = convertSystemNameToID(system);
+            addSystemToVideoGame(newVideoGameId, systemID);
         }
 
 
@@ -132,11 +146,58 @@ public class JDBCVideoGameDAO implements VideoGameDAO{
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, genre);
 
-
         if(results.next()){
-            return Integer.parseInt(results.toString());
+            id = Integer.parseInt(results.toString());
+            return id;
         }
         return id;
+    }
+
+    private void addGenreToVideoGame(int vgID, int genreID ){
+        String sql = "INSERT INTO vg_genre VALUES (?, ?);";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, vgID, genreID);
+
+    }
+
+    private int convertStudioNameToID(String studio){
+        int id = 0;
+        String sql = "SELECT studio_id FROM vg_studio JOIN company ON vg_studio.studio_id = company.company_id WHERE company_name = ?;";
+
+        int studioID = jdbcTemplate.queryForObject(sql, int.class, studio);
+
+        if(studioID > 0){
+            id = studioID;
+        }
+
+
+        return id;
+    }
+
+    private void addStudioToVideoGame(int vgID, int studioID){
+        String sql = "INSERT INTO vg_studio VALUES (?, ?);";
+
+        jdbcTemplate.queryForRowSet(sql, vgID, studioID);
+
+    }
+
+    private int convertSystemNameToID(String system){
+        int id = 0;
+        String sql = "SELECT system_id FROM system JOIN company ON system.manufacturer_id = company.company_id WHERE system_name = ?;";
+
+        int systemID = jdbcTemplate.queryForObject(sql, int.class, system);
+
+        if(systemID > 0){
+            id = systemID;
+        }
+
+        return id;
+    }
+
+    private void addSystemToVideoGame(int vgID, int systemID){
+        String sql = "INSERT INTO vg_system VALUES (?, ?);";
+
+        jdbcTemplate.queryForRowSet(sql, vgID, systemID);
     }
 
 

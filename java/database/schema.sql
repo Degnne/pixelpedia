@@ -28,7 +28,7 @@ CREATE TABLE video_game (
 	id SERIAL,
 	title varchar(150) NOT NULL,
 	release_date DATE,
-	release_price MONEY,
+	release_price NUMERIC (15,2),
 	description TEXT,
 	publisher_id INT,
 	rating varchar(50),
