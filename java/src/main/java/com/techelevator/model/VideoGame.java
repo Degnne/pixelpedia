@@ -120,4 +120,6 @@ public class VideoGame {
     public void setBoxArt(String boxArt) {
         this.boxArt = boxArt;
     }
+
+
 }
