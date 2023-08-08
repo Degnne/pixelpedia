@@ -70,8 +70,10 @@ public class JDBCVideoGameDAO implements VideoGameDAO{
 
         //Loop through array add each item into DB
         for(int i = 0; i < genres.length; i++){
+            //TODO convert id, inserting into DB based off ID,
             String genre = genres[i];
-
+            int genreID = convertGenreNameToID(genre);
+            //call a method that inserts into DB
 
         }
 
@@ -123,6 +125,19 @@ public class JDBCVideoGameDAO implements VideoGameDAO{
         return systems.toArray(new String[systems.size()]);
     }
 
+
+    private int convertGenreNameToID(String genre){
+        int id = 0;
+        String sql = "SELECT genre_id FROM genre WHERE genre_name = ? RETURNING genre_id;";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, genre);
+
+
+        if(results.next()){
+            return Integer.parseInt(results.toString());
+        }
+        return id;
+    }
 
 
     private VideoGame mapRowToVideoGame(SqlRowSet sqlRowSet){
