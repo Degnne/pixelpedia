@@ -12,5 +12,17 @@ export default{
 
     addVideoGame(videogame) {
         return axios.post('/videogames', videogame);
+    },
+
+    getGenres() {
+        return axios.get('/videogames/genres');
+    },
+
+    getCompanies() {
+        return axios.get('/videogames/companies');
+    },
+
+    getSystems() {
+        return axios.get('./videogames/systems');
     }
 }

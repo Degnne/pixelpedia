@@ -56,7 +56,10 @@ import VideoGameService from '@/services/videogameService.js'
 export default {
     data() {
         return {
-            newVideoGame: {}
+            newVideoGame: {},
+            genres: [],
+            companies: [],
+            systems: []
         }
     },
     methods: {
@@ -64,6 +67,17 @@ export default {
             VideoGameService.addVideoGame(this.newVideoGame);
             this.newVideoGame = {};
         }
+    },
+    created() {
+        VideoGameService.getGenres().then(response => {
+            this.genres = response.data;
+        });
+        VideoGameService.geSystems().then(response => {
+            this.systems = response.data;
+        });
+        VideoGameService.getCompanies().then(response => {
+            this.companies = response.data;
+        });
     }
 }
 </script>
