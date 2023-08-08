@@ -1,7 +1,7 @@
 <template>
   <div>
-    
-    <div><img class="boxart" v-bind:src="videogame.boxArt" alt=""></div>
+    <div @mouseover="hover = true" @mouseleave="hover = false"><img class="boxart" v-bind:src="videogame.boxArt" alt=""></div>
+    <div v-if="hover" @mouseover="hover = true" @mouseleave="hover = false">{{videogame.title}}</div>  
   </div>
 </template>
 
@@ -9,6 +9,11 @@
 export default {
     name: "VideoGameCard",
     props: ["videogame"],
+    data(){
+      return{
+        hover: false,
+        };
+    }
 
 };
 </script>
@@ -21,11 +26,5 @@ export default {
     height: 175px;
     align-self: center;
     border-radius: 10px;
-  }
-  .title{
-    
-  }
-  .releaseDate span{
-      font-size: 80%;
   }
 </style>
