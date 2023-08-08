@@ -1,26 +1,26 @@
 <template>
   <div>
       <h2>Add Video Game</h2>
-      <form action="">
+      <form action="#" @submit.prevent="addNewVideoGame()">
           <div>
             <label for="title">Title: </label>
-            <input type="text" id="title">
+            <input type="text" id="title" v-model="newVideoGame.title">
           </div>
           <div>
               <label for="release-date">Release Date: </label>
-              <input type="date" id="release-date">
+              <input type="date" id="release-date" v-model="newVideoGame.releaseDate">
           </div>
           <div>
               <label for="release-price">Release Price: </label>
-              <input type="number" id="release-price">
+              <input type="number" id="release-price" v-model="newVideoGame.releasePrice">
           </div>
           <div>
               <label for="publisher">Publisher: </label>
-              <select name="publisher" id="publisher"></select>
+              <select name="publisher" id="publisher" v-model="newVideoGame.publisherName"></select>
           </div>
           <div>
               <label for="rating">Rating: </label>
-              <select name="rating" id="rating">
+              <select name="rating" id="rating" v-model="newVideoGame.rating">
                   <option value="E">E</option>
                   <option value="E10">E10+</option>
                   <option value="T">T</option>
@@ -29,7 +29,7 @@
           </div>
           <div>
             <label for="boxart">Boxart: </label>
-            <input type="text" id="boxart">
+            <input type="text" id="boxart" v-model="newVideoGame.boxArt">
           </div>
           <div>
             <label for="genres">Genres: </label>
@@ -41,7 +41,7 @@
           </div>
           <div>
               <label for="description">Description: </label>
-              <textarea name="descritption" id="description" cols="30" rows="10"></textarea>
+              <textarea name="descritption" id="description" cols="30" rows="10" v-model="newVideoGame.description"></textarea>
           </div>
           <div>
               <input type="submit" name="" id="">
@@ -51,8 +51,20 @@
 </template>
 
 <script>
-export default {
+import VideoGameService from '@/services/videogameService.js'
 
+export default {
+    data() {
+        return {
+            newVideoGame: {}
+        }
+    },
+    methods: {
+        addNewVideoGame() {
+            VideoGameService.addVideoGame(this.newVideoGame);
+            this.newVideoGame = {};
+        }
+    }
 }
 </script>
 

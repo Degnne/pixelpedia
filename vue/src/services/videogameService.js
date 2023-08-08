@@ -8,5 +8,9 @@ export default{
     
     getVideoGameById(id){
         return axios.get('/videogames/' + id);
+    },
+
+    addVideoGame(videogame) {
+        return axios.post('/videogames', videogame);
     }
 }
