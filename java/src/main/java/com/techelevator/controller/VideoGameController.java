@@ -30,10 +30,13 @@ public class VideoGameController {
         return videoGameDAO.getVideoGameById(id);
 
     }
-
     @RequestMapping (path = "", method = RequestMethod.POST)
     public VideoGame addVideoGame(VideoGame videoGame){
         return videoGameDAO.addVideoGame(videoGame);
+    }
+    @RequestMapping (path = "{videoGameId}", method = RequestMethod.DELETE)
+    public void deleteVideoGame(int videoGameId){
+     videoGameDAO.deleteVideoGame(videoGameId);
     }
 
 }

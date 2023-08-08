@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.VideoGame;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
@@ -94,6 +95,29 @@ public class JDBCVideoGameDAO implements VideoGameDAO{
 
         return videoGame;
     }
+
+    @Override
+    public void deleteVideoGame(int videoGameId) {
+
+        String sql = "DELETE FROM vg_system WHERE vg_id = ?;";
+        String sql2 = "DELETE FROM vg_studio WHERE vg_id = ?;";
+        String sql3 = "DELETE FROM vg_genre WHERE vg_id = ?;";
+        String sql4 = "DELETE FROM video_game WHERE id = ?;";
+
+        try{
+            jdbcTemplate.update(sql, videoGameId);
+            jdbcTemplate.update(sql2, videoGameId);
+            jdbcTemplate.update(sql3, videoGameId);
+            jdbcTemplate.update(sql4, videoGameId);
+        }
+        catch(DataIntegrityViolationException e){
+
+          throw new DataIntegrityViolationException("Invalid Video Game ID", e);
+
+        }
+
+    }
+
 
 
     private String[] getGenresForVideoGames(int id) {

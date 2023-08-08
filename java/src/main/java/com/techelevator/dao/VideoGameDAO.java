@@ -10,6 +10,8 @@ public interface VideoGameDAO {
     VideoGame getVideoGameById(int Id);
     VideoGame addVideoGame(VideoGame videoGame);
 
+    void deleteVideoGame(int videoGameId);
+
 
 
 
