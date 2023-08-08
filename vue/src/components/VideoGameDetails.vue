@@ -1,7 +1,7 @@
 <template>
   <div id="detailsPage">
     <img class= "art" v-bind:src="videoGame.boxArt" alt="">
-    <div class= "title"><span>{{ videoGame.title }}</span></div>
+    <div class= "title"><h2>{{ videoGame.title }}</h2></div>
     <div class = "price"><span>${{videoGame.releasePrice}}</span></div>
     <div class = "date"><span>{{ videoGame.releaseDate }}</span></div>
     <div class = "description"><span>{{ videoGame.description }}</span></div>
@@ -15,8 +15,9 @@
     <div class="genre">
       <span v-for="genre in videoGame.genres" v-bind:key="genre">{{genre}} </span>
     </div>
-    <div>
-      <button @click.prevent="deleteGame">Delete</button>
+    <div class="edit-delete">
+      <button id="edit-game">Edit</button>
+      <button @click.prevent="deleteGame" id="delete-game">Delete</button>
     </div>
   </div>
 </template>
@@ -32,10 +33,7 @@ export default {
   },
   methods: {
     deleteGame() {
-      videogameService.deleteGame(this.videoGame.id).then( response => {
-        console.log(response);
-        this.$router.push({name: 'home'});
-      });
+      this.$router.push({name: 'deletevideogame', params: {id: this.videoGame.id}});
     }
   },
   created() {
@@ -59,6 +57,9 @@ export default {
 }
 .title{
   grid-area: title;
+}
+.title h2 {
+  margin: 5px;
 }
 .date{
   grid-area: date;
@@ -129,11 +130,36 @@ export default {
 .description{
   grid-area: description;
 }
+.edit-delete {
+  grid-area: edit-delete;
+  display: flex;
+  justify-content: right;
+}
+.edit-delete button {
+  border-radius: 5px;
+  border: none;
+  padding: 3px;
+  margin: 2px;
+}
+#delete-game {
+  background-color: rgb(228, 59, 59);
+  color: white;
+}
+#edit-game {
+  background-color: rgb(60, 226, 60);
+  color: white;
+}
+#edit-game:hover, #delete-game:hover {
+  background-color: white;
+  color: black;
+  cursor: pointer;
+}
 #detailsPage{
+  margin-top: 20px;
   display:grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-areas: 
-  "title title title" 
+  "title title edit-delete" 
   "art art art"
   "price publisher date"
   "genre genre genre"
