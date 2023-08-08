@@ -14,6 +14,8 @@ public interface VideoGameDAO {
     String[] genreArray();
     String[] systemArray();
     String[] companyArray();
+    VideoGame updateVideoGame(VideoGame videoGame);
+
 
 
 

@@ -158,6 +158,13 @@ public class JDBCVideoGameDAO implements VideoGameDAO{
         return companies.toArray(new String[companies.size()]);
     }
 
+    @Override
+    public VideoGame updateVideoGame(VideoGame videoGame) {
+//        String sql = "UPDATE video_game\n" +
+//                "SET title = 'Team Foxtrot', release_date = current_date, release_price = 150, description = 'Favorite Game', publisher_id = 1, rating = 'M', box_art = 'url'\n" +
+//                "WHERE id = 3;  "
+        return null;
+    }
 
     private String[] getGenresForVideoGames(int id) {
         List<String> genres = new ArrayList<>();
@@ -207,13 +214,13 @@ public class JDBCVideoGameDAO implements VideoGameDAO{
 
     private int convertGenreNameToID(String genre){
         int id = 0;
-        String sql = "SELECT genre_id FROM genre WHERE genre_name = ? RETURNING genre_id;";
+        String sql = "SELECT genre_id FROM genre WHERE genre_name = ?;";
 
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, genre);
+
+       SqlRowSet results = jdbcTemplate.queryForRowSet(sql, genre);
 
         if(results.next()){
-            id = Integer.parseInt(results.toString());
-            return id;
+            id = results.getInt("genre_id");
         }
         return id;
     }
@@ -229,10 +236,10 @@ public class JDBCVideoGameDAO implements VideoGameDAO{
         int id = 0;
         String sql = "SELECT studio_id FROM vg_studio JOIN company ON vg_studio.studio_id = company.company_id WHERE company_name = ?;";
 
-        int studioID = jdbcTemplate.queryForObject(sql, int.class, studio);
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, studio);
 
-        if(studioID > 0){
-            id = studioID;
+        if(results.next()){
+            id = results.getInt("studio_id");
         }
 
 
@@ -250,10 +257,10 @@ public class JDBCVideoGameDAO implements VideoGameDAO{
         int id = 0;
         String sql = "SELECT system_id FROM system JOIN company ON system.manufacturer_id = company.company_id WHERE system_name = ?;";
 
-        int systemID = jdbcTemplate.queryForObject(sql, int.class, system);
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, system);
 
-        if(systemID > 0){
-            id = systemID;
+        if(results.next()){
+            id = results.getInt("system_id");
         }
 
         return id;
