@@ -24,5 +24,9 @@ export default{
 
     getSystems() {
         return axios.get('./videogames/systems');
+    },
+
+    deleteGame(gameId) {
+        return axios.delete(`./videogames/${gameId}`)
     }
 }

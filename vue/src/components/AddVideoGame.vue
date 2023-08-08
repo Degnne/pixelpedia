@@ -84,6 +84,7 @@ export default {
         addNewVideoGame() {
             VideoGameService.addVideoGame(this.newVideoGame);
             this.newVideoGame = this.createNewVideoGame();
+            this.$router.push({name: 'home'});
         },
         toggleGenre(genre) {
             if (this.newVideoGame.genres.includes(genre)) {

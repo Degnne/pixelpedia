@@ -15,6 +15,9 @@
     <div class="genre">
       <span v-for="genre in videoGame.genres" v-bind:key="genre">{{genre}} </span>
     </div>
+    <div>
+      <button @click.prevent="deleteGame">Delete</button>
+    </div>
   </div>
 </template>
 
@@ -26,6 +29,14 @@ export default {
     return {
       videoGame: {},
     };
+  },
+  methods: {
+    deleteGame() {
+      videogameService.deleteGame(this.videoGame.id).then( response => {
+        console.log(response);
+        this.$router.push({name: 'home'});
+      });
+    }
   },
   created() {
     videogameService
