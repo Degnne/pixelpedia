@@ -118,6 +118,45 @@ public class JDBCVideoGameDAO implements VideoGameDAO{
 
     }
 
+    @Override
+    public String[] genreArray() {
+        List<String> genres = new ArrayList<>();
+
+        String sql = "SELECT genre_name FROM genre;";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+
+        while(results.next()){
+            genres.add(results.getString("genre_name"));
+        }
+        return genres.toArray(new String[genres.size()]);
+    }
+
+    @Override
+    public String[] systemArray() {
+        List<String> systems = new ArrayList<>();
+        String sql = "SELECT system_name FROM system;";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+
+        while(results.next()){
+            systems.add(results.getString("system_name"));
+        }
+        return systems.toArray(new String[systems.size()]);
+    }
+
+    @Override
+    public String[] companyArray() {
+        List<String> companies = new ArrayList<>();
+        String sql = "SELECT company_name FROM company;";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+
+        while(results.next()){
+            companies.add(results.getString("company_name"));
+        }
+        return companies.toArray(new String[companies.size()]);
+    }
 
 
     private String[] getGenresForVideoGames(int id) {
@@ -162,6 +201,8 @@ public class JDBCVideoGameDAO implements VideoGameDAO{
 
         return systems.toArray(new String[systems.size()]);
     }
+
+
 
 
     private int convertGenreNameToID(String genre){
@@ -223,6 +264,8 @@ public class JDBCVideoGameDAO implements VideoGameDAO{
 
         jdbcTemplate.queryForRowSet(sql, vgID, systemID);
     }
+
+
 
 
     private VideoGame mapRowToVideoGame(SqlRowSet sqlRowSet){

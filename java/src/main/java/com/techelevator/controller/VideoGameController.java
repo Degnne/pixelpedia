@@ -31,12 +31,27 @@ public class VideoGameController {
 
     }
     @RequestMapping (path = "", method = RequestMethod.POST)
-    public VideoGame addVideoGame(VideoGame videoGame){
+    public VideoGame addVideoGame(@RequestBody VideoGame videoGame){
         return videoGameDAO.addVideoGame(videoGame);
     }
     @RequestMapping (path = "{videoGameId}", method = RequestMethod.DELETE)
-    public void deleteVideoGame(int videoGameId){
+    public void deleteVideoGame(@PathVariable int videoGameId){
      videoGameDAO.deleteVideoGame(videoGameId);
+    }
+
+    @RequestMapping (path = "/genres", method = RequestMethod.GET )
+    public String[] getArrayOfGenres(){
+        return videoGameDAO.genreArray();
+    }
+
+    @RequestMapping (path = "/systems", method = RequestMethod.GET )
+    public String[] getArrayOfSystems(){
+        return videoGameDAO.systemArray();
+    }
+
+    @RequestMapping (path = "/companies", method = RequestMethod.GET )
+    public String[] getArrayOfCompanies(){
+        return videoGameDAO.companyArray();
     }
 
 }
