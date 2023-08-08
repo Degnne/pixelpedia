@@ -53,6 +53,7 @@ export default {
     border: 1px solid grey;
     background-color: lightslategray;
     border-radius: 10px;
+    position: relative;
 }
 #videogamelist{
     display: flex;
