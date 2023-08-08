@@ -46,11 +46,13 @@ export default {
 .videoGameCard, a {
     text-decoration: none;
     color: whitesmoke;
-    border: 1px solid grey;
 }
 .videoGameCard{
     margin: 5px;
     padding: 5px;
+    border: 1px solid grey;
+    background-color: lightslategray;
+    border-radius: 10px;
 }
 #videogamelist{
     display: flex;

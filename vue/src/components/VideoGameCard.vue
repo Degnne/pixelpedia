@@ -1,8 +1,6 @@
 <template>
   <div>
-    <h4>{{videogame.title}}</h4>
-    <div>Release Date: {{videogame.releaseDate}}</div>
-    <div>Price: ${{videogame.releasePrice}}</div>
+    
     <div><img class="boxart" v-bind:src="videogame.boxArt" alt=""></div>
   </div>
 </template>
@@ -22,5 +20,12 @@ export default {
     margin-right: auto;
     height: 175px;
     align-self: center;
+    border-radius: 10px;
+  }
+  .title{
+    
+  }
+  .releaseDate span{
+      font-size: 80%;
   }
 </style>

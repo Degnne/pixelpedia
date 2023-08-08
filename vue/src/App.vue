@@ -27,7 +27,7 @@
     grid-area: body;
   }
   body{
-    background-color: #333;
+    background-color: #454545;
     color: whitesmoke;
     font-family: Arial, Helvetica, sans-serif;
   }
