@@ -57,7 +57,7 @@ public class JDBCVideoGameDAO implements VideoGameDAO{
     @Override
     public VideoGame addVideoGame(VideoGame videoGame) {
         String sql = "INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) " +
-                    "VALUES (?,?, ?, ?, (SELECT publisher_id FROM video_game JOIN company ON video_game.publisher_id = company.company_id WHERE company_name = ?), ?, ?) " +
+                    "VALUES (?,?, ?, ?, SELECT publisher_id FROM video_game JOIN company ON video_game.publisher_id = company.company_id WHERE company_name = ? GROUP BY publisher_id;, ?, ?) " +
                     "RETURNING id;";
 
         int newVideoGameId = jdbcTemplate.queryForObject(sql, int.class, videoGame.getTitle(), videoGame.getReleaseDate(),
