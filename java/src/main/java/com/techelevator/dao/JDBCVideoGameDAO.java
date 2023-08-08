@@ -227,8 +227,7 @@ public class JDBCVideoGameDAO implements VideoGameDAO{
 
     private void addGenreToVideoGame(int vgID, int genreID ){
         String sql = "INSERT INTO vg_genre VALUES (?, ?);";
-
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, vgID, genreID);
+        jdbcTemplate.update(sql, vgID, genreID);
 
     }
 
@@ -249,7 +248,7 @@ public class JDBCVideoGameDAO implements VideoGameDAO{
     private void addStudioToVideoGame(int vgID, int studioID){
         String sql = "INSERT INTO vg_studio VALUES (?, ?);";
 
-        jdbcTemplate.queryForRowSet(sql, vgID, studioID);
+        jdbcTemplate.update(sql, vgID, studioID);
 
     }
 
@@ -269,7 +268,7 @@ public class JDBCVideoGameDAO implements VideoGameDAO{
     private void addSystemToVideoGame(int vgID, int systemID){
         String sql = "INSERT INTO vg_system VALUES (?, ?);";
 
-        jdbcTemplate.queryForRowSet(sql, vgID, systemID);
+        jdbcTemplate.update(sql, vgID, systemID);
     }
 
 
