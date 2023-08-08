@@ -22,7 +22,7 @@ public class VideoGame {
 
     }
 
-    public VideoGame(int id, String title, LocalDate releaseDate, BigDecimal releasePrice, String description, String publisherName, String rating) {
+    public VideoGame(int id, String title, LocalDate releaseDate, BigDecimal releasePrice, String description, String publisherName, String rating, String boxArt) {
         this.id = id;
         this.title = title;
         this.releaseDate = releaseDate;
@@ -30,6 +30,7 @@ public class VideoGame {
         this.description = description;
         this.publisherName = publisherName;
         this.rating = rating;
+        this.boxArt = boxArt;
     }
 
     public String[] getSystems() {
