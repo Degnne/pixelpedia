@@ -46,6 +46,13 @@
                 <input type="checkbox" :value="studio" :name="studio" :id="studio" @change="toggleStudio(studio)">
                 <label :for="studio">{{studio}}</label>
             </div>
+            </div>
+            <div>
+            <label for="systems">Systems: </label>
+            <div v-for="system in systems" :key="system">
+                <input type="checkbox" :value="system" :name="system" :id="system" @change="toggleSystem(system)">
+                <label :for="system">{{system}}</label>
+            </div>
           </div>
           <div>
               <label for="description">Description: </label>
@@ -90,6 +97,13 @@ export default {
                 this.newVideoGame.studios.splice(this.newVideoGame.studios.indexOf(studio), 1);
             } else {
                 this.newVideoGame.studios.push(studio);
+            }
+        },
+        toggleSystem(system) {
+            if (this.newVideoGame.systems.includes(system)) {
+                this.newVideoGame.systems.splice(this.newVideoGame.systems.indexOf(system), 1);
+            } else {
+                this.newVideoGame.systems.push(system);
             }
         }
     },
