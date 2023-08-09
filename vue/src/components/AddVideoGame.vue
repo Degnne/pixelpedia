@@ -126,7 +126,7 @@ export default {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas: "title release-date release-price"
-                        "publisher rating boxart"
+                        "publisher boxart rating"
                         "genres studios systems"
                         "description description description"
                         "submit submit submit";

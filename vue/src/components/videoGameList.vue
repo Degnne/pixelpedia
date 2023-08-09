@@ -13,7 +13,7 @@ import VideoGameCardVue from './VideoGameCard.vue';
 
 export default {
   components: { VideoGameCard },
-    name: "videogameService",
+    name: "videogamelist",
     component: {
         VideoGameCardVue,
     },
