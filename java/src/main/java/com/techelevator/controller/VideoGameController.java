@@ -39,6 +39,11 @@ public class VideoGameController {
      videoGameDAO.deleteVideoGame(videoGameId);
     }
 
+    @RequestMapping (path = "", method=RequestMethod.PUT)
+    public VideoGame updateVideogame (@RequestBody VideoGame videogame){
+        return videoGameDAO.updateVideoGame(videogame);
+    }
+
     @RequestMapping (path = "/genres", method = RequestMethod.GET )
     public String[] getArrayOfGenres(){
         return videoGameDAO.genreArray();
