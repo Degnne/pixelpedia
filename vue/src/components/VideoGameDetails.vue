@@ -2,7 +2,7 @@
   <div id="detailsPage">
     <img class= "art" v-bind:src="videoGame.boxArt" alt="">
     <div class= "title"><h2>{{ videoGame.title }}</h2></div>
-    <div class="details">
+    <div id="details">
       <div class = "price">Release Price: <span>${{videoGame.releasePrice}}</span></div>
       <div class = "date">Release Date: <span>{{ videoGame.releaseDate }}</span></div>
       <div class = "description"><span>{{ videoGame.description }}</span></div>
@@ -119,13 +119,13 @@ export default {
   grid-area: genre;
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
 }
 .genre span{
   margin: 3px;
   padding: 3px;
   background-color: dimgray;
   border-radius: 5px;
-  height: 20px;
 }
 .description{
   grid-area: description;
@@ -155,6 +155,7 @@ export default {
   cursor: pointer;
 }
 #details {
+  height: 400px;
   grid-area: details;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -163,6 +164,7 @@ export default {
                       "studio system system"
                       "genre genre genre"
                       "description description description";
+  align-items: center;
 }
 #detailsPage{
   margin-top: 20px;
