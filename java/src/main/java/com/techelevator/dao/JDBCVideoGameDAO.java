@@ -274,7 +274,7 @@ public class JDBCVideoGameDAO implements VideoGameDAO {
     private void addSystemToVideoGame(int vgID, int systemID) {
         String sql = "INSERT INTO vg_system VALUES (?, ?);";
 
-        jdbcTemplate.update(sql, vgID, systemID);
+        jdbcTemplate.update(sqlgit, vgID, systemID);
     }
 
     private String getPublisherNameByVideoGameId(int videoGameId) {
@@ -282,7 +282,7 @@ public class JDBCVideoGameDAO implements VideoGameDAO {
         String sql = "SELECT company_name FROM company JOIN video_game " +
                 "ON company.company_id = video_game.publisher_id WHERE video_game.id = ? GROUP BY company_name;";
 
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, videoGameId);
 
         if (results.next()) {
             publisher = results.getString("company_name");
