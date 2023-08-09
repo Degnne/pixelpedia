@@ -166,11 +166,11 @@ public class JDBCVideoGameDAO implements VideoGameDAO {
     public VideoGame updateVideoGame(VideoGame videoGame) {
         VideoGame newvideogame = new VideoGame();
         String sql = "UPDATE video_game " +
-                    "SET title = ?, release_date = ?, release_price = ?, description = ?, publisher_id = ?, rating = ?, box_art = ? " +
+                    "SET title = ?, release_date = ?, release_price = ?, description = ?, publisher_id = (SELECT publisher_id FROM video_game JOIN company ON video_game.publisher_id = company.company_id WHERE company_name = ? GROUP BY publisher_id), rating = ?, box_art = ? " +
                     "WHERE id = ?;";
 
        jdbcTemplate.update(sql, videoGame.getTitle(), videoGame.getReleaseDate(),
-                videoGame.getReleasePrice(), videoGame.getDescription(), getPublisherIdByVideoGameId(videoGame.getId()), videoGame.getRating(), videoGame.getBoxArt(), videoGame.getId());
+                videoGame.getReleasePrice(), videoGame.getDescription(), videoGame.getPublisherName(), videoGame.getRating(), videoGame.getBoxArt(), videoGame.getId());
 
 
        newvideogame.setGenres(videoGame.getGenres());
