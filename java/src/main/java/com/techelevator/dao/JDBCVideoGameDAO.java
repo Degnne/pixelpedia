@@ -164,10 +164,23 @@ public class JDBCVideoGameDAO implements VideoGameDAO {
 
     @Override
     public VideoGame updateVideoGame(VideoGame videoGame) {
-//        String sql = "UPDATE video_game\n" +
-//                "SET title = 'Team Foxtrot', release_date = current_date, release_price = 150, description = 'Favorite Game', publisher_id = 1, rating = 'M', box_art = 'url'\n" +
-//                "WHERE id = 3;  "
-        return null;
+        VideoGame newvideogame = new VideoGame();
+        String sql = "UPDATE video_game " +
+                    "SET title = ?, release_date = ?, release_price = ?, description = ?, publisher_id = ?, rating = ?, box_art = ? " +
+                    "WHERE id = ?;";
+
+       jdbcTemplate.update(sql, videoGame.getTitle(), videoGame.getReleaseDate(),
+                videoGame.getReleasePrice(), videoGame.getDescription(), getPublisherIdByVideoGameId(videoGame.getId()), videoGame.getRating(), videoGame.getBoxArt(), videoGame.getId());
+
+
+       newvideogame.setGenres(videoGame.getGenres());
+       newvideogame.setStudios(videoGame.getStudios());
+       newvideogame.setSystems(videoGame.getSystems());
+
+
+       newvideogame = getVideoGameById(videoGame.getId());
+
+       return newvideogame;
     }
 
     private String[] getGenresForVideoGames(int id) {
@@ -330,6 +343,19 @@ public class JDBCVideoGameDAO implements VideoGameDAO {
 
         return systemList.toArray(new String[systemList.size()]);
 
+    }
+
+    private int getPublisherIdByVideoGameId(int videoGameId){
+        int id = 0;
+        String sql = "SELECT publisher_id FROM video_game WHERE id = ?;";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, videoGameId);
+
+        if(results.next()){
+            id = results.getInt("publisher_id");
+        }
+
+        return id;
     }
 
     private VideoGame mapRowToVideoGame(SqlRowSet sqlRowSet) {
