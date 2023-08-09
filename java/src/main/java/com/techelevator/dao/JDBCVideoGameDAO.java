@@ -44,7 +44,6 @@ public class JDBCVideoGameDAO implements VideoGameDAO{
         VideoGame videoGame = new VideoGame();
        if (results.next()) {
            videoGame = mapRowToVideoGame(results);
-
        }
        videoGame.setGenres(getGenresForVideoGames(id));
        videoGame.setStudios(getStudiosForVideoGames(id));
