@@ -274,7 +274,7 @@ public class JDBCVideoGameDAO implements VideoGameDAO {
     private void addSystemToVideoGame(int vgID, int systemID) {
         String sql = "INSERT INTO vg_system VALUES (?, ?);";
 
-        jdbcTemplate.update(sqlgit, vgID, systemID);
+        jdbcTemplate.update(sql, vgID, systemID);
     }
 
     private String getPublisherNameByVideoGameId(int videoGameId) {
