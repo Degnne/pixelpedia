@@ -1,7 +1,8 @@
 <template>
   <div>
-      <h2>Add Video Game</h2>
-      <form action="#" @submit.prevent="addNewVideoGame()" id="game-form">
+      <h2 v-if="addingNewGame">Add Video Game</h2>
+      <h2 v-if="!addingNewGame">Edit Video Game</h2>
+      <form action="#" @submit.prevent="addingNewGame ? addNewVideoGame() : updateVideoGame()" id="game-form" v-if="loaded">
           <div id="title-div">
             <label for="title">Title: </label>
             <input type="text" id="title" v-model="newVideoGame.title" required>
@@ -32,25 +33,26 @@
           <div id="boxart-div">
             <label for="boxart">Boxart: </label>
             <input type="text" id="boxart" v-model="newVideoGame.boxArt">
+            <img :src="newVideoGame.boxArt" alt="" class="boxart">
           </div>
           <div id="genres-div">
             <label for="genres">Genres: </label>
             <div v-for="genre in genres" :key="genre" required>
-                <input type="checkbox" :value="genre" :name="genre" :id="genre" @change="toggleGenre(genre)">
+                <input type="checkbox" :value="genre" :name="genre" :id="genre" @change="toggleGenre(genre)" v-model="newVideoGame.genres">
                 <label :for="genre">{{genre}}</label>
             </div>
           </div>
           <div id="studios-div">
             <label for="studios">Studios: </label>
             <div v-for="studio in companies" :key="studio" required>
-                <input type="checkbox" :value="studio" :name="studio" :id="studio" @change="toggleStudio(studio)">
+                <input type="checkbox" :value="studio" :name="studio" :id="studio" @change="toggleStudio(studio)" v-model="newVideoGame.studios">
                 <label :for="studio">{{studio}}</label>
             </div>
         </div>
         <div id="systems-div">
             <label for="systems">Systems: </label>
             <div v-for="system in systems" :key="system" required>
-                <input type="checkbox" :value="system" :name="system" :id="system" @change="toggleSystem(system)">
+                <input type="checkbox" :value="system" :name="system" :id="system" @change="toggleSystem(system)" v-model="newVideoGame.systems">
                 <label :for="system">{{system}}</label>
             </div>
           </div>
@@ -67,14 +69,17 @@
 
 <script>
 import VideoGameService from '@/services/videogameService.js'
+import videogameService from '../services/videogameService'
 
 export default {
+    props: ["addingNewGame"],
     data() {
         return {
             newVideoGame: {},
             genres: [],
             companies: [],
-            systems: []
+            systems: [],
+            loaded: false
         }
     },
     methods: {
@@ -85,6 +90,12 @@ export default {
             VideoGameService.addVideoGame(this.newVideoGame);
             this.newVideoGame = this.createNewVideoGame();
             this.$router.push({name: 'home'});
+        },
+        updateVideoGame() {
+            videogameService.updateGame(this.newVideoGame).then(response => {
+                console.log(response);
+                this.$router.push({name: 'home'});
+            })
         },
         toggleGenre(genre) {
             if (this.newVideoGame.genres.includes(genre)) {
@@ -109,7 +120,15 @@ export default {
         }
     },
     created() {
-        this.newVideoGame = this.createNewVideoGame();
+        if (this.addingNewGame) {
+            this.newVideoGame = this.createNewVideoGame();
+            this.loaded = true;
+        } else {
+            videogameService.getVideoGameById(this.$route.params.id).then( response => {
+                this.newVideoGame = response.data;
+                this.loaded = true;
+            });
+        }        
         VideoGameService.getGenres().then(response => {
             this.genres = response.data;
         });

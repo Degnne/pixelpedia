@@ -16,7 +16,7 @@
       <span v-for="genre in videoGame.genres" v-bind:key="genre">{{genre}} </span>
     </div>
     <div class="edit-delete">
-      <button id="edit-game">Edit</button>
+      <button @click="$router.push({name: 'editvideogame', params: {id: videoGame.id}})" id="edit-game">Edit</button>
       <button @click.prevent="deleteGame" id="delete-game">Delete</button>
     </div>
   </div>
