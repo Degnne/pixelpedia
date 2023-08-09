@@ -308,7 +308,7 @@ public class JDBCVideoGameDAO implements VideoGameDAO {
     private String[] getStudiosByVideoGameId(int videoGameId) {
         List<String> studiosList = new ArrayList<>();
         String sql = "SELECT company_name FROM company " +
-                "JOIN vg_studio ON company.company_id = vg_studio.studio_id WHERE vg_game.vg_id = ? " +
+                "JOIN vg_studio ON company.company_id = vg_studio.studio_id WHERE vg_studio.vg_id = ? " +
                 "GROUP BY company_name;";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, videoGameId);
         while (result.next()) {
