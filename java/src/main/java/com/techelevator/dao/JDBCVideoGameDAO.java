@@ -173,9 +173,41 @@ public class JDBCVideoGameDAO implements VideoGameDAO {
                 videoGame.getReleasePrice(), videoGame.getDescription(), videoGame.getPublisherName(), videoGame.getRating(), videoGame.getBoxArt(), videoGame.getId());
 
 
-       newvideogame.setGenres(videoGame.getGenres());
-       newvideogame.setStudios(videoGame.getStudios());
-       newvideogame.setSystems(videoGame.getSystems());
+
+       String sqlDeleteGenres = "DELETE FROM vg_genre WHERE vg_id = ?;";
+       jdbcTemplate.update(sqlDeleteGenres, videoGame.getId());
+
+       String sqlDeleteStudios = "DELETE FROM vg_studio WHERE vg_id = ?;";
+       jdbcTemplate.update(sqlDeleteStudios, videoGame.getId());
+
+       String sqlDeleteSystems = "DELETE FROM vg_system WHERE vg_id = ?;";
+       jdbcTemplate.update(sqlDeleteSystems, videoGame.getId());
+
+
+
+
+       String[] genres = videoGame.getGenres();
+       String[] studios = videoGame.getStudios();
+       String[] systems = videoGame.getSystems();
+
+
+       for(int i = 0; i < genres.length; i++){
+           String genre = genres[i];
+           String sqlGenre = "INSERT INTO vg_genre VALUES (?, (SELECT genre_id FROM genre WHERE genre_name = ?));";
+           jdbcTemplate.update(sqlGenre, videoGame.getId(), genre);
+       }
+
+       for(int i = 0; i < studios.length; i++){
+           String studio = studios[i];
+           String sqlStudio = "INSERT INTO vg_studio VALUES (?, (SELECT company_id FROM company WHERE company_name = ?));";
+           jdbcTemplate.update(sqlStudio, videoGame.getId(), studio);
+       }
+
+       for(int i = 0; i < systems.length; i++){
+           String system = systems[i];
+           String sqlSystem = "INSERT INTO vg_system VALUES (?, (SELECT system_id FROM system WHERE system_name = ?));";
+           jdbcTemplate.update(sqlSystem, videoGame.getId(), system);
+       }
 
 
        newvideogame = getVideoGameById(videoGame.getId());
