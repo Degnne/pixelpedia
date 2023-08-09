@@ -94,7 +94,7 @@ export default {
         updateVideoGame() {
             videogameService.updateGame(this.newVideoGame).then(response => {
                 console.log(response);
-                this.$router.push({name: 'home'});
+                this.$router.push({name: 'videogamedetails', params: {id: this.newVideoGame.id}});
             })
         },
         toggleGenre(genre) {
