@@ -87,9 +87,9 @@ export default {
             return {genres: [], studios: [], systems: []}
         },
         addNewVideoGame() {
-            VideoGameService.addVideoGame(this.newVideoGame);
-            this.newVideoGame = this.createNewVideoGame();
-            this.$router.push({name: 'home'});
+            VideoGameService.addVideoGame(this.newVideoGame).then(response => {
+                this.$router.push({name: 'videogamedetails', params: {id: response.data.id}});
+            });
         },
         updateVideoGame() {
             videogameService.updateGame(this.newVideoGame).then(response => {
