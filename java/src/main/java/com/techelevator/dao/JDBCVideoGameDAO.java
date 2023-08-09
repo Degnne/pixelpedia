@@ -325,7 +325,7 @@ public class JDBCVideoGameDAO implements VideoGameDAO {
                 "WHERE vg_system.vg_id = ? GROUP BY system_name;";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, videoGameId);
         while (result.next()) {
-            systemList.add(result.getString("genre_name"));
+            systemList.add(result.getString("system_name"));
         }
 
         return systemList.toArray(new String[systemList.size()]);
