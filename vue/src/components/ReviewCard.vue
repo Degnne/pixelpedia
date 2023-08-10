@@ -1,15 +1,17 @@
 <template>
   <div class="videogamereview">
       <div class="review-titlearea">
-          <h4>{{review.title}}</h4>
+          <h4>{{review.reviewTitle}}</h4>
           <div class="review-edit-delete">
             <button @click.prevent="editReview = !editReview">Edit</button>
             <button>Delete</button>
         </div>
       </div>
       
-      <p>{{review.text}}</p>
-      <div class="review-username">--UserName</div>
+      <p>{{review.reviewText}}</p>
+      <div class="review-username">--{{review.userId}}</div>
+      <div>{{review.date}}</div>
+      <div>{{numberOfComments}} Comments</div>
       <ReviewForm v-if="editReview" :review="review" />
   </div>
 </template>
@@ -25,6 +27,11 @@ export default {
     data() {
         return {
             editReview: false
+        }
+    },
+    computed: {
+        numberOfComments() {
+            return this.review.comments.length;
         }
     }
 }

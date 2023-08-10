@@ -36,6 +36,9 @@ export default {
         VideoGameService.getVideoGameById(this.$route.params.id).then(response => {
             this.videogame = response.data;
         });
+        VideoGameService.getReviewsByGameId(this.$route.params.id).then(response => {
+            this.reviews = response.data;
+        });
     }
 }
 </script>

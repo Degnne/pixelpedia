@@ -75,12 +75,12 @@ public class VideoGameController {
 
 
     @RequestMapping (path= "/reviews/{id}", method = RequestMethod.DELETE)
-    public void deleteReview (@PathVariable int reviewId){
+    public void deleteReview (@PathVariable("id") int reviewId){
         reviewDAO.deleteReview(reviewId);
     }
 
     @RequestMapping (path = "/{id}/reviews", method = RequestMethod.GET)
-    public Review[] getReviewsByVideoGameId(@PathVariable int gameId){
+    public Review[] getReviewsByVideoGameId(@PathVariable("id") int gameId){
         return reviewDAO.getArrayReviewsByGameId(gameId);
     }
 
