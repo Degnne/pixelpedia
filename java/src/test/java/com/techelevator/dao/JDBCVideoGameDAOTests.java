@@ -33,7 +33,6 @@ public class JDBCVideoGameDAOTests extends BaseDaoTests {
     public void returnsCorrectVideoGame(){
         VideoGame videoGame = jdbcVideoGameDAO.getVideoGameById(1);
         BigDecimal releasePrice = new BigDecimal(60.00);
-//        BigDecimal delta = new BigDecimal(0.001);
         LocalDate releaseDate = LocalDate.of(2023, 8, 6);
         VideoGame testGame = new VideoGame(1, "Halo", releaseDate, releasePrice, "This is Halo. It is a game.", "Bungie", "", "");
         Assert.assertEquals(testGame.getId(), videoGame.getId());
