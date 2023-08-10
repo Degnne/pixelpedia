@@ -1,6 +1,11 @@
 BEGIN TRANSACTION;
 
+DROP TABLE IF EXISTS comment_likes;
+DROP TABLE IF EXISTS review_likes;
+DROP TABLE IF EXISTS comment;
+DROP TABLE IF EXISTS review;
 DROP TABLE IF EXISTS users;
+
 DROP TABLE IF EXISTS vg_system;
 DROP TABLE IF EXISTS vg_genre;
 DROP TABLE IF EXISTS vg_studio;
@@ -10,6 +15,12 @@ DROP TABLE IF EXISTS video_game;
 DROP TABLE IF EXISTS publisher;
 DROP TABLE IF EXISTS system;
 
+
+
+
+
+
+
 CREATE TABLE users (
 	user_id SERIAL,
 	username varchar(50) NOT NULL UNIQUE,
@@ -17,6 +28,14 @@ CREATE TABLE users (
 	role varchar(50) NOT NULL,
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
 );
+
+
+
+
+--
+
+--
+
 
 CREATE TABLE company (
 	company_id SERIAL,
@@ -35,6 +54,48 @@ CREATE TABLE video_game (
 	box_art TEXT,
 	CONSTRAINT PK_video_game PRIMARY KEY (id),
 	CONSTRAINT FK_publisher FOREIGN KEY (publisher_id) REFERENCES company (company_id)
+);
+
+CREATE TABLE review (
+    review_id SERIAL,
+    user_id int,
+    game_id int,
+    review_txt TEXT NOT NULL,
+    review_title varchar(100) NOT NULL,
+    date_time DATE,
+    CONSTRAINT PK_review_id PRIMARY KEY (review_id),
+    CONSTRAINT FK_user_id FOREIGN KEY (user_id) REFERENCES users(user_id),
+    CONSTRAINT FK_game_id FOREIGN KEY (game_id) REFERENCES video_game(id)
+);
+
+CREATE TABLE comment (
+    comment_id SERIAL,
+    comment_txt TEXT,
+    review_id int,
+    user_id int,
+    date_time DATE,
+
+    CONSTRAINT PK_comment_id PRIMARY KEY (comment_id),
+    CONSTRAINT FK_review_id FOREIGN KEY (review_id) REFERENCES review(review_id),
+    CONSTRAINT FK_user_id  FOREIGN KEY (user_id) REFERENCES users(user_id)
+
+);
+
+
+CREATE TABLE review_likes (
+    review_id int,
+    user_id int,
+    isLiked BIT,
+    CONSTRAINT FK_review_id FOREIGN KEY (review_id) REFERENCES review(review_id),
+    CONSTRAINT FK_user_id FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+CREATE TABLE comment_likes (
+    comment_id int,
+    user_id int,
+    isLiked BIT,
+    CONSTRAINT FK_comment_id FOREIGN KEY (comment_id) REFERENCES comment(comment_id),
+    CONSTRAINT FK_user_id FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
 CREATE TABLE system (
