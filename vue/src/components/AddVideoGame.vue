@@ -44,24 +44,26 @@
                     <option v-for="genre in genres" :key="`option-${genre}`">{{genre}}</option>
                 </datalist>
             </form>
-            <div v-for="genre in genres" :key="genre" required>
-                <input type="checkbox" :value="genre" :name="genre" :id="genre" v-model="newVideoGame.genres">
-                <label :for="genre">{{genre}}</label>
-            </div>
           </div>
           <div id="studios-div">
-            <label for="studios">Studios: </label>
-            <div v-for="studio in companies" :key="studio" required>
-                <input type="checkbox" :value="studio" :name="studio" :id="studio" v-model="newVideoGame.studios">
-                <label :for="studio">{{studio}}</label>
-            </div>
+            <form action="#" autocomplete="false" @submit.prevent="addStudio(studioToAdd)">
+                <label for="studios">Studios: </label>
+                <div><input type="text" placeholder="Studio" list="studiolist" v-model="studioToAdd"><input type="submit" value="Add"></div>
+                <div v-for="studio in newVideoGame.studios" :key="'studio-' + studio">{{studio}} <button @click="removeStudio(studio)">X</button></div>
+                <datalist id="studiolist">
+                    <option v-for="studio in companies" :key="`option-${studio}`">{{studio}}</option>
+                </datalist>
+            </form>
         </div>
         <div id="systems-div">
-            <label for="systems">Systems: </label>
-            <div v-for="system in systems" :key="system" required>
-                <input type="checkbox" :value="system" :name="system" :id="system" v-model="newVideoGame.systems">
-                <label :for="system">{{system}}</label>
-            </div>
+            <form action="#" autocomplete="false" @submit.prevent="addSystem(systemToAdd)">
+                <label for="systems">Systems: </label>
+                <div><input type="text" placeholder="System" list="systemlist" v-model="systemToAdd"><input type="submit" value="Add"></div>
+                <div v-for="system in newVideoGame.systems" :key="'system-' + system">{{system}} <button @click="removeSystem(system)">X</button></div>
+                <datalist id="systemlist">
+                    <option v-for="system in systems" :key="`option-${system}`">{{system}}</option>
+                </datalist>
+            </form>
           </div>
           <div id="description-div">
               <label for="description">Description: </label>
@@ -87,7 +89,9 @@ export default {
             companies: [],
             systems: [],
             loaded: false,
-            genreToAdd: ''
+            genreToAdd: '',
+            studioToAdd: '',
+            systemToAdd: ''
         }
     },
     methods: {
@@ -109,8 +113,24 @@ export default {
             this.newVideoGame.genres.splice(this.newVideoGame.genres.indexOf(genre), 1);
         },
         addGenre(genre) {
-            if (this.genres.includes(this.genreToAdd)) {
+            if (this.genres.includes(genre)) {
                 this.newVideoGame.genres.push(genre);
+            }            
+        },
+        removeSystem(system) {
+            this.newVideoGame.systems.splice(this.newVideoGame.systems.indexOf(system), 1);
+        },
+        addSystem(system) {
+            if (this.systems.includes(system)) {
+                this.newVideoGame.systems.push(system);
+            }            
+        },
+        removeStudio(studio) {
+            this.newVideoGame.studios.splice(this.newVideoGame.studios.indexOf(studio), 1);
+        },
+        addStudio(studio) {
+            if (this.companies.includes(studio)) {
+                this.newVideoGame.studios.push(studio);
             }            
         }
     },

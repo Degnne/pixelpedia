@@ -25,12 +25,16 @@ export default {
             this.newReview = this.review;
         }
         this.newReview.gameId = this.$route.params.id;
+        this.newReview.userId = this.$store.state.user.id;
     },
     methods: {
         addReview() {
-            VideoGameService.addGameReview(this.review).then(response => {
+            this.newReview.date = Date.now;
+            VideoGameService.addGameReview(this.newReview).then(response => {
                 console.log(response);
-            })
+            }).catch(error => {
+                console.error(error);
+            });
         },
         updateReview() {
             
