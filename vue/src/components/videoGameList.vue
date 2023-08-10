@@ -1,7 +1,8 @@
 <template>
   <div>
+      <input type="text" placeholder="Search" v-model="searchTerm">
     <div id="videogamelist">  
-    <div v-for="videogame in videoGameList" v-bind:key="videogame.id" class="videoGameCard"><router-link  v-bind:to="{name: 'videogamedetails', params: {id: videogame.id}}"> <video-game-card v-bind:videogame="videogame"/> </router-link></div>
+    <div v-for="videogame in filteredVideoGameList" v-bind:key="videogame.id" class="videoGameCard"><router-link  v-bind:to="{name: 'videogamedetails', params: {id: videogame.id}}"> <video-game-card v-bind:videogame="videogame"/> </router-link></div>
     </div>
   </div>
 </template>
@@ -19,13 +20,38 @@ export default {
     },
     data() {
         return{
-            videoGameList: []
-    
+            videoGameList: [],
+            searchTerm: ''
+        }
+    },
+    computed: {
+        filteredVideoGameList: {
+            get: function() {
+                let filteredList = this.videoGameList;
+                const searchTerm = this.searchTerm.toLowerCase();
+                if (this.searchTerm !== '') {
+                    filteredList = this.videoGameList.filter(videogame => {
+                        return (videogame.title.toLowerCase().includes(searchTerm))
+                            || (videogame.publisherName.toLowerCase().includes(searchTerm))
+                            || (videogame.genres.toString().toLowerCase().includes(searchTerm))
+                            || (videogame.systems.toString().toLowerCase().includes(searchTerm))
+                            || (videogame.studios.toString().toLowerCase().includes(searchTerm))
+                            || (videogame.releaseDate.includes(searchTerm));
+                    });
+                }
+                
+                return filteredList;
+            },
+            set: function() {
+
+            }
+            
         }
     },
     created(){
         videogameService.getVideoGames().then(response =>{
             this.videoGameList = response.data;
+            this.filteredVideoGameList = response.data;
         }).catch(error => {
             if(error.response){
                 console.log(error);
