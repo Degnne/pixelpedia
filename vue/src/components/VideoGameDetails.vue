@@ -1,5 +1,8 @@
 <template>
-  <div id="detailsPage" :style="{ background: gradientBackground }">
+  <div id="detailsPage" :style="{ 
+    background: gradientBackground + '0% 0% / 200% 200% repeat',
+    animation: 'Animation 20s ease infinite'
+    }">
     <img class= "art" ref="boxArt" id="boxArt" v-bind:src="videoGame.boxArt" alt="">
     <div class= "title"><h2>{{ videoGame.title }}</h2></div>
     <div id="details">
@@ -16,13 +19,21 @@
       <div class="genre">Genres: 
         <span v-for="genre in videoGame.genres" v-bind:key="genre">{{genre}} </span>
       </div>
-      <div class="rating"><img :src="ratingImgUrl" :alt="videoGame.rating" :title="videoGame.rating"></div>
+      <div class="rating" v-if="dataLoaded">
+        Rating: 
+        <img :src="ratingImgUrl" :alt="videoGame.rating" :title="videoGame.rating">
+      </div>
+      <div class="videogamedetails-jumpbuttons">
+        <router-link :to="{hash: '#videogamereviews'}" tag="button" @click.native="anchorHashCheck()">View Reviews</router-link>
+        <router-link :to="{hash: '#addvideogamereview'}" tag="button" @click.native="anchorHashCheck()">Add Review</router-link>
+      </div>
     </div>
     
     <div class="edit-delete">
       <button @click="$router.push({name: 'editvideogame', params: {id: videoGame.id}})" id="edit-game">Edit</button>
       <button @click.prevent="deleteGame" id="delete-game">Delete</button>
     </div>
+    
   </div>
 </template>
 
@@ -35,14 +46,26 @@ export default {
   data() {
     return {
       videoGame: {},
-      palette: null
+      palette: null,
+      dataLoaded: false
     };
   },
   methods: {
+    anchorHashCheck() {
+      if (window.location.hash === this.$route.hash) {
+        const el = document.getElementById(this.$route.hash.slice(1))
+        if (el) {
+          const scrollOptions = {
+            top: el.offsetTop,
+            behavior: 'smooth'
+          };
+          window.scrollTo(scrollOptions);
+        }
+      }
+    },
     deleteGame() {
       this.$router.push({ name: 'deletevideogame', params: { id: this.videoGame.id } });
     }
-
   },
   computed: {
     ratingImgUrl() {
@@ -54,7 +77,7 @@ export default {
           .map(color => `rgb(${color[0]}, ${color[1]}, ${color[2]})`)
           .join(', ');
 
-        return `linear-gradient(to top right, ${gradientColors})`;
+        return `linear-gradient(to right, ${gradientColors})`;
       }
 
       return 'none';
@@ -65,13 +88,14 @@ export default {
       .getVideoGameById(this.$route.params.id)
       .then((response) => {
         this.videoGame = response.data;
+        this.dataLoaded = true;
 
         const colorThief = new ColorThief();
         const img = new Image();
 
         img.addEventListener('load', () => {
           this.palette = colorThief.getPalette(img);
-          console.log(this.palette);
+          //console.log(this.palette);
         });
 
         let imageURL = this.videoGame.boxArt;
@@ -80,6 +104,8 @@ export default {
         img.crossOrigin = 'Anonymous';
         img.src = googleProxyURL + encodeURIComponent(imageURL);
       });
+
+      this.anchorHashCheck()
   }
 };
 </script>
@@ -91,7 +117,6 @@ export default {
   justify-content: center;
   display: flex;
   width: 500Px;
-  margin: 10px;
   border-radius: 10px;
 }
 .title{
@@ -99,12 +124,14 @@ export default {
 }
 .title h2 {
   margin: 5px;
-  -webkit-text-stroke: 2px black;
+  text-shadow: 1px 1px 2px black;
   font-weight: 900;
   font-size: 1.8rem;
 }
 .rating {
   grid-area: rating;
+  display: flex;
+  align-items: center;
 }
 .rating img {
   width: 50px;
@@ -183,9 +210,13 @@ export default {
 .edit-delete button {
   border-radius: 5px;
   border: 1px solid white;
-  border: none;
   padding: 3px;
   margin: 2px;
+  width: 50px;
+  height: 30px;
+}
+.videogamedetails-jumpbuttons {
+  grid-area: jump;
 }
 #delete-game {
   background-color: rgb(228, 59, 59);
@@ -212,7 +243,8 @@ export default {
   grid-template-areas: "publisher price date"
                       "studio system rating"
                       "genre genre genre"
-                      "description description description";
+                      "description description description"
+                      "jump jump jump";
   align-items: center;
 }
 #detailsPage{
@@ -222,7 +254,7 @@ export default {
   margin-top: 20px;
   display:grid;
   gap: 5px;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr auto 1fr 1fr;
   grid-template-areas: 
   "title title title edit-delete" 
   "art art details details"
@@ -230,6 +262,15 @@ export default {
   "art art details details"
   "art art details details"
   "art art details details";
+  align-items: flex-start;
+  
+  
+}
+
+@keyframes Animation { 
+    0%{background-position:0% 0%}
+    50%{background-position:91% 150%}
+    100%{background-position:0% 0%}
 }
 
 </style>

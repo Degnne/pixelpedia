@@ -1,6 +1,6 @@
 <template>
   <div>
-      <input type="text" placeholder="Search" v-model="searchTerm">
+      <input type="text" placeholder="Search" v-model="searchTerm" class="searchbox">
     <div id="videogamelist">  
     <div v-for="videogame in filteredVideoGameList" v-bind:key="videogame.id" class="videoGameCard"><router-link  v-bind:to="{name: 'videogamedetails', params: {id: videogame.id}}"> <video-game-card v-bind:videogame="videogame"/> </router-link></div>
     </div>
@@ -69,6 +69,10 @@ export default {
 </script>
 
 <style scoped>
+.searchbox {
+    border-radius: 5px;
+    border: none;
+}
 .videoGameCard, a {
     text-decoration: none;
     color: whitesmoke;
