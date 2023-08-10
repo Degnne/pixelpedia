@@ -35,11 +35,11 @@ public class JDBCReviewDAO implements ReviewDAO {
     }
 
     @Override
-    public Review editReview(Review review) {
+    public Review editReview(Review review, int id) {
 
         String sql = "UPDATE review SET review_txt = ?, review_title = ? WHERE review_id = ?;";
 
-        jdbcTemplate.update(sql, review.getReviewText(), review.getReviewTitle(), review.getReviewId());
+        jdbcTemplate.update(sql, review.getReviewText(), review.getReviewTitle(), id);
 
         return getReviewByReviewId(review.getReviewId());
     }

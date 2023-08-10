@@ -45,7 +45,7 @@ public class JDBCReviewDAOTests extends BaseDaoTests {
         Review review1 = jdbcReviewDAO.getReviewByReviewId(1);
         review1.setReviewTitle("HEY JAVA BLUE!");
         review1.setReviewText("HEY JAVA GREEN!");
-        jdbcReviewDAO.editReview(review1);
+        jdbcReviewDAO.editReview(review1, 1);
 
 
         Review review2 = jdbcReviewDAO.getReviewByReviewId(1);
@@ -63,7 +63,7 @@ public class JDBCReviewDAOTests extends BaseDaoTests {
         Assert.assertEquals(expected.getDate(), actual.getDate());
         Assert.assertEquals(expected.getReviewTitle(), actual.getReviewTitle());
 
-        
+
         int expectedCommentsLength = expected.getComments().length;
         int actualCommentsLength = actual.getComments().length;
         Assert.assertEquals(expectedCommentsLength, actualCommentsLength);
