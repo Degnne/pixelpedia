@@ -76,7 +76,6 @@ public class JDBCVideoGameDAO implements VideoGameDAO {
 
         //Loop through array add each item into DB
         for (int i = 0; i < genres.length; i++) {
-            //TODO convert id, inserting into DB based off ID
             String genre = genres[i];
             int genreID = convertGenreNameToID(genre);
             //call a method that inserts into DB

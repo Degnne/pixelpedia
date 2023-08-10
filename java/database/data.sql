@@ -18,26 +18,26 @@ INSERT INTO video_game (title, release_date, release_price, description, publish
 INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES ('Super Mario Bros.', CURRENT_DATE, 60.00, 'This is Super Mario Bros. It is a game.', 2, 'E','https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/de10961b-5990-4053-b78f-eabbba03ae83/d7ndqiw-9b9e55e3-e573-47c6-bc70-4edfa3b89043.png/v1/fill/w_746,h_1072,q_75,strp/super_mario_bros_nes_cover_by_perrito_gatito-d7ndqiw.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwic3ViIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl0sIm9iaiI6W1t7InBhdGgiOiIvZi9kZTEwOTYxYi01OTkwLTQwNTMtYjc4Zi1lYWJiYmEwM2FlODMvZDduZHFpdy05YjllNTVlMy1lNTczLTQ3YzYtYmM3MC00ZWRmYTNiODkwNDMucG5nIiwid2lkdGgiOiI8PTc0NiIsImhlaWdodCI6Ijw9MTA3MiJ9XV19.mDrgffJcbbl5h5bVylez77M2zeW_MfJyGdcdDRiYCfg');     --2
 INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES ('Super Meat Boy', CURRENT_DATE, 60.00, 'This is Super Meat Boy. It is a game.', 4, 'T','https://www.newgamenetwork.com/images/uploads/games/1294707829_supermeatboycover.png');          --3
 INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES ('Tak and the Power of Juju', CURRENT_DATE, 60.00, 'This is Tak and the Power of Juju. It is a game.', 5, 'E','https://www.giantbomb.com/a/uploads/original/8/87790/2352270-box_tak.png');    --4
-INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES
-('Pac-Man', '1980-05-22', 30.00, 'This is one of the most popular arcade games of all time.', 1, 'E','https://upload.wikimedia.org/wikipedia/en/thumb/5/53/Pac-Man_arcade_game.jpg/220px-Pac-Man_arcade_game.jpg');
-
-INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES
-('Tetris', '1984-06-06', 25.00, 'This is a puzzle game that is simple to learn but difficult to master.', 2, 'E','https://upload.wikimedia.org/wikipedia/en/thumb/0/04/Tetris_cover.jpg/220px-Tetris_cover.jpg');
-
-INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES
-('Super Mario Bros. 3', '1988-09-12', 60.00, 'This is the sequel to Super Mario Bros. and is considered one of the greatest video games of all time.', 1, 'E','https://upload.wikimedia.org/wikipedia/en/thumb/9/91/Super_Mario_Bros._3_box_art.jpg/220px-Super_Mario_Bros._3_box_art.jpg');
-
-INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES
-('The Legend of Zelda: A Link to the Past', '1991-11-21', 60.00, 'This is a sequel to The Legend of Zelda: Ocarina of Time and is considered one of the greatest video games of all time.', 3, 'E','https://upload.wikimedia.org/wikipedia/en/thumb/5/5e/The_Legend_of_Zelda_A_Link_to_the_Past_box_art.png/220px-The_Legend_of_Zelda_A_Link_to_the_Past_box_art.png');
-
-INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES
-('Street Fighter II', '1991-02-10', 35.00, 'This is a fighting game that is considered one of the greatest video games of all time.', 5, 'T','https://upload.wikimedia.org/wikipedia/en/thumb/d/d9/Street_Fighter_II_box_art.jpg/220px-Street_Fighter_II_box_art.jpg');
-
-INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES
-('Sonic the Hedgehog', '1991-06-23', 49.99, 'This is a platform game that is considered one of the greatest video games of all time.', 2, 'E','https://upload.wikimedia.org/wikipedia/en/thumb/f/f1/Sonic_the_Hedgehog_cover.jpg/220px-Sonic_the_Hedgehog_cover.jpg');
-
-INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES
-('Mortal Kombat', '1992-10-13', 59.99, 'This is a fighting game that is considered one of the greatest video games of all time.', 8, 'T','https://upload.wikimedia.org/wikipedia/en/thumb/3/33/Mortal_Kombat_box_art.jpg/220px-Mortal_Kombat_box_art.jpg');
+--INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES
+--('Pac-Man', '1980-05-22', 30.00, 'This is one of the most popular arcade games of all time.', 1, 'E','https://upload.wikimedia.org/wikipedia/en/thumb/5/53/Pac-Man_arcade_game.jpg/220px-Pac-Man_arcade_game.jpg');
+--
+--INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES
+--('Tetris', '1984-06-06', 25.00, 'This is a puzzle game that is simple to learn but difficult to master.', 2, 'E','https://upload.wikimedia.org/wikipedia/en/thumb/0/04/Tetris_cover.jpg/220px-Tetris_cover.jpg');
+--
+--INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES
+--('Super Mario Bros. 3', '1988-09-12', 60.00, 'This is the sequel to Super Mario Bros. and is considered one of the greatest video games of all time.', 1, 'E','https://upload.wikimedia.org/wikipedia/en/thumb/9/91/Super_Mario_Bros._3_box_art.jpg/220px-Super_Mario_Bros._3_box_art.jpg');
+--
+--INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES
+--('The Legend of Zelda: A Link to the Past', '1991-11-21', 60.00, 'This is a sequel to The Legend of Zelda: Ocarina of Time and is considered one of the greatest video games of all time.', 3, 'E','https://upload.wikimedia.org/wikipedia/en/thumb/5/5e/The_Legend_of_Zelda_A_Link_to_the_Past_box_art.png/220px-The_Legend_of_Zelda_A_Link_to_the_Past_box_art.png');
+--
+--INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES
+--('Street Fighter II', '1991-02-10', 35.00, 'This is a fighting game that is considered one of the greatest video games of all time.', 5, 'T','https://upload.wikimedia.org/wikipedia/en/thumb/d/d9/Street_Fighter_II_box_art.jpg/220px-Street_Fighter_II_box_art.jpg');
+--
+--INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES
+--('Sonic the Hedgehog', '1991-06-23', 49.99, 'This is a platform game that is considered one of the greatest video games of all time.', 2, 'E','https://upload.wikimedia.org/wikipedia/en/thumb/f/f1/Sonic_the_Hedgehog_cover.jpg/220px-Sonic_the_Hedgehog_cover.jpg');
+--
+--INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES
+--('Mortal Kombat', '1992-10-13', 59.99, 'This is a fighting game that is considered one of the greatest video games of all time.', 8, 'T','https://upload.wikimedia.org/wikipedia/en/thumb/3/33/Mortal_Kombat_box_art.jpg/220px-Mortal_Kombat_box_art.jpg');
 
 
 INSERT INTO genre (genre_name) VALUES ('Platformer');   --1
@@ -108,6 +108,33 @@ INSERT INTO vg_system (vg_id, system_id) VALUES (1, 2);
 INSERT INTO vg_studio (vg_id, studio_id) VALUES (1, 3);
 INSERT INTO vg_studio (vg_id, studio_id) VALUES (2, 2);
 INSERT INTO vg_studio (vg_id, studio_id) VALUES (3, 4);
+
+
+
+
+INSERT into review (user_id, game_id, review_txt, review_title, date_time) VALUES (1,1, 'This is test text. Man this game is so fun!', 'This Is Test Title!', '2023-01-01');
+INSERT into review (user_id, game_id, review_txt, review_title, date_time) VALUES (1,2, 'This is test text. BRUH this game is so fun!', 'This Is Test Title!', '2023-01-01');
+INSERT into review (user_id, game_id, review_txt, review_title, date_time) VALUES (1,3, 'This is test text. Man this game is so bad!', 'This Is Test Title!', '2023-01-01');
+INSERT into review (user_id, game_id, review_txt, review_title, date_time) VALUES (1,4, 'This is test text. Man this game is so good!', 'This Is Test Title!', '2023-01-01');
+INSERT into review (user_id, game_id, review_txt, review_title, date_time) VALUES (1,3, 'This is test text. Man this game is so boring!', 'This Is Test Title!', '2023-01-01');
+INSERT into review (user_id, game_id, review_txt, review_title, date_time) VALUES (1,3, 'This is test text. Man this game is so lame! DONT BUY', 'This Is Test Title!', '2023-01-01');
+
+
+INSERT into review_likes(review_id, user_id, isliked) VALUES (1, 1, '0');
+INSERT into review_likes(review_id, user_id, isliked) VALUES (2, 1, '1');
+INSERT into review_likes(review_id, user_id, isliked) VALUES (3, 1, '1');
+INSERT into review_likes(review_id, user_id, isliked) VALUES (4, 1, '0');
+INSERT into review_likes(review_id, user_id, isliked) VALUES (5, 1, '1');
+INSERT into review_likes(review_id, user_id, isliked) VALUES (6, 1, '0');
+
+INSERT INTO comment (comment_txt, review_id, user_id, date_time) VALUES ('This is a Test Comment! GL Rocco & Jeff!!', 1,1, '2023-10-10');
+INSERT INTO comment (comment_txt, review_id, user_id, date_time) VALUES ('This is a Test Comment! GL Jeff!!', 1,1, '2023-10-10');
+INSERT INTO comment (comment_txt, review_id, user_id, date_time) VALUES ('This is a Test Comment! GL Rocco!!', 2,1, '2023-10-10');
+INSERT INTO comment (comment_txt, review_id, user_id, date_time) VALUES ('This is a Test Comment! GL Jeff & Rocco!!', 3,1, '2023-10-10');
+INSERT INTO comment (comment_txt, review_id, user_id, date_time) VALUES ('This is a Test Comment! GL Rocco & Jeff!!', 4,1, '2023-10-10');
+
+
+
 
 -- Insert 50 more video games
 --INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES
