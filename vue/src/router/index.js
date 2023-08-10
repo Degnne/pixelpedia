@@ -9,7 +9,7 @@ import videogamedetails from '../views/VideoGameDetailView.vue'
 import addvideogame from '../views/AddVideoGameView.vue'
 import deletevideogame from '../views/ConfirmDeleteView.vue'
 import editvideogame from '../views/EditVideoGameView.vue'
-
+import emulatorlist from '../views/emulatorView.vue'
 Vue.use(Router)
 
 /**
@@ -77,6 +77,11 @@ const router = new Router({
       path: '/editvideogame/:id',
       name: 'editvideogame',
       component: editvideogame
+    },
+    {
+      path: '/emulatorlist',
+      name: 'emulatorlist',
+      component: emulatorlist
     }
   ]
 })
