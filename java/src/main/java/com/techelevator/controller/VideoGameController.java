@@ -68,4 +68,9 @@ public class VideoGameController {
         return reviewDAO.addReview(review);
     }
 
+    @RequestMapping (path = "/reviews/{id}", method = RequestMethod.PUT)
+    public Review editReview (@RequestBody Review review, @PathVariable int id){
+        return reviewDAO.editReview(review, id);
+    }
+
 }
