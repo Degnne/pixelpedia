@@ -18,7 +18,8 @@ public class VideoGameController {
     private VideoGameDAO videoGameDAO;
     private ReviewDAO reviewDAO;
 
-    VideoGameController(VideoGameDAO videoGameDAO) {
+    VideoGameController(VideoGameDAO videoGameDAO, ReviewDAO reviewDAO) {
+        this.reviewDAO = reviewDAO;
         this.videoGameDAO = videoGameDAO;
     }
 

@@ -32,6 +32,14 @@ public class JDBCReviewDAO implements ReviewDAO {
         return review;
     }
 
+    @Override
+    public Review editReview(Review review) {
+
+        String sql = "";
+
+        return null;
+    }
+
     public Review getReviewByReviewId(int reviewId) {
         Review review = new Review();
 
