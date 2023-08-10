@@ -8,6 +8,7 @@ import store from '../store/index'
 import videogamedetails from '../views/VideoGameDetailView.vue'
 import addvideogame from '../views/AddVideoGameView.vue'
 import deletevideogame from '../views/ConfirmDeleteView.vue'
+import editvideogame from '../views/EditVideoGameView.vue'
 
 Vue.use(Router)
 
@@ -71,6 +72,11 @@ const router = new Router({
       path: '/deletevideogame/:id',
       name: 'deletevideogame',
       component: deletevideogame
+    },
+    {
+      path: '/editvideogame/:id',
+      name: 'editvideogame',
+      component: editvideogame
     }
   ]
 })

@@ -2,21 +2,24 @@
   <div id="detailsPage">
     <img class= "art" ref="boxArt" id="boxArt" v-bind:src="videoGame.boxArt" alt="">
     <div class= "title"><h2>{{ videoGame.title }}</h2></div>
-    <div class = "price"><span>${{videoGame.releasePrice}}</span></div>
-    <div class = "date"><span>{{ videoGame.releaseDate }}</span></div>
-    <div class = "description"><span>{{ videoGame.description }}</span></div>
-    <div class = "publisher"><span>{{ videoGame.publisherName }}</span></div>
-    <div class = "system">
-      <span v-for="system in videoGame.systems" v-bind:key="system">{{system}}</span>
+    <div id="details">
+      <div class = "price">Release Price: <span>${{videoGame.releasePrice}}</span></div>
+      <div class = "date">Release Date: <span>{{ videoGame.releaseDate }}</span></div>
+      <div class = "description"><span>{{ videoGame.description }}</span></div>
+      <div class = "publisher">Publisher: <span>{{ videoGame.publisherName }}</span></div>
+      <div class = "system">Systems: 
+        <span v-for="system in videoGame.systems" v-bind:key="system">{{system}}</span>
+      </div>
+      <div class="studio">Studios: 
+        <span v-for="studio in videoGame.studios" v-bind:key="studio">{{studio}}</span>
+      </div>
+      <div class="genre">Genres: 
+        <span v-for="genre in videoGame.genres" v-bind:key="genre">{{genre}} </span>
+      </div>
     </div>
-    <div class="studio">
-      <span v-for="studio in videoGame.studios" v-bind:key="studio">{{studio}}</span>
-    </div>
-    <div class="genre">
-      <span v-for="genre in videoGame.genres" v-bind:key="genre">{{genre}} </span>
-    </div>
+    
     <div class="edit-delete">
-      <button id="edit-game">Edit</button>
+      <button @click="$router.push({name: 'editvideogame', params: {id: videoGame.id}})" id="edit-game">Edit</button>
       <button @click.prevent="deleteGame" id="delete-game">Delete</button>
     </div>
   </div>
@@ -105,6 +108,8 @@ export default {
 }
 .system{
   grid-area: system;
+}
+.system span {
   margin: 3px;
   padding: 3px;
   background-color: dimgray;
@@ -123,10 +128,6 @@ export default {
 }
 .studio{
   grid-area: studio;
-  margin: 3px;
-  padding: 3px;
-  background-color: dimgray;
-  border-radius: 5px;
 }
 .studio span{
   margin: 3px;
@@ -136,10 +137,9 @@ export default {
 }
 .genre{
   grid-area: genre;
-  height: 30px;
-  vertical-align: middle;
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
 }
 .genre span{
   margin: 3px;
@@ -174,17 +174,30 @@ export default {
   color: black;
   cursor: pointer;
 }
+#details {
+  height: 400px;
+  grid-area: details;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 5px;
+  grid-template-areas: "publisher price date"
+                      "studio system system"
+                      "genre genre genre"
+                      "description description description";
+  align-items: center;
+}
 #detailsPage{
   margin-top: 20px;
   display:grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  gap: 5px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-areas: 
-  "title title edit-delete" 
-  "art art art"
-  "price publisher date"
-  "genre genre genre"
-  "system studio ."
-  "description description description";
+  "title title title edit-delete" 
+  "art art details details"
+  "art art details details"
+  "art art details details"
+  "art art details details"
+  "art art details details";
 }
 
 </style>

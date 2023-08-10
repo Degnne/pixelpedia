@@ -1,5 +1,5 @@
 <template>
-  <AddVideoGame :addingNewGame="true" />
+  <AddVideoGame :addingNewGame="false" />
 </template>
 
 <script>
@@ -8,7 +8,6 @@ export default {
     components: {
         AddVideoGame
     }
-
 }
 </script>
 

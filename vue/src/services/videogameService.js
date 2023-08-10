@@ -27,6 +27,10 @@ export default{
     },
 
     deleteGame(gameId) {
-        return axios.delete(`./videogames/${gameId}`)
+        return axios.delete(`/videogames/${gameId}`)
+    },
+
+    updateGame(videogame) {
+        return axios.put('/videogames', videogame)
     }
 }
