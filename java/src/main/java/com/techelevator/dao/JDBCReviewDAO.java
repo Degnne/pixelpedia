@@ -32,6 +32,22 @@ public class JDBCReviewDAO implements ReviewDAO {
         return review;
     }
 
+    public Review getReviewByReviewId(int reviewId) {
+        Review review = new Review();
+
+        String sql = "SELECT review_id, user_id, game_id, review_txt, review_title, date_time FROM review WHERE review_id = ?;";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, reviewId);
+
+        if(results.next()){
+            review = mapRowToReview(results);
+        }
+
+
+
+        return review;
+    }
+
     private Comment[] getCommentsByReviewId(int reviewId){
         List<Comment> commentList = new ArrayList<>();
 
@@ -43,6 +59,19 @@ public class JDBCReviewDAO implements ReviewDAO {
             commentList.add(mapRowToComment(results));
         }
         return commentList.toArray(new Comment[commentList.size()]);
+    }
+
+
+    private Review mapRowToReview(SqlRowSet sqlRowSet){
+        Review review = new Review();
+        review.setReviewId(sqlRowSet.getInt("review_id"));
+        review.setDate(sqlRowSet.getDate("date_time").toLocalDate());
+        review.setReviewText(sqlRowSet.getString("review_txt"));
+        review.setReviewTitle(sqlRowSet.getString("review_title"));
+        review.setGameId(sqlRowSet.getInt("game_id"));
+        review.setUserId(sqlRowSet.getInt("user_id"));
+        review.setComments(getCommentsByReviewId(review.getReviewId()));
+        return review;
     }
 
     private Comment mapRowToComment(SqlRowSet sqlRowSet){
