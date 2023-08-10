@@ -2,6 +2,7 @@ package com.techelevator.dao;
 
 import com.techelevator.model.Comment;
 import com.techelevator.model.Review;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
@@ -42,6 +43,38 @@ public class JDBCReviewDAO implements ReviewDAO {
         jdbcTemplate.update(sql, review.getReviewText(), review.getReviewTitle(), id);
 
         return getReviewByReviewId(review.getReviewId());
+    }
+
+
+    @Override
+    public void deleteReview(int id) {
+        String sql = "DELETE FROM comment WHERE review_id = ?;";
+        String sql1 = "DELETE FROM review_likes WHERE review_id = ?;";
+        String sql2 = "DELETE FROM review WHERE review_id = ?;";
+
+        try{
+            jdbcTemplate.update(sql, id);
+            jdbcTemplate.update(sql1, id);
+            jdbcTemplate.update(sql2, id);
+        } catch (DataIntegrityViolationException e){
+            throw new DataIntegrityViolationException("Invalid Id", e);
+        }
+
+    }
+
+    @Override
+    public Review[] getArrayReviewsByGameId(int gameId) {
+        List<Review> reviewList = new ArrayList<>();
+
+        String sql = "SELECT review_id, user_id, game_id, review_txt, review_title, date_time FROM review WHERE game_id = ?;";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, gameId);
+
+        while(results.next()){
+            reviewList.add(mapRowToReview(results));
+        }
+
+        return reviewList.toArray(new Review[reviewList.size()]) ;
     }
 
     public Review getReviewByReviewId(int reviewId) {
