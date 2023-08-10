@@ -1,5 +1,6 @@
 package com.techelevator.dao;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.techelevator.model.Comment;
 import com.techelevator.model.Review;
 import org.junit.Assert;
@@ -52,6 +53,19 @@ public class JDBCReviewDAOTests extends BaseDaoTests {
 
 
         assertReviewMatch(review1, review2);
+    }
+
+    @Test
+    public void delete_review_test(){
+        jdbcReviewDAO.deleteReview(3);
+        Review deletedReview = jdbcReviewDAO.getReviewByReviewId(3);
+
+        Assert.assertNull(deletedReview.getReviewTitle());
+        Assert.assertNull(deletedReview.getReviewText());
+        Assert.assertEquals(0, deletedReview.getReviewId());
+        Assert.assertNull(deletedReview.getDate());
+        Assert.assertEquals(0, deletedReview.getUserId());
+        Assert.assertNull(deletedReview.getComments());
     }
 
 
