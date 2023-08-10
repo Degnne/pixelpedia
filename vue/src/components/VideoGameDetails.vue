@@ -16,6 +16,7 @@
       <div class="genre">Genres: 
         <span v-for="genre in videoGame.genres" v-bind:key="genre">{{genre}} </span>
       </div>
+      <div class="rating"><img :src="ratingImgUrl" :alt="videoGame.rating" :title="videoGame.rating"></div>
     </div>
     
     <div class="edit-delete">
@@ -44,6 +45,9 @@ export default {
 
   },
   computed: {
+    ratingImgUrl() {
+      return require(`../assets/${this.videoGame.rating}.png`);
+    },
     gradientBackground() {
       if (this.palette) {
         const gradientColors = this.palette
@@ -95,6 +99,15 @@ export default {
 }
 .title h2 {
   margin: 5px;
+  -webkit-text-stroke: 2px black;
+  font-weight: 900;
+  font-size: 1.8rem;
+}
+.rating {
+  grid-area: rating;
+}
+.rating img {
+  width: 50px;
 }
 .date{
   grid-area: date;
@@ -169,6 +182,7 @@ export default {
 }
 .edit-delete button {
   border-radius: 5px;
+  border: 1px solid white;
   border: none;
   padding: 3px;
   margin: 2px;
@@ -187,18 +201,23 @@ export default {
   cursor: pointer;
 }
 #details {
+  background-color: rgba(30, 30, 30, .5);
+  border-radius: 20px;
+  padding: 10px;
   height: 400px;
   grid-area: details;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 5px;
   grid-template-areas: "publisher price date"
-                      "studio system system"
+                      "studio system rating"
                       "genre genre genre"
                       "description description description";
   align-items: center;
 }
 #detailsPage{
+  padding: 10px;
+  border-radius: 20px;
   grid-area: gradient-background;
   margin-top: 20px;
   display:grid;

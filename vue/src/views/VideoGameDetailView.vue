@@ -1,14 +1,19 @@
 <template>
   <div>
-    <video-game-details/>
+    <VideoGameDetails />
+    <VideoGameReviews />
   </div>
 </template>
 
 <script>
 import VideoGameDetails from '../components/VideoGameDetails.vue';
+import VideoGameReviews from '../components/VideoGameReviews.vue';
 
 export default {
-  components: { VideoGameDetails }
+  components: { 
+    VideoGameDetails ,
+    VideoGameReviews
+  }
 };
 </script>
 
