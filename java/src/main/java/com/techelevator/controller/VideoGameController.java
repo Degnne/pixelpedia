@@ -73,4 +73,15 @@ public class VideoGameController {
         return reviewDAO.editReview(review, id);
     }
 
+
+    @RequestMapping (path= "/reviews/{id}", method = RequestMethod.DELETE)
+    public void deleteReview (@PathVariable int reviewId){
+        reviewDAO.deleteReview(reviewId);
+    }
+
+    @RequestMapping (path = "/{id}/reviews", method = RequestMethod.GET)
+    public Review[] getReviewsByVideoGameId(@PathVariable int gameId){
+        return reviewDAO.getArrayReviewsByGameId(gameId);
+    }
+
 }

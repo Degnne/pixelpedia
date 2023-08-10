@@ -69,6 +69,13 @@ public class JDBCReviewDAOTests extends BaseDaoTests {
     }
 
 
+    @Test
+    public void get_array_of_reviews(){
+        Assert.assertEquals(1, jdbcReviewDAO.getArrayReviewsByGameId(4).length);
+
+    }
+
+
 
     private void assertReviewMatch(Review expected, Review actual){
         Assert.assertEquals(expected.getReviewId(), actual.getReviewId());
