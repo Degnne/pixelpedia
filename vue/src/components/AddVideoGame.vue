@@ -36,7 +36,14 @@
             <img :src="newVideoGame.boxArt" alt="" class="boxart">
           </div>
           <div id="genres-div">
-            <label for="genres">Genres: </label>
+            <form action="#" autocomplete="false" @submit.prevent="addGenre(genreToAdd)">
+                <label for="genres">Genres: </label>
+                <div><input type="text" placeholder="Genre" list="genrelist" v-model="genreToAdd"><input type="submit" value="Add"></div>
+                <div v-for="genre in newVideoGame.genres" :key="'genre-' + genre">{{genre}} <button @click="removeGenre(genre)">X</button></div>
+                <datalist id="genrelist">
+                    <option v-for="genre in genres" :key="`option-${genre}`">{{genre}}</option>
+                </datalist>
+            </form>
             <div v-for="genre in genres" :key="genre" required>
                 <input type="checkbox" :value="genre" :name="genre" :id="genre" v-model="newVideoGame.genres">
                 <label :for="genre">{{genre}}</label>
@@ -79,7 +86,8 @@ export default {
             genres: [],
             companies: [],
             systems: [],
-            loaded: false
+            loaded: false,
+            genreToAdd: ''
         }
     },
     methods: {
@@ -88,14 +96,22 @@ export default {
         },
         addNewVideoGame() {
             VideoGameService.addVideoGame(this.newVideoGame).then(response => {
-                this.$router.push({name: 'videogamedetails', params: {id: response.data.id}});
+                this.$router.push({name: 'videogamedetails', params: {id: response.data.id}, hash: '#detailsPage'});
             });
         },
         updateVideoGame() {
             videogameService.updateGame(this.newVideoGame).then(response => {
                 console.log(response);
-                this.$router.push({name: 'videogamedetails', params: {id: this.newVideoGame.id}});
+                this.$router.push({name: 'videogamedetails', params: {id: this.newVideoGame.id}, hash: '#detailsPage'});
             })
+        },
+        removeGenre(genre) {
+            this.newVideoGame.genres.splice(this.newVideoGame.genres.indexOf(genre), 1);
+        },
+        addGenre(genre) {
+            if (this.genres.includes(this.genreToAdd)) {
+                this.newVideoGame.genres.push(genre);
+            }            
         }
     },
     created() {

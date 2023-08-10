@@ -88,7 +88,7 @@ export default {
 #videogamelist{
     display: flex;
     flex-wrap: wrap;
-
+    margin-top: 25px;
 }
 
 </style>

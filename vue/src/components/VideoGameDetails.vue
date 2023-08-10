@@ -232,10 +232,10 @@ export default {
   cursor: pointer;
 }
 #details {
-  background-color: rgba(30, 30, 30, .5);
+  background-color: rgba(30, 30, 30, .7);
   border-radius: 20px;
+  height: 60%;
   padding: 10px;
-  height: 400px;
   grid-area: details;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -254,7 +254,7 @@ export default {
   margin-top: 20px;
   display:grid;
   gap: 5px;
-  grid-template-columns: 1fr auto 1fr 1fr;
+  grid-template-columns: 1fr auto 1fr auto;
   grid-template-areas: 
   "title title title edit-delete" 
   "art art details details"
@@ -269,8 +269,8 @@ export default {
 
 @keyframes Animation { 
     0%{background-position:0% 0%}
-    50%{background-position:91% 150%}
-    100%{background-position:0% 0%}
+    50%{background-position:100% 0%}
+    100%{background-position:-0% 0%}
 }
 
 </style>
