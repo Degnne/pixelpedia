@@ -10,7 +10,7 @@
     <main>
       <router-view />
     </main>
-    <footer>This is the footer.</footer>
+    <footer></footer>
   </div>
 </template>
 <style>
