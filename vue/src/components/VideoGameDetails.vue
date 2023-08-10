@@ -1,6 +1,6 @@
 <template>
   <div id="detailsPage">
-    <img class= "art" v-bind:src="videoGame.boxArt" alt="">
+    <img class= "art" ref="boxArt" id="boxArt" v-bind:src="videoGame.boxArt" alt="">
     <div class= "title"><h2>{{ videoGame.title }}</h2></div>
     <div class = "price"><span>${{videoGame.releasePrice}}</span></div>
     <div class = "date"><span>{{ videoGame.releaseDate }}</span></div>
@@ -22,19 +22,24 @@
   </div>
 </template>
 
+
 <script>
 import videogameService from "../services/videogameService";
+import ColorThief from "colorthief";
 
 export default {
+
   data() {
     return {
       videoGame: {},
+      palette: {},
     };
   },
   methods: {
     deleteGame() {
       this.$router.push({name: 'deletevideogame', params: {id: this.videoGame.id}});
     }
+    
   },
   created() {
     videogameService
@@ -42,8 +47,23 @@ export default {
       .then((response) => {
         this.videoGame = response.data;
       });
-  },
-};
+
+    const colorThief = new ColorThief();
+    const img = new Image();
+
+    img.addEventListener('load', function() {
+      colorThief.getPalette(img)
+      console.log(colorThief.getPalette(img,8));
+    });
+    
+
+  let imageURL = this.videoGame.boxArt;
+  let googleProxyURL = 'https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&refresh=2592000&url=';
+
+  img.crossOrigin = 'Anonymous';
+  img.src = googleProxyURL + encodeURIComponent(imageURL);     
+  }
+  }
 </script>
 
 <style>
