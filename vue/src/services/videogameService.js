@@ -32,5 +32,9 @@ export default{
 
     updateGame(videogame) {
         return axios.put('/videogames', videogame)
+    },
+
+    addGameReview(review) {
+        return axios.post('/videogames/reviews', review)
     }
 }
