@@ -1,5 +1,5 @@
 <template>
-  <div id="detailsPage">
+  <div id="detailsPage" :style="{ background: gradientBackground }">
     <img class= "art" ref="boxArt" id="boxArt" v-bind:src="videoGame.boxArt" alt="">
     <div class= "title"><h2>{{ videoGame.title }}</h2></div>
     <div id="details">
@@ -31,43 +31,55 @@ import videogameService from "../services/videogameService";
 import ColorThief from "colorthief";
 
 export default {
-
   data() {
     return {
       videoGame: {},
-      palette: {},
+      palette: null
     };
   },
   methods: {
     deleteGame() {
-      this.$router.push({name: 'deletevideogame', params: {id: this.videoGame.id}});
+      this.$router.push({ name: 'deletevideogame', params: { id: this.videoGame.id } });
     }
-    
+
   },
-  created() {
+  computed: {
+    gradientBackground() {
+      if (this.palette) {
+        const gradientColors = this.palette
+          .map(color => `rgb(${color[0]}, ${color[1]}, ${color[2]})`)
+          .join(', ');
+
+        return `linear-gradient(to top right, ${gradientColors})`;
+      }
+
+      return 'none';
+    }
+  },
+  mounted() {
     videogameService
       .getVideoGameById(this.$route.params.id)
       .then((response) => {
         this.videoGame = response.data;
+
+        const colorThief = new ColorThief();
+        const img = new Image();
+
+        img.addEventListener('load', () => {
+          this.palette = colorThief.getPalette(img);
+          console.log(this.palette);
+        });
+
+        let imageURL = this.videoGame.boxArt;
+        let googleProxyURL = 'https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&refresh=2592000&url=';
+
+        img.crossOrigin = 'Anonymous';
+        img.src = googleProxyURL + encodeURIComponent(imageURL);
       });
-
-    const colorThief = new ColorThief();
-    const img = new Image();
-
-    img.addEventListener('load', function() {
-      colorThief.getPalette(img)
-      console.log(colorThief.getPalette(img,8));
-    });
-    
-
-  let imageURL = this.videoGame.boxArt;
-  let googleProxyURL = 'https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&refresh=2592000&url=';
-
-  img.crossOrigin = 'Anonymous';
-  img.src = googleProxyURL + encodeURIComponent(imageURL);     
   }
-  }
+};
 </script>
+
 
 <style>
 .art{
@@ -187,6 +199,7 @@ export default {
   align-items: center;
 }
 #detailsPage{
+  grid-area: gradient-background;
   margin-top: 20px;
   display:grid;
   gap: 5px;
