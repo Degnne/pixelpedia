@@ -4,10 +4,12 @@ import com.techelevator.model.Comment;
 import com.techelevator.model.Review;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class JDBCReviewDAO implements ReviewDAO {
 
 
@@ -35,9 +37,11 @@ public class JDBCReviewDAO implements ReviewDAO {
     @Override
     public Review editReview(Review review) {
 
-        String sql = "";
+        String sql = "UPDATE review SET review_txt = ?, review_title = ? WHERE review_id = ?;";
 
-        return null;
+        jdbcTemplate.update(sql, review.getReviewText(), review.getReviewTitle(), review.getReviewId());
+
+        return getReviewByReviewId(review.getReviewId());
     }
 
     public Review getReviewByReviewId(int reviewId) {
