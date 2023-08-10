@@ -36,5 +36,9 @@ export default{
 
     addGameReview(review) {
         return axios.post('/videogames/reviews', review)
+    },
+
+    editGameReview(review) {
+        return axios.put(`/videogames/reviews/${review.id}`, review)
     }
 }

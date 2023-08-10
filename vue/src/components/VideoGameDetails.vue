@@ -254,7 +254,7 @@ export default {
   margin-top: 20px;
   display:grid;
   gap: 5px;
-  grid-template-columns: 1fr auto 1fr auto;
+  grid-template-columns: auto auto 1fr auto;
   grid-template-areas: 
   "title title title edit-delete" 
   "art art details details"

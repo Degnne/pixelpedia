@@ -37,7 +37,9 @@ export default {
             });
         },
         updateReview() {
-            
+            VideoGameService.editGameReview(this.newReview).then(response => {
+                console.log(response);
+            });
         }
     }
 }

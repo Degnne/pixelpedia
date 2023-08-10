@@ -33,7 +33,7 @@
           <div id="boxart-div">
             <label for="boxart">Boxart: </label>
             <input type="text" id="boxart" v-model="newVideoGame.boxArt">
-            <img :src="newVideoGame.boxArt" alt="" class="boxart">
+            <img :src="newVideoGame.boxArt" alt="" class="preview-boxart">
           </div>
           <div id="genres-div">
             <form action="#" autocomplete="false" @submit.prevent="addGenre(genreToAdd)">
@@ -115,6 +115,7 @@ export default {
         addGenre(genre) {
             if (this.genres.includes(genre)) {
                 this.newVideoGame.genres.push(genre);
+                this.genreToAdd = '';
             }            
         },
         removeSystem(system) {
@@ -123,6 +124,7 @@ export default {
         addSystem(system) {
             if (this.systems.includes(system)) {
                 this.newVideoGame.systems.push(system);
+                this.systemToAdd = '';
             }            
         },
         removeStudio(studio) {
@@ -131,6 +133,7 @@ export default {
         addStudio(studio) {
             if (this.companies.includes(studio)) {
                 this.newVideoGame.studios.push(studio);
+                this.studioToAdd = '';
             }            
         }
     },
