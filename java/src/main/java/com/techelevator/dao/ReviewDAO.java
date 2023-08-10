@@ -5,6 +5,6 @@ import com.techelevator.model.Review;
 public interface ReviewDAO {
 
     Review addReview (Review review);
-
+    Review editReview (Review review);
 
 }
