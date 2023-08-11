@@ -89,8 +89,14 @@ public class VideoGameController {
     }
 
     @RequestMapping (path = "/reviews/{reviewId}/comments", method = RequestMethod.POST)
-    public Comment addComment(Comment comment, int reviewId){
+    public Comment addComment(@RequestBody Comment comment,  @PathVariable int reviewId){
         return commentDAO.addComment(comment, reviewId);
+    }
+
+
+    @RequestMapping (path = "/reviews/comments/{id}", method = RequestMethod.PUT)
+    public Comment editComment(@RequestBody Comment comment, @PathVariable int id){
+        return commentDAO.editComment(comment, id);
     }
 
 }
