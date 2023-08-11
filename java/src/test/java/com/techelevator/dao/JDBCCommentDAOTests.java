@@ -36,6 +36,14 @@ public class JDBCCommentDAOTests extends BaseDaoTests {
         assertCommentsMatch(comment, actual);
     }
 
+    @Test
+    public void edit_comment_test(){
+        Comment expected = jdbcCommentDAO.getCommentByCommentId(1);
+        expected.setCommentText("Hello people! Why are you looking at the backend?");
+
+
+    }
+
 
     private void assertCommentsMatch(Comment expected, Comment actual) {
         Assert.assertEquals(expected.getCommentId(), actual.getCommentId());
@@ -43,6 +51,5 @@ public class JDBCCommentDAOTests extends BaseDaoTests {
         Assert.assertEquals(expected.getReviewId(), actual.getReviewId());
         Assert.assertEquals(expected.getUserId(), actual.getUserId());
         Assert.assertEquals(expected.getDate(), actual.getDate());
-
     }
 }
