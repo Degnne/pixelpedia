@@ -1,5 +1,5 @@
 <template>
-  <div v-if="show">
+  <div>
       <form action="#" id="reviewform" @submit.prevent="review ? updateReview() : addReview()">
           <label for="reviewtitle">Review Title: </label>
           <input type="text" name="reviewtitle" id="reviewtitle"  v-model="newReview.reviewTitle">
@@ -20,7 +20,7 @@ export default {
             showSelf: true
         }
     },
-    props: ['review', 'show'],
+    props: ['review'],
     created() {
         this.showSelf = this.show;
         if (this.review) {
@@ -42,7 +42,7 @@ export default {
         updateReview() {
             VideoGameService.editGameReview(this.newReview).then(() => {
                 this.$store.dispatch('loadReviews', this.$route.params.id);
-                this.showSelf = false;
+                this.$store.commit('TOGGLE_EDIT_REVIEW', this.review.reviewId);
             });
         }
     }

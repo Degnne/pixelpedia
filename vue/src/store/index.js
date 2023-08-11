@@ -21,7 +21,10 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {},
-    gameReviews: []
+    gameReviews: [],
+    editingReview: [],
+    viewingComments: [],
+    editingComments: []
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -42,6 +45,27 @@ export default new Vuex.Store({
     },
     LOAD_REVIEWS(state, reviews) {
       state.gameReviews = reviews;
+    },
+    TOGGLE_EDIT_REVIEW(state, reviewId) {
+      if (state.editingReview.includes(reviewId)) {
+        state.editingReview.splice(state.editingReview.indexOf(reviewId), 1);
+      } else {
+        state.editingReview.push(reviewId);
+      }
+    },
+    TOGGLE_VIEW_COMMENTS(state, reviewId) {
+      if (state.viewingComments.includes(reviewId)) {
+        state.viewingComments.splice(state.viewingComments.indexOf(reviewId), 1);
+      } else {
+        state.viewingComments.push(reviewId);
+      }
+    },
+    TOGGLE_EDIT_COMMENTS(state, commentId) {
+      if (state.editingComments.includes(commentId)) {
+        state.editingComments.splice(state.editingComments.indexOf(commentId), 1);
+      } else {
+        state.editingComments.push(commentId);
+      }
     }
   },
   actions: {
