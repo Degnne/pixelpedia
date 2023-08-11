@@ -10,7 +10,7 @@
             </div>
             
             <p>{{review.reviewText}}</p>
-            <div class="review-username">--{{review.userId}}</div>
+            <div class="review-username">--{{reviewer.username}}</div>
             <div class="review-date">Reviewed {{review.date}}</div>
             <ReviewForm v-if="$store.state.editingReview.includes(review.reviewId)" :review="review" />            
         </div>
@@ -23,6 +23,7 @@
 import ReviewForm from '@/components/ReviewForm.vue'
 import ReviewComments from '@/components/ReviewComments.vue'
 import VideoGameService from '@/services/videogameService.js'
+import UserService from '@/services/UserService.js'
 export default {
     components: {
         ReviewForm,
@@ -32,7 +33,7 @@ export default {
     props: ['review'],
     data() {
         return {
-            
+            reviewer: {}
         }
     },
     computed: {
@@ -56,6 +57,11 @@ export default {
                 this.$store.dispatch('loadReviews', this.$route.params.id);
             });
         }        
+    },
+    created() {
+        UserService.getUserById(this.review.userId).then(response => {
+            this.reviewer = response.data;
+        });
     }
 }
 </script>

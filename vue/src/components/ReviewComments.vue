@@ -2,21 +2,30 @@
   <div class="review-comments">
       <CommentCard v-for="comment in comments" :key="`comment-${comment.commentId}`" :comment="comment" />
       <div v-if="comments.length === 0">There are no comments.</div>
-      <div class="add-comment"><button @click.prevent="addComment()">Add Comment</button></div>
+      
+      <div class="comment-form-container"><CommentForm v-if="addingComment" /></div>
+      <div class="add-comment"><button @click.prevent="addComment()">{{addingComment ? 'Cancel' : 'Add Comment'}}</button></div>
   </div>
 </template>
 
 <script>
 import CommentCard from '@/components/CommentCard.vue'
+import CommentForm from '@/components/CommentForm.vue'
 
 export default {
     props: ['comments'],
+    data() {
+        return {
+            addingComment: false
+        }
+    },
     components: {
-        CommentCard
+        CommentCard,
+        CommentForm
     },
     methods: {
         addComment() {
-            //this.$store.commit()
+            this.addingComment = !this.addingComment;
         }
     }
 }
@@ -28,6 +37,9 @@ export default {
     flex-direction: column;
 }
 .add-comment {
+    align-self: flex-end;
+}
+.comment-form-container {
     align-self: flex-end;
 }
 </style>

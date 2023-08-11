@@ -1,7 +1,8 @@
 <template>
   <div>
-      <form action="">
-          <textarea name="" id="" cols="30" rows="10"></textarea>
+      <form action="" class="comment-form">
+          <textarea name="" id="" cols="50" rows="10"></textarea>
+          <input type="submit">
       </form>
   </div>
 </template>
@@ -13,5 +14,8 @@ export default {
 </script>
 
 <style>
-
+.comment-form {
+    display: flex;
+    flex-direction: column;
+}
 </style>
