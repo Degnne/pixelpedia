@@ -56,4 +56,8 @@
   footer {
     grid-area: Footer;
   }
+  .preview-boxart {
+    width: 200px;
+    border-radius: 10px;
+  }
 </style>

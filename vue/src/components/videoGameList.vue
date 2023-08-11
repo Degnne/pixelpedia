@@ -1,6 +1,13 @@
 <template>
   <div>
       <input type="text" placeholder="Search" v-model="searchTerm" class="searchbox">
+      Order By: 
+      <select name="" id="" v-model="orderBy">
+          <option value="nameASC">Name (A-Z)</option>
+          <option value="nameDESC">Name (Z-A)</option>
+          <option value="dateNew">Date (Newest to Oldest)</option>
+          <option value="dateOld">Date (Oldest to Newest)</option>
+      </select>
     <div id="videogamelist">  
     <div v-for="videogame in filteredVideoGameList" v-bind:key="videogame.id" class="videoGameCard"><router-link  v-bind:to="{name: 'videogamedetails', params: {id: videogame.id}}"> <video-game-card v-bind:videogame="videogame"/> </router-link></div>
     </div>
@@ -21,7 +28,8 @@ export default {
     data() {
         return{
             videoGameList: [],
-            searchTerm: ''
+            searchTerm: '',
+            orderBy: ''
         }
     },
     computed: {
@@ -39,6 +47,67 @@ export default {
                             || (videogame.releaseDate.includes(searchTerm));
                     });
                 }
+                if (this.orderBy === 'nameASC') {
+                    filteredList.sort((a, b) => {
+                        const nameA = a.title.toUpperCase(); // ignore upper and lowercase
+                        const nameB = b.title.toUpperCase(); // ignore upper and lowercase
+                        if (nameA < nameB) {
+                            return -1;
+                        }
+                        if (nameA > nameB) {
+                            return 1;
+                        }
+
+                        // names must be equal
+                        return 0;
+                    });
+                }
+                if (this.orderBy === 'nameDESC') {
+                    filteredList.sort((a, b) => {
+                        const nameA = a.title.toUpperCase(); // ignore upper and lowercase
+                        const nameB = b.title.toUpperCase(); // ignore upper and lowercase
+                        if (nameA > nameB) {
+                            return -1;
+                        }
+                        if (nameA < nameB) {
+                            return 1;
+                        }
+
+                        // names must be equal
+                        return 0;
+                    });
+                }
+                if (this.orderBy === 'dateNew') {
+                    filteredList.sort((a, b) => {
+                        const nameA = a.releaseDate.toUpperCase(); // ignore upper and lowercase
+                        const nameB = b.releaseDate.toUpperCase(); // ignore upper and lowercase
+                        if (nameA > nameB) {
+                            return -1;
+                        }
+                        if (nameA < nameB) {
+                            return 1;
+                        }
+
+                        // names must be equal
+                        return 0;
+                    });
+                }
+                if (this.orderBy === 'dateOld') {
+                    filteredList.sort((a, b) => {
+                        const nameA = a.releaseDate.toUpperCase(); // ignore upper and lowercase
+                        const nameB = b.releaseDate.toUpperCase(); // ignore upper and lowercase
+                        if (nameA < nameB) {
+                            return -1;
+                        }
+                        if (nameA > nameB) {
+                            return 1;
+                        }
+
+                        // names must be equal
+                        return 0;
+                    });
+                }
+
                 
                 return filteredList;
             },
@@ -88,7 +157,7 @@ export default {
 #videogamelist{
     display: flex;
     flex-wrap: wrap;
-
+    margin-top: 25px;
 }
 
 </style>

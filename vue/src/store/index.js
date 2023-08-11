@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import VideoGameService from '../services/videogameService.js'
 
 Vue.use(Vuex)
 
@@ -19,7 +20,8 @@ if(currentToken != null) {
 export default new Vuex.Store({
   state: {
     token: currentToken || '',
-    user: currentUser || {}
+    user: currentUser || {},
+    gameReviews: []
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -37,6 +39,16 @@ export default new Vuex.Store({
       state.token = '';
       state.user = {};
       axios.defaults.headers.common = {};
+    },
+    LOAD_REVIEWS(state, reviews) {
+      state.gameReviews = reviews;
+    }
+  },
+  actions: {
+    loadReviews(context, gameId) {
+      VideoGameService.getReviewsByGameId(gameId).then(response => {
+        context.commit('LOAD_REVIEWS', response.data);
+      });
     }
   }
 })

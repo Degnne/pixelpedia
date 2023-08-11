@@ -32,5 +32,21 @@ export default{
 
     updateGame(videogame) {
         return axios.put('/videogames', videogame)
+    },
+
+    addGameReview(review) {
+        return axios.post('/videogames/reviews', review)
+    },
+
+    editGameReview(review) {
+        return axios.put(`/videogames/reviews/${review.reviewId}`, review)
+    },
+
+    getReviewsByGameId(gameId) {
+        return axios.get(`/videogames/${gameId}/reviews`)
+    },
+
+    deleteReview(id) {
+        return axios.delete(`/videogames/reviews/${id}`)
     }
 }

@@ -2,12 +2,15 @@ package com.techelevator.dao;
 
 import com.techelevator.model.Comment;
 import com.techelevator.model.Review;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class JDBCReviewDAO implements ReviewDAO {
 
 
@@ -21,13 +24,71 @@ public class JDBCReviewDAO implements ReviewDAO {
     public Review addReview(Review review) {
 
         String sql = "INSERT INTO review (user_id, game_id, review_txt, review_title, date_time) " +
-                    "VALUES (?, ?, ?, ?, ?) RETURNING review_id;";
+                    "VALUES (?, ?, ?, ?, CURRENT_DATE) RETURNING review_id;";
 
         int newReview = jdbcTemplate.queryForObject(sql, int.class, review.getUserId(), review.getGameId(),
-                review.getReviewText(), review.getReviewTitle(), review.getDate());
+                review.getReviewText(), review.getReviewTitle());
 
         review.setReviewId(newReview);
         review.setComments(getCommentsByReviewId(review.getReviewId()));
+
+        return review;
+    }
+
+    @Override
+    public Review editReview(Review review, int id) {
+
+        String sql = "UPDATE review SET review_txt = ?, review_title = ? WHERE review_id = ?;";
+
+        jdbcTemplate.update(sql, review.getReviewText(), review.getReviewTitle(), id);
+
+        return getReviewByReviewId(review.getReviewId());
+    }
+
+
+    @Override
+    public void deleteReview(int id) {
+        String sql = "DELETE FROM comment WHERE review_id = ?;";
+        String sql1 = "DELETE FROM review_likes WHERE review_id = ?;";
+        String sql2 = "DELETE FROM review WHERE review_id = ?;";
+
+        try{
+            jdbcTemplate.update(sql, id);
+            jdbcTemplate.update(sql1, id);
+            jdbcTemplate.update(sql2, id);
+        } catch (DataIntegrityViolationException e){
+            throw new DataIntegrityViolationException("Invalid Id", e);
+        }
+
+    }
+
+    @Override
+    public Review[] getArrayReviewsByGameId(int gameId) {
+        List<Review> reviewList = new ArrayList<>();
+
+        String sql = "SELECT review_id, user_id, game_id, review_txt, review_title, date_time FROM review WHERE game_id = ?;";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, gameId);
+
+        while(results.next()){
+            reviewList.add(mapRowToReview(results));
+        }
+
+        return reviewList.toArray(new Review[reviewList.size()]) ;
+    }
+
+    public Review getReviewByReviewId(int reviewId) {
+        Review review = new Review();
+
+        String sql = "SELECT review_id, user_id, game_id, review_txt, review_title, date_time FROM review WHERE review_id = ?;";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, reviewId);
+
+        if(results.next()){
+            review = mapRowToReview(results);
+        }
+
+
 
         return review;
     }
@@ -43,6 +104,19 @@ public class JDBCReviewDAO implements ReviewDAO {
             commentList.add(mapRowToComment(results));
         }
         return commentList.toArray(new Comment[commentList.size()]);
+    }
+
+
+    private Review mapRowToReview(SqlRowSet sqlRowSet){
+        Review review = new Review();
+        review.setReviewId(sqlRowSet.getInt("review_id"));
+        review.setDate(sqlRowSet.getDate("date_time").toLocalDate());
+        review.setReviewText(sqlRowSet.getString("review_txt"));
+        review.setReviewTitle(sqlRowSet.getString("review_title"));
+        review.setGameId(sqlRowSet.getInt("game_id"));
+        review.setUserId(sqlRowSet.getInt("user_id"));
+        review.setComments(getCommentsByReviewId(review.getReviewId()));
+        return review;
     }
 
     private Comment mapRowToComment(SqlRowSet sqlRowSet){
