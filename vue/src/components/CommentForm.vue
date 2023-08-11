@@ -10,21 +10,32 @@
 <script>
 import VideoGameService from '@/services/videogameService.js'
 export default {
-    props: ['reviewId'],
+    props: ['reviewId', 'comment'],
     data() {
         return {
             newComment: {}
         }
     },
     created() {
-        this.newComment.reviewId = this.reviewId;
-        this.newComment.userId = this.$store.state.user.id;
+        if (this.comment) {
+            this.newComment = this.comment;
+        } else {
+            this.newComment.reviewId = this.reviewId;
+            this.newComment.userId = this.$store.state.user.id;
+        }        
     },
     methods: {
         submit() {
-            VideoGameService.addComment(this.newComment).then(() => {
-
-            });
+            if (this.comment) {
+                VideoGameService.updateComment(this.newComment).then(() => {
+                    this.$store.commit('TOGGLE_EDIT_COMMENTS', this.comment.commentId);
+                });
+            } else {
+                VideoGameService.addComment(this.newComment).then(() => {
+                    this.$store.dispatch('loadReviews', this.$route.params.id);
+                    this.newComment = {};
+                });
+            }            
         }
     }
 }

@@ -4,18 +4,23 @@
         {{comment.commentText}}
     </div>
     <div class="comment-edit-delete">
-        <button>Edit</button>
+        <button @click.prevent="$store.commit('TOGGLE_EDIT_COMMENTS', comment.commentId)">Edit</button>
         <button>Delete</button>
     </div>
     <div class="comment-user">--{{commenter.username}}</div>
     <div class="comment-date">{{comment.date}}</div>
+    <CommentForm v-if="$store.state.editingComments.includes(this.comment.commentId)" :comment="comment" />
   </div>
 </template>
 
 <script>
 import UserService from '@/services/UserService.js'
+import CommentForm from '@/components/CommentForm.vue'
 
 export default {
+    components: {
+        CommentForm
+    },
     props: ['comment'],
     data() {
         return {

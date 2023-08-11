@@ -51,6 +51,10 @@ export default{
     },
 
     addComment(comment) {
-        return axios.post(`/videogames/reviews/${comment.reviewId}/comments`)
+        return axios.post(`/videogames/reviews/${comment.reviewId}/comments`, comment);
+    },
+
+    updateComment(comment) {
+        return axios.put(`/videogames/reviews/comments/${comment.commentId}`, comment);
     }
 }
