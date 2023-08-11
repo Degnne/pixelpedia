@@ -1,63 +1,23 @@
 <template>
-  <html lang="en">
-    <head>
-        <title>GBA Rocks</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-    </head>
-    <body>
-        <!-- Screen of the GBA.js -->
-        <canvas id="screen" width="480" height="320"></canvas>
-
-        <!-- Start Controls -->
-        <div id="controls">
-			<!-- Start App controls -->
-			<h4>App Controls</h4>
-			<div id="preload">
-				<button id="select"> Select ROM file </button>
-				<input id="loader" type="file" accept=".gba" />
-				<button id="select-savegame-btn">Upload Savegame</button>
-				<input id="saveloader" type="file" />
-			</div>
-			<!-- End App controls -->
-			<br>
-			<!-- Start ingame controls -->
-			<h4>In-game controls</h4>
-			<div id="ingame" class="hidden">
-				<button id="pause">Pause game</button>
-				<button id="reset-btn">Reset</button>
-				<button id="download-savegame">Download Savegame File</button>
-
-				<div id="sound">
-					<p>Audio enabled</p>
-					<input type="checkbox" id="audio-enabled-checkbox" checked="checked" />
-					<p>Change sound level</p>
-					<input id="volume-level-slider" type="range" min="0" max="1" value="1" step="any" />
-				</div>
-			</div>
-			<!-- End ingame controls -->
-		</div>
-		<!-- End Controls -->
-    </body>
-</html>	
+<div>
+  <iframe id ="gbaEmulator" src="https://andychase.me/gbajs2/"></iframe>
+</div>
 </template>
 
 <script>
-//import { GameBoyAdvance } from 'gbajs';
-
 export default {
-  data() {
-    return {
-      paused: false,
-      audioEnabled: true,
-      volumeLevel: 1,
-      gba: null,
-      runCommands: []
-    }
-  }
 }
 </script>
 
 <style>
-/* Add your custom styles here */
+.gbaEmulator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+div iframe{
+  width: 1250px;
+    height: 650px;
+    border-radius: 20px;
+}
 </style>
