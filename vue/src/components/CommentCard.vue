@@ -5,7 +5,7 @@
     </div>
     <div class="comment-edit-delete">
         <button @click.prevent="$store.commit('TOGGLE_EDIT_COMMENTS', comment.commentId)">Edit</button>
-        <button>Delete</button>
+        <button @click.prevent="deleteThis()">Delete</button>
     </div>
     <div class="comment-user">--{{commenter.username}}</div>
     <div class="comment-date">{{comment.date}}</div>
@@ -15,6 +15,7 @@
 
 <script>
 import UserService from '@/services/UserService.js'
+import VideoGameService from '@/services/videogameService.js'
 import CommentForm from '@/components/CommentForm.vue'
 
 export default {
@@ -31,6 +32,13 @@ export default {
         UserService.getUserById(this.comment.userId).then(response => {
             this.commenter = response.data;
         })
+    },
+    methods: {
+        deleteThis() {
+            VideoGameService.deleteComment(this.comment.commentId).then(() => {
+                this.$store.dispatch('loadReviews', this.$route.params.id);
+            })
+        }
     }
 }
 </script>

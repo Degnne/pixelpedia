@@ -56,5 +56,9 @@ export default{
 
     updateComment(comment) {
         return axios.put(`/videogames/reviews/comments/${comment.commentId}`, comment);
+    },
+
+    deleteComment(commentId) {
+        return axios.delete(`/videogames/reviews/comments/${commentId}`);
     }
 }
