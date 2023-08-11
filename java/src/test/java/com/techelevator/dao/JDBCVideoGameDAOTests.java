@@ -22,7 +22,7 @@ public class JDBCVideoGameDAOTests extends BaseDaoTests {
     }
 
     @Test
-    public void returnsListOfVideoGames(){
+    public void returns_list_of_video_games(){
         List<VideoGame> videoGames = jdbcVideoGameDAO.getVideoGameList();
 
         Assert.assertEquals(4, videoGames.size());
@@ -30,7 +30,7 @@ public class JDBCVideoGameDAOTests extends BaseDaoTests {
     }
 
     @Test
-    public void returnsCorrectVideoGame(){
+    public void get_game_returns_correct_video_game(){
         VideoGame videoGame = jdbcVideoGameDAO.getVideoGameById(1);
         BigDecimal releasePrice = new BigDecimal(60.00);
         LocalDate releaseDate = LocalDate.of(2023, 8, 6);
@@ -43,4 +43,8 @@ public class JDBCVideoGameDAOTests extends BaseDaoTests {
         Assert.assertEquals(testGame.getPublisherName(), videoGame.getPublisherName());
     }
 
+    @Test
+    public void damn(){
+
+    }
 }
