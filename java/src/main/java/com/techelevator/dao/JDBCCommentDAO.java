@@ -18,9 +18,9 @@ public class JDBCCommentDAO implements CommentDAO {
     @Override
     public Comment addComment(Comment comment, int reviewId) {
 
-        String sql =  "INSERT INTO COMMENT(comment_txt, review_id, user_id, date_time) VALUES (?, ?, ?, ?) RETURNING comment_id;";
+        String sql =  "INSERT INTO COMMENT(comment_txt, review_id, user_id, date_time) VALUES (?, ?, ?, current_date) RETURNING comment_id;";
 
-        int newCommentId = jdbcTemplate.queryForObject(sql, int.class, comment.getCommentText(), reviewId, comment.getUserId(), comment.getDate());
+        int newCommentId = jdbcTemplate.queryForObject(sql, int.class, comment.getCommentText(), reviewId, comment.getUserId());
 
         if(newCommentId > 0){
             comment = getCommentByCommentId(newCommentId);
