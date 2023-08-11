@@ -32,8 +32,16 @@ public class JDBCCommentDAOTests extends BaseDaoTests {
 
 
         Comment actual = jdbcCommentDAO.getCommentByCommentId(newId);
-
         assertCommentsMatch(comment, actual);
+    }
+
+
+    @Test
+    public void delete_comment_test(){
+        jdbcCommentDAO.deleteComment(1);
+        Comment comment = jdbcCommentDAO.getCommentByCommentId(1);
+
+        Assert.assertNull(comment);
     }
 
     @Test
@@ -47,6 +55,8 @@ public class JDBCCommentDAOTests extends BaseDaoTests {
 
         assertCommentsMatch(expected, actual);
     }
+
+
 
 
     private void assertCommentsMatch(Comment expected, Comment actual) {

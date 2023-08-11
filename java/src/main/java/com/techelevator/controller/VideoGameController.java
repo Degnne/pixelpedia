@@ -99,4 +99,9 @@ public class VideoGameController {
         return commentDAO.editComment(comment, id);
     }
 
+    @RequestMapping (path = "comments/{commentId}", method = RequestMethod.DELETE)
+    public void deleteComment(@PathVariable int commentId){
+        commentDAO.deleteComment(commentId);
+    }
+
 }

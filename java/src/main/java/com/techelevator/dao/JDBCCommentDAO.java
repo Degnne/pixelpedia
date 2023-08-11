@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Comment;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
@@ -36,6 +37,24 @@ public class JDBCCommentDAO implements CommentDAO {
         jdbcTemplate.update(sql, comment.getCommentText(), commentId);
 
         return getCommentByCommentId(comment.getCommentId());
+    }
+
+    @Override
+    public void deleteComment(int commentId) {
+        String sql = "DELETE FROM comment_likes WHERE comment_id = ?;";
+        String sql1 = "DELETE FROM comment WHERE comment_id = ?;";
+
+
+        try{
+
+            jdbcTemplate.update(sql, commentId);
+            jdbcTemplate.update(sql1, commentId);
+
+        }catch(DataIntegrityViolationException e){
+            throw new DataIntegrityViolationException("Invalid comment ID", e);
+        }
+
+
     }
 
     public Comment getCommentByCommentId(int commentId){

@@ -134,7 +134,11 @@ INSERT INTO comment (comment_txt, review_id, user_id, date_time) VALUES ('This i
 INSERT INTO comment (comment_txt, review_id, user_id, date_time) VALUES ('This is a Test Comment! GL Rocco & Jeff!!', 4,1, '2023-10-10');
 
 
-
+INSERT INTO comment_likes(comment_id, user_id, isliked) VALUES (1, 1, '1');
+INSERT INTO comment_likes(comment_id, user_id, isliked) VALUES (2, 1, '0');
+INSERT INTO comment_likes(comment_id, user_id, isliked) VALUES (3, 1, '0');
+INSERT INTO comment_likes(comment_id, user_id, isliked) VALUES (4, 1, '1');
+INSERT INTO comment_likes(comment_id, user_id, isliked) VALUES (5, 1, '1');
 
 -- Insert 50 more video games
 --INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES
