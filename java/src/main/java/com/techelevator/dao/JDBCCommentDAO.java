@@ -3,7 +3,9 @@ package com.techelevator.dao;
 import com.techelevator.model.Comment;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
+@Component
 public class JDBCCommentDAO implements CommentDAO {
 
     private JdbcTemplate jdbcTemplate;
@@ -25,6 +27,15 @@ public class JDBCCommentDAO implements CommentDAO {
         }
 
         return comment;
+    }
+
+    @Override
+    public Comment editComment(Comment comment, int commentId) {
+        String sql = "UPDATE comment SET comment_txt = ? WHERE comment_id = ?;";
+
+        jdbcTemplate.update(sql, comment.getCommentText(), commentId);
+
+        return getCommentByCommentId(comment.getCommentId());
     }
 
     public Comment getCommentByCommentId(int commentId){
