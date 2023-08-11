@@ -66,6 +66,11 @@ export default new Vuex.Store({
       } else {
         state.editingComments.push(commentId);
       }
+    },
+    RESET_REVIEWS_AND_COMMENTS(state) {
+      state.editingReview = [];
+      state.viewingComments = [];
+      state.editingComments = [];
     }
   },
   actions: {
