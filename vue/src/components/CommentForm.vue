@@ -1,22 +1,32 @@
 <template>
   <div>
-      <form action="" class="comment-form">
-          <textarea name="" id="" cols="50" rows="10"></textarea>
+      <form action="" class="comment-form" @submit.prevent="submit()">
+          <textarea name="" id="" cols="50" rows="10" v-model="newComment.commentText"></textarea>
           <input type="submit">
       </form>
   </div>
 </template>
 
 <script>
+import VideoGameService from '@/services/videogameService.js'
 export default {
+    props: ['reviewId'],
     data() {
         return {
             newComment: {}
         }
     },
     created() {
+        this.newComment.reviewId = this.reviewId;
         this.newComment.userId = this.$store.state.user.id;
         this.newComment.date = Date.now().toString();
+    },
+    methods: {
+        submit() {
+            VideoGameService.addComment(this.newComment).then(() => {
+
+            });
+        }
     }
 }
 </script>

@@ -48,5 +48,9 @@ export default{
 
     deleteReview(id) {
         return axios.delete(`/videogames/reviews/${id}`)
+    },
+
+    addComment(comment) {
+        return axios.post(`/videogames/reviews/${comment.reviewId}/comments`)
     }
 }

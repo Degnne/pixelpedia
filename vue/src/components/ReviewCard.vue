@@ -15,7 +15,7 @@
             <ReviewForm v-if="$store.state.editingReview.includes(review.reviewId)" :review="review" />            
         </div>
         <div class="number-of-comments" @click="viewComments()">{{numberOfComments}} {{numberOfComments === 1 ? 'Comment' : 'Comments'}}</div>
-        <ReviewComments v-if="$store.state.viewingComments.includes(review.reviewId)" :comments="review.comments" />
+        <ReviewComments v-if="$store.state.viewingComments.includes(review.reviewId)" :comments="review.comments" :reviewId="review.reviewId" />
     </div>
 </template>
 
