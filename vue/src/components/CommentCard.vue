@@ -1,11 +1,18 @@
 <template>
   <div class="comment-card">
+      <div class="confirm-review-delete" v-if="confirmingDelete">
+            <div>Are you sure you want to delete this comment?</div>
+            <div>
+                <button @click.prevent="deleteThis()">Yes</button>
+                <button @click.prevent="confirmingDelete = false">No</button>
+            </div>
+        </div>
     <div class="comment-text">
         {{comment.commentText}}
     </div>
     <div class="comment-edit-delete">
         <button @click.prevent="$store.commit('TOGGLE_EDIT_COMMENTS', comment.commentId)">Edit</button>
-        <button @click.prevent="deleteThis()">Delete</button>
+        <button @click.prevent="confirmingDelete = !confirmingDelete">Delete</button>
     </div>
     <div class="comment-user">--{{commenter.username}}</div>
     <div class="comment-date">{{comment.date}}</div>
@@ -25,7 +32,8 @@ export default {
     props: ['comment'],
     data() {
         return {
-            commenter: {}
+            commenter: {},
+            confirmingDelete: false
         }
     },
     created() {

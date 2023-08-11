@@ -1,11 +1,18 @@
 <template>
     <div class="videogamereview-container">
+        <div class="confirm-review-delete" v-if="confirmingDelete">
+            <div>Are you sure you want to delete this review?</div>
+            <div>
+                <button @click.prevent="deleteSelf()">Yes</button>
+                <button @click.prevent="confirmingDelete = false">No</button>
+            </div>
+        </div>
         <div class="videogamereview">
             <div class="review-titlearea">
                 <h4>{{review.reviewTitle}}</h4>
                 <div class="review-edit-delete">
                     <button @click.prevent="editReview()">Edit</button>
-                    <button @click.prevent="deleteSelf()">Delete</button>
+                    <button @click.prevent="confirmingDelete = !confirmingDelete">Delete</button>
                 </div>
             </div>
             
@@ -33,7 +40,8 @@ export default {
     props: ['review'],
     data() {
         return {
-            reviewer: {}
+            reviewer: {},
+            confirmingDelete: false
         }
     },
     computed: {
@@ -53,6 +61,7 @@ export default {
             this.$store.commit('TOGGLE_EDIT_REVIEW', this.review.reviewId);
         },
         deleteSelf() {
+            this.confirmingDelete = false;
             VideoGameService.deleteReview(this.review.reviewId).then(() => {
                 this.$store.dispatch('loadReviews', this.$route.params.id);
             });
@@ -67,6 +76,19 @@ export default {
 </script>
 
 <style>
+.confirm-review-delete {
+    position: absolute;
+    padding: 20px;
+    border-radius: 5px;
+    z-index: 1;
+    align-self: center;
+    justify-self: center;
+    background-color: rgba(50, 50, 50, .7);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .review-date {
     font-style: italic;
     align-self: flex-end;
@@ -74,6 +96,7 @@ export default {
 .videogamereview-container {
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 .number-of-comments {
     cursor: pointer;
