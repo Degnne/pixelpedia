@@ -40,8 +40,12 @@ public class JDBCCommentDAOTests extends BaseDaoTests {
     public void edit_comment_test(){
         Comment expected = jdbcCommentDAO.getCommentByCommentId(1);
         expected.setCommentText("Hello people! Why are you looking at the backend?");
+        jdbcCommentDAO.editComment(expected, 1);
 
 
+        Comment actual = jdbcCommentDAO.getCommentByCommentId(1);
+
+        assertCommentsMatch(expected, actual);
     }
 
 
