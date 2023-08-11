@@ -41,8 +41,6 @@ public class JDBCVideoGameDAOTests extends BaseDaoTests {
         Assert.assertTrue(testGame.getReleasePrice().compareTo(videoGame.getReleasePrice()) == 0);
         Assert.assertEquals(testGame.getDescription(), videoGame.getDescription());
         Assert.assertEquals(testGame.getPublisherName(), videoGame.getPublisherName());
-
-
     }
 
 }
