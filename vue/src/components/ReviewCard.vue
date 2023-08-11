@@ -4,7 +4,7 @@
           <h4>{{review.reviewTitle}}</h4>
           <div class="review-edit-delete">
             <button @click.prevent="editReview = !editReview">Edit</button>
-            <button>Delete</button>
+            <button @click.prevent="deleteSelf()">Delete</button>
         </div>
       </div>
       
@@ -12,12 +12,13 @@
       <div class="review-username">--{{review.userId}}</div>
       <div>{{review.date}}</div>
       <div>{{numberOfComments}} Comments</div>
-      <ReviewForm v-if="editReview" :review="review" />
+      <ReviewForm :show="editReview" :review="review" />
   </div>
 </template>
 
 <script>
 import ReviewForm from '@/components/ReviewForm.vue'
+import VideoGameService from '@/services/videogameService.js'
 export default {
     components: {
         ReviewForm
@@ -31,8 +32,19 @@ export default {
     },
     computed: {
         numberOfComments() {
-            return this.review.comments.length;
+            if (this.review.comments) {
+                return this.review.comments.length;
+            } else {
+                return 0;
+            }
         }
+    },
+    methods: {
+        deleteSelf() {
+            VideoGameService.deleteReview(this.review.reviewId).then(() => {
+                this.$store.dispatch('loadReviews', this.$route.params.id);
+            });
+        }        
     }
 }
 </script>

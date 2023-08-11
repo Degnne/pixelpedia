@@ -3,7 +3,7 @@
       <h3>Reviews for {{videogame.title}}</h3>
       <ReviewCard v-for="(review, index) in reviews" :key="index" :review="review" />
       <h3 id="addvideogamereview">Add a Review</h3>
-      <ReviewForm />
+      <ReviewForm :show="true" />
   </div>
 </template>
 
@@ -19,25 +19,20 @@ export default {
     },
     data() {
         return {
-            videogame: {},
-            reviews: [
-                {
-                    title: 'This is great!',
-                    text: 'I hated this.'
-                },
-                {
-                    title: 'Worst Game Ever!',
-                    text: "I couldn't stop playing it."
-                }
-            ]
+            videogame: {}
+        }
+    },
+    computed: {
+        reviews() {
+            return this.$store.state.gameReviews;
         }
     },
     created() {
         VideoGameService.getVideoGameById(this.$route.params.id).then(response => {
             this.videogame = response.data;
         });
-        VideoGameService.getReviewsByGameId(this.$route.params.id).then(response => {
-            this.reviews = response.data;
+        this.$store.dispatch('loadReviews', this.$route.params.id).then(() => {
+            
         });
     }
 }
