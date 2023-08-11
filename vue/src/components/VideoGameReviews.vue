@@ -42,5 +42,13 @@ export default {
 #videogamereviews h3 {
     margin-top: 50px;
     border-bottom: 1px solid white;
+    background: linear-gradient(to right, rgba(51, 51, 51, 1), rgba(51, 51, 51, 0));
+    z-index: 1;
+    position: relative;
+    padding: 10px;
+    left: -10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    text-shadow: 1px 1px 2px black;
 }
 </style>

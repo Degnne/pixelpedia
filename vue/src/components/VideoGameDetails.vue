@@ -265,7 +265,7 @@ export default {
   "art art details details";
   align-items: flex-start;
   
-  
+  /*-webkit-box-reflect: below 5px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.1)); */
 }
 
 @keyframes Animation { 
