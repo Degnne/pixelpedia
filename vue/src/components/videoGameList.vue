@@ -137,7 +137,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .searchbox {
     border-radius: 5px;
     border: none;
