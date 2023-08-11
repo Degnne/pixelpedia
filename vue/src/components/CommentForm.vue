@@ -9,7 +9,15 @@
 
 <script>
 export default {
-
+    data() {
+        return {
+            newComment: {}
+        }
+    },
+    created() {
+        this.newComment.userId = this.$store.state.user.id;
+        this.newComment.date = Date.now().toString();
+    }
 }
 </script>
 
