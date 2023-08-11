@@ -1,8 +1,10 @@
 package com.techelevator.controller;
 
+import com.techelevator.dao.CommentDAO;
 import com.techelevator.dao.JDBCVideoGameDAO;
 import com.techelevator.dao.ReviewDAO;
 import com.techelevator.dao.VideoGameDAO;
+import com.techelevator.model.Comment;
 import com.techelevator.model.Review;
 import com.techelevator.model.VideoGame;
 import org.springframework.web.bind.annotation.*;
@@ -17,10 +19,12 @@ public class VideoGameController {
 
     private VideoGameDAO videoGameDAO;
     private ReviewDAO reviewDAO;
+    private CommentDAO commentDAO;
 
-    VideoGameController(VideoGameDAO videoGameDAO, ReviewDAO reviewDAO) {
+    VideoGameController(VideoGameDAO videoGameDAO, ReviewDAO reviewDAO, CommentDAO commentDAO) {
         this.reviewDAO = reviewDAO;
         this.videoGameDAO = videoGameDAO;
+        this.commentDAO = commentDAO;
     }
 
 
@@ -82,6 +86,22 @@ public class VideoGameController {
     @RequestMapping (path = "/{id}/reviews", method = RequestMethod.GET)
     public Review[] getReviewsByVideoGameId(@PathVariable("id") int gameId){
         return reviewDAO.getArrayReviewsByGameId(gameId);
+    }
+
+    @RequestMapping (path = "/reviews/{reviewId}/comments", method = RequestMethod.POST)
+    public Comment addComment(@RequestBody Comment comment,  @PathVariable int reviewId){
+        return commentDAO.addComment(comment, reviewId);
+    }
+
+
+    @RequestMapping (path = "/reviews/comments/{id}", method = RequestMethod.PUT)
+    public Comment editComment(@RequestBody Comment comment, @PathVariable int id){
+        return commentDAO.editComment(comment, id);
+    }
+
+    @RequestMapping (path = "/reviews/comments/{commentId}", method = RequestMethod.DELETE)
+    public void deleteComment(@PathVariable int commentId){
+        commentDAO.deleteComment(commentId);
     }
 
 }

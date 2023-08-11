@@ -102,17 +102,22 @@ public class JDBCVideoGameDAO implements VideoGameDAO {
 
     @Override
     public void deleteVideoGame(int videoGameId) {
-
+        //Deletes Video Games
         String sql = "DELETE FROM vg_system WHERE vg_id = ?;";
         String sql2 = "DELETE FROM vg_studio WHERE vg_id = ?;";
         String sql3 = "DELETE FROM vg_genre WHERE vg_id = ?;";
         String sql4 = "DELETE FROM video_game WHERE id = ?;";
+
+        deleteVideoGameReviewsByGameId(videoGameId);
+
+        deleteVideoGameCommentsByGameId(videoGameId);
 
         try {
             jdbcTemplate.update(sql, videoGameId);
             jdbcTemplate.update(sql2, videoGameId);
             jdbcTemplate.update(sql3, videoGameId);
             jdbcTemplate.update(sql4, videoGameId);
+
         } catch (DataIntegrityViolationException e) {
 
             throw new DataIntegrityViolationException("Invalid Video Game ID", e);
@@ -387,6 +392,47 @@ public class JDBCVideoGameDAO implements VideoGameDAO {
         }
 
         return id;
+    }
+
+    private void deleteVideoGameReviewsByGameId(int videoGameId){
+        List<Integer> reviewsIds = new ArrayList<>();
+        String reviewId = "SELECT review_id FROM review WHERE game_id = ?;";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(reviewId, videoGameId);
+
+        while(results.next()){
+            reviewsIds.add(results.getInt("review_id"));
+        }
+
+
+        for(Integer id : reviewsIds){
+            String sql = "DELETE FROM comment WHERE review_id = ?;";
+            String sql1 = "DELETE FROM review_likes WHERE review_id = ?;";
+            String sql2 = "DELETE FROM review WHERE review_id = ?;";
+
+            try{
+                jdbcTemplate.update(sql, id);
+                jdbcTemplate.update(sql1,id);
+                jdbcTemplate.update(sql2, id);
+            } catch (DataIntegrityViolationException e){
+                throw new DataIntegrityViolationException("Invalid Id", e);
+            }
+
+        }
+
+
+    }
+
+    private void deleteVideoGameCommentsByGameId(int videoGameId){
+        String sql = "DELETE FROM comment_likes WHERE comment_id = (SELECT comment_id FROM comment JOIN review ON comment.review_id = review.review_id WHERE game_id = ?);";
+        String sql1 = "DELETE FROM comment WHERE comment_id = (SELECT comment_id FROM comment JOIN review ON comment.review_id = review.review_id WHERE game_id = ?);";
+
+        try {
+            jdbcTemplate.update(sql, videoGameId);
+            jdbcTemplate.update(sql1, videoGameId);
+        } catch (DataIntegrityViolationException e){
+            throw new DataIntegrityViolationException("Invalid game Id", e);
+        }
     }
 
     private VideoGame mapRowToVideoGame(SqlRowSet sqlRowSet) {

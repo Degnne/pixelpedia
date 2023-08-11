@@ -1,33 +1,47 @@
 <template>
-  <div class="videogamereview">
-      <div class="review-titlearea">
-          <h4>{{review.reviewTitle}}</h4>
-          <div class="review-edit-delete">
-            <button @click.prevent="editReview = !editReview">Edit</button>
-            <button @click.prevent="deleteSelf()">Delete</button>
+    <div class="videogamereview-container">
+        <div class="confirm-review-delete" v-if="confirmingDelete">
+            <div>Are you sure you want to delete this review?</div>
+            <div>
+                <button @click.prevent="deleteSelf()">Yes</button>
+                <button @click.prevent="confirmingDelete = false">No</button>
+            </div>
         </div>
-      </div>
-      
-      <p>{{review.reviewText}}</p>
-      <div class="review-username">--{{review.userId}}</div>
-      <div>{{review.date}}</div>
-      <div>{{numberOfComments}} Comments</div>
-      <ReviewForm :show="editReview" :review="review" />
-  </div>
+        <div class="videogamereview">
+            <div class="review-titlearea">
+                <h4>{{review.reviewTitle}}</h4>
+                <div class="review-edit-delete">
+                    <button @click.prevent="editReview()">Edit</button>
+                    <button @click.prevent="confirmingDelete = !confirmingDelete">Delete</button>
+                </div>
+            </div>
+            
+            <p>{{review.reviewText}}</p>
+            <div class="review-username">--{{reviewer.username}}</div>
+            <div class="review-date">Reviewed {{review.date}}</div>
+            <ReviewForm v-if="$store.state.editingReview.includes(review.reviewId)" :review="review" />            
+        </div>
+        <div class="number-of-comments" @click="viewComments()">{{numberOfComments}} {{numberOfComments === 1 ? 'Comment' : 'Comments'}}</div>
+        <ReviewComments v-if="$store.state.viewingComments.includes(review.reviewId)" :comments="review.comments" :reviewId="review.reviewId" />
+    </div>
 </template>
 
 <script>
 import ReviewForm from '@/components/ReviewForm.vue'
+import ReviewComments from '@/components/ReviewComments.vue'
 import VideoGameService from '@/services/videogameService.js'
+import UserService from '@/services/UserService.js'
 export default {
     components: {
-        ReviewForm
+        ReviewForm,
+        ReviewComments
     },
     name: 'review-card',
     props: ['review'],
     data() {
         return {
-            editReview: false
+            reviewer: {},
+            confirmingDelete: false
         }
     },
     computed: {
@@ -40,16 +54,64 @@ export default {
         }
     },
     methods: {
+        viewComments() {
+            this.$store.commit('TOGGLE_VIEW_COMMENTS', this.review.reviewId);
+        },
+        editReview() {
+            this.$store.commit('TOGGLE_EDIT_REVIEW', this.review.reviewId);
+        },
         deleteSelf() {
+            this.confirmingDelete = false;
             VideoGameService.deleteReview(this.review.reviewId).then(() => {
                 this.$store.dispatch('loadReviews', this.$route.params.id);
             });
         }        
+    },
+    created() {
+        UserService.getUserById(this.review.userId).then(response => {
+            this.reviewer = response.data;
+        });
     }
 }
 </script>
 
 <style>
+.confirm-review-delete {
+    position: absolute;
+    padding: 20px;
+    border-radius: 5px;
+    z-index: 1;
+    align-self: center;
+    justify-self: center;
+    background-color: rgba(50, 50, 50, .7);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.review-date {
+    font-style: italic;
+    align-self: flex-end;
+}
+.videogamereview-container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.number-of-comments {
+    cursor: pointer;
+    background-color: #333;
+    border-radius: 10px;
+    padding: 5px;
+    width: 100px;
+    align-self: flex-end;
+    border: 1px solid #333;
+    text-align: center;
+    margin-top: 5px;
+}
+.number-of-comments:hover {
+    border: 1px solid white;
+}
 .videogamereview {
     border-radius: 20px;
     background-color: rgba(119,136,153, 1);

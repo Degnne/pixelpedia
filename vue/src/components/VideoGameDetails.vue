@@ -84,6 +84,7 @@ export default {
     }
   },
   mounted() {
+    this.$store.commit('RESET_REVIEWS_AND_COMMENTS');
     videogameService
       .getVideoGameById(this.$route.params.id)
       .then((response) => {

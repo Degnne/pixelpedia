@@ -48,5 +48,17 @@ export default{
 
     deleteReview(id) {
         return axios.delete(`/videogames/reviews/${id}`)
+    },
+
+    addComment(comment) {
+        return axios.post(`/videogames/reviews/${comment.reviewId}/comments`, comment);
+    },
+
+    updateComment(comment) {
+        return axios.put(`/videogames/reviews/comments/${comment.commentId}`, comment);
+    },
+
+    deleteComment(commentId) {
+        return axios.delete(`/videogames/reviews/comments/${commentId}`);
     }
 }
