@@ -19,7 +19,6 @@ export default {
     created() {
         this.newComment.reviewId = this.reviewId;
         this.newComment.userId = this.$store.state.user.id;
-        this.newComment.date = Date.now().toString();
     },
     methods: {
         submit() {
