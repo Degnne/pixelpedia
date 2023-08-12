@@ -24,6 +24,7 @@
         <img :src="ratingImgUrl" :alt="videoGame.rating" :title="videoGame.rating">
       </div>
       <div class="average-ratings">
+        <h4>Average Rating</h4>
         <RatingDisplay :rating="rating" />
       </div>
       <div class="videogamedetails-jumpbuttons">
@@ -54,12 +55,12 @@ export default {
     return {
       videoGame: {},
       rating: {
-        story: 1,
-        visual: 10,
-        audio: 8,
-        gameplay: 7,
-        difficulty: 10,
-        overall: 8.5
+        storyRating: 1,
+        visualRating: 10,
+        audioRating: 8,
+        gameplayRating: 7,
+        difficultyRating: 10,
+        overallRating: 8.5
       },
       palette: null,
       dataLoaded: false

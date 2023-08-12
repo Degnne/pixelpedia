@@ -36,10 +36,10 @@
                     <td>{{newRating.overallRating}}</td>
                 </tr>
             </table>
-            <button @click.prevent="plusReview = !plusReview">Add a Review</button>
+            <button @click.prevent="plusReview = !plusReview" v-if="!review">{{plusReview ? 'Remove Review' : 'Write a Review'}}</button>
             </div>
             
-            <div v-if="plusReview" class="plusreview">
+            <div v-if="plusReview || review" class="plusreview">
                 <h4>Review</h4>
                 <label for="reviewtitle">Review Title: </label>
                 <input type="text" name="reviewtitle" id="reviewtitle"  v-model="newReview.reviewTitle" required />
@@ -48,8 +48,8 @@
             </div>    
         </div>
         
-        
-          <input type="submit">
+            <div id="submit-div"><input type="submit" :value="submitButtonText"></div>
+          
       </form>
   </div>
 </template>
@@ -60,10 +60,27 @@ import VideoGameService from '@/services/videogameService.js'
 export default {
     data() {
         return {
-            newRating: {},
+            newRating: {
+                storyRating: 0,
+                visualRating: 0,
+                audioRating: 0,
+                gameplayRating: 0,
+                difficultyRating: 0,
+                overallRating: 0
+            },
             newReview: {},
             showSelf: true,
             plusReview: false
+        }
+    },
+    computed: {
+        submitButtonText() {
+            if (this.review) {
+                return 'Update';
+            } else if (this.plusReview) {
+                return 'Submit Rating & Review';
+            }
+            return 'Submit Rating';
         }
     },
     props: ['review'],
@@ -86,15 +103,14 @@ export default {
                     VideoGameService.addRating(this.newRating);
                     this.$store.dispatch('loadReviews', this.$route.params.id);
                     this.newReview = {};
-                    return response;
+                    this.resetRating();
                 }).catch(error => {
                     console.error(error);
                 });
             } else {
                 VideoGameService.addRating(this.newRating);
+                this.resetRating();
             }
-        },
-        async addReview() {
             
         },
         updateReview() {
@@ -102,6 +118,16 @@ export default {
                 this.$store.dispatch('loadReviews', this.$route.params.id);
                 this.$store.commit('TOGGLE_EDIT_REVIEW', this.review.reviewId);
             });
+        },
+        resetRating() {
+            this.newRating = {
+                storyRating: 0,
+                visualRating: 0,
+                audioRating: 0,
+                gameplayRating: 0,
+                difficultyRating: 0,
+                overallRating: 0
+            };
         }
     }
 }
@@ -117,11 +143,12 @@ export default {
 }
 .rating-and-review {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .plusreview {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
 }
 </style>
