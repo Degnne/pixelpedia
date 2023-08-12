@@ -99,7 +99,7 @@ CREATE TABLE review_rating (
     CONSTRAINT CHK_visual CHECK (visual_rating >=0 AND overall_rating <=10 ),
     CONSTRAINT CHK_audio CHECK (audio_rating >= 0 AND overall_rating <=10),
     CONSTRAINT CHK_gameplay CHECK (gameplay_rating >= 0 AND gameplay_rating <=10),
-    CONSTRAINT CHK_difficulty CHECK (difficulty_rating >= 0 AND difficulty_rating <10),
+    CONSTRAINT CHK_difficulty CHECK (difficulty_rating >= 0 AND difficulty_rating <=10),
     CONSTRAINT PK_rating_id PRIMARY KEY(rating_id),
     CONSTRAINT FK_user_id FOREIGN KEY (user_id) REFERENCES users(user_id),
     CONSTRAINT FK_game_id FOREIGN KEY (game_id) REFERENCES video_game(id),

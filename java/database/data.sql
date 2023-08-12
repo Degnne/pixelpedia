@@ -141,6 +141,12 @@ INSERT INTO comment_likes(comment_id, user_id, isliked) VALUES (4, 1, '1');
 INSERT INTO comment_likes(comment_id, user_id, isliked) VALUES (5, 1, '1');
 
 
+INSERT INTO review_rating(user_id, game_id, review_id, overall_rating, story_rating, visual_rating, audio_rating, gameplay_rating, difficulty_rating) VALUES (1, 1, 1, 10, 10, 10, 10, 10, 5);
+INSERT INTO review_rating(user_id, game_id, review_id, overall_rating, story_rating, visual_rating, audio_rating, gameplay_rating, difficulty_rating) VALUES (1, 2, 2, 9, 7, 10, 9, 8, 10);
+INSERT INTO review_rating(user_id, game_id, review_id, overall_rating, story_rating, visual_rating, audio_rating, gameplay_rating, difficulty_rating) VALUES (1, 3, 3, 2, 0, 0, 1, 4, 3);
+INSERT INTO review_rating(user_id, game_id, review_id, overall_rating, story_rating, visual_rating, audio_rating, gameplay_rating, difficulty_rating) VALUES (1, 4, 4, 8, 6, 4, 2, 7, 3);
+
+
 
 -- Insert 50 more video games
 --INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES
