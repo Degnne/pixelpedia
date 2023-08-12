@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Rating;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
@@ -57,6 +58,18 @@ public class JDBCRatingDAO implements RatingDAO {
         }
 
         return ratingList.toArray(new Rating[ratingList.size()]);
+    }
+
+    @Override
+    public void deleteRating(int ratingId) {
+        String sql = "DELETE FROM review_rating WHERE rating_id = ?;";
+
+        try{
+            jdbcTemplate.update(sql, ratingId);
+        } catch (DataIntegrityViolationException e) {
+            throw new DataIntegrityViolationException("Invalid rating ID", e);
+        }
+
     }
 
 
