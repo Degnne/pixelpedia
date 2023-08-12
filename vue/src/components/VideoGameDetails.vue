@@ -25,7 +25,7 @@
       </div>
       <div class="average-ratings">
         <h4>Average Rating</h4>
-        <RatingDisplay :rating="rating" />
+        <RatingDisplay :rating="averageRatings" />
       </div>
       <div class="videogamedetails-jumpbuttons">
         <router-link :to="{hash: '#videogamereviews'}" tag="button" @click.native="anchorHashCheck()">View Reviews</router-link>
@@ -62,6 +62,7 @@ export default {
         difficultyRating: 10,
         overallRating: 8.5
       },
+      ratings: [],
       palette: null,
       dataLoaded: false
     };
@@ -81,7 +82,7 @@ export default {
     },
     deleteGame() {
       this.$router.push({ name: 'deletevideogame', params: { id: this.videoGame.id } });
-    }
+    }    
   },
   computed: {
     ratingImgUrl() {
@@ -97,6 +98,16 @@ export default {
       }
 
       return 'none';
+    },
+    averageRatings() {
+      const ratings = {};
+      ratings.storyRating = 0;
+      ratings.visualRating = 0;
+      ratings.audioRating = 0;
+      ratings.gameplayRating = 0;
+      ratings.difficultyRating = 0;
+      ratings.overallRating = 0;
+      return ratings;
     }
   },
   mounted() {
@@ -121,7 +132,9 @@ export default {
         img.crossOrigin = 'Anonymous';
         img.src = googleProxyURL + encodeURIComponent(imageURL);
       });
-
+      videogameService.getRatingsForGame(this.$route.params.id).then(response => {
+        this.ratings = response.data;
+      });
       this.anchorHashCheck()
   }
 };
