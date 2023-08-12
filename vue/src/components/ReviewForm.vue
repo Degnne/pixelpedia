@@ -1,37 +1,37 @@
 <template>
   <div>
-      <form action="#" id="reviewform" @submit.prevent="review ? updateReview() : addReview()">
+      <form action="#" id="reviewform" @submit.prevent="review ? updateReview() : addRating()">
           <div>
           <table>
               <tr>
                   <td>Story:</td>
-                  <td><input type="range" min="0" max="10" v-model="newRating.story" /></td>
-                  <td>{{newRating.story}}</td>
+                  <td><input type="range" min="0" max="10" v-model="newRating.storyRating" /></td>
+                  <td>{{newRating.storyRating}}</td>
               </tr>
               <tr>
                   <td>Visual:</td>
-                  <td><input type="range" min="0" max="10" v-model="newRating.visual" /></td>
-                  <td>{{newRating.visual}}</td>
+                  <td><input type="range" min="0" max="10" v-model="newRating.visualRating" /></td>
+                  <td>{{newRating.visualRating}}</td>
               </tr>
               <tr>
                   <td>Audio:</td>
-                  <td><input type="range" min="0" max="10" v-model="newRating.audio" /></td>
-                  <td>{{newRating.audio}}</td>
+                  <td><input type="range" min="0" max="10" v-model="newRating.audioRating" /></td>
+                  <td>{{newRating.audioRating}}</td>
               </tr>
               <tr>
                   <td>Gameplay:</td>
-                  <td><input type="range" min="0" max="10" v-model="newRating.gameplay" /></td>
-                  <td>{{newRating.gameplay}}</td>
+                  <td><input type="range" min="0" max="10" v-model="newRating.gameplayRating" /></td>
+                  <td>{{newRating.gameplayRating}}</td>
               </tr>
               <tr>
                   <td>Difficulty:</td>
-                  <td><input type="range" min="0" max="10" v-model="newRating.difficulty" /></td>
-                  <td>{{newRating.difficulty}}</td>
+                  <td><input type="range" min="0" max="10" v-model="newRating.difficultyRating" /></td>
+                  <td>{{newRating.difficultyRating}}</td>
               </tr>
               <tr>
                   <td>Overall:</td>
-                  <td><input type="range" min="0" max="10" v-model="newRating.overall" /></td>
-                  <td>{{newRating.overall}}</td>
+                  <td><input type="range" min="0" max="10" v-model="newRating.overallRating" /></td>
+                  <td>{{newRating.overallRating}}</td>
               </tr>
           </table>         
   </div>
@@ -68,15 +68,27 @@ export default {
         
     },
     methods: {
-        addReview() {
-            this.newReview.gameId = this.$route.params.id;
-            this.newReview.userId = this.$store.state.user.id;
-            VideoGameService.addGameReview(this.newReview).then(() => {
-                this.$store.dispatch('loadReviews', this.$route.params.id);
-                this.newReview = {};
-            }).catch(error => {
-                console.error(error);
-            });
+        addRating() {
+            this.newRating.gameId = this.$route.params.id;
+            this.newRating.userId = this.$store.state.user.id;
+            if (this.plusReview) {
+                this.newReview.gameId = this.$route.params.id;
+                this.newReview.userId = this.$store.state.user.id;
+                VideoGameService.addGameReview(this.newReview).then((response) => {
+                    this.newRating.reviewId = response.data.reviewId;
+                    VideoGameService.addRating(this.newRating);
+                    this.$store.dispatch('loadReviews', this.$route.params.id);
+                    this.newReview = {};
+                    return response;
+                }).catch(error => {
+                    console.error(error);
+                });
+            } else {
+                VideoGameService.addRating(this.newRating);
+            }
+        },
+        async addReview() {
+            
         },
         updateReview() {
             VideoGameService.editGameReview(this.newReview).then(() => {

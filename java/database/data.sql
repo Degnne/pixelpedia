@@ -111,7 +111,7 @@ INSERT INTO vg_studio (vg_id, studio_id) VALUES (3, 4);
 
 
 
-
+INSERT INTO review (review_id, review_txt, review_title) VALUES (0, 'Test', 'Test');
 INSERT into review (user_id, game_id, review_txt, review_title, date_time) VALUES (1,1, 'This is test text. Man this game is so fun!', 'This Is Test Title!', '2023-01-01');
 INSERT into review (user_id, game_id, review_txt, review_title, date_time) VALUES (1,2, 'This is test text. BRUH this game is so fun!', 'This Is Test Title!', '2023-01-01');
 INSERT into review (user_id, game_id, review_txt, review_title, date_time) VALUES (1,3, 'This is test text. Man this game is so bad!', 'This Is Test Title!', '2023-01-01');
