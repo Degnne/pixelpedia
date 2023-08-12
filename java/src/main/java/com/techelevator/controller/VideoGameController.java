@@ -118,4 +118,9 @@ public class VideoGameController {
     public Rating[] getRatingsByGameID(@PathVariable int id){
         return ratingDAO.getAllRatingsByGameId(id);
     }
+
+    @RequestMapping (path = "/ratings/{id}", method = RequestMethod.DELETE)
+    public void deleteRating(@PathVariable int ratingId){
+        ratingDAO.deleteRating(ratingId);
+    }
 }

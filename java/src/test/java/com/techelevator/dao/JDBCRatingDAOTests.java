@@ -43,7 +43,21 @@ public class JDBCRatingDAOTests extends BaseDaoTests{
 
         Rating actual = jdbcRatingDAO.getRatingByRatingId(1);
         assertRatingMatch(rating, actual);
+    }
 
+    @Test
+    public void get_ratings_by_game_id(){
+        Rating[] ratings = jdbcRatingDAO.getAllRatingsByGameId(1);
+        Assert.assertEquals(1, ratings.length);
+    }
+
+    @Test
+    public void delete_rating_test(){
+        jdbcRatingDAO.deleteRating(1);
+        Rating rating = jdbcRatingDAO.getRatingByRatingId(1);
+
+
+        Assert.assertNull(rating);
     }
 
     private void assertRatingMatch(Rating expected, Rating actual){
