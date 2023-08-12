@@ -60,4 +60,23 @@
     width: 200px;
     border-radius: 10px;
   }
+
+  select {
+    border-radius: 5px;
+  }
+
+  button {
+    border-radius: 5px;
+    height: 20px;
+    border: none;
+  }
+
+  button:hover {
+    cursor: pointer;
+  }
+
+  input, textarea {
+    border-radius: 5px;
+    border: none;
+  }
 </style>
