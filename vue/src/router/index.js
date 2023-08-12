@@ -88,7 +88,13 @@ const router = new Router({
       path: '/emulatorlist/gba',
       name: 'gameboyadvance',
       component: gameboyadvance
+    },
+    {
+      path: '/emulatorlist/psp',
+      name: 'gameboyadvance',
+      component: gameboyadvance
     }
+
   ]
 })
 
