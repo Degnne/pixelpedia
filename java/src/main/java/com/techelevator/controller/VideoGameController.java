@@ -110,7 +110,7 @@ public class VideoGameController {
     }
 
     @RequestMapping (path = "/ratings/{ratingId}", method = RequestMethod.PUT)
-    public Rating editRating(@RequestBody Rating rating, int ratingId){
+    public Rating editRating(@RequestBody Rating rating, @PathVariable int ratingId){
         return ratingDAO.editRating(rating, ratingId);
     }
 }
