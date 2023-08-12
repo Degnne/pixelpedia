@@ -9,4 +9,5 @@ public interface ReviewDAO {
     void deleteReview (int id);
     Review[] getArrayReviewsByGameId (int gameId);
 
+
 }

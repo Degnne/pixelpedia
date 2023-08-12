@@ -1,10 +1,8 @@
 package com.techelevator.controller;
 
-import com.techelevator.dao.CommentDAO;
-import com.techelevator.dao.JDBCVideoGameDAO;
-import com.techelevator.dao.ReviewDAO;
-import com.techelevator.dao.VideoGameDAO;
+import com.techelevator.dao.*;
 import com.techelevator.model.Comment;
+import com.techelevator.model.Rating;
 import com.techelevator.model.Review;
 import com.techelevator.model.VideoGame;
 import org.springframework.web.bind.annotation.*;
@@ -20,11 +18,13 @@ public class VideoGameController {
     private VideoGameDAO videoGameDAO;
     private ReviewDAO reviewDAO;
     private CommentDAO commentDAO;
+    private RatingDAO ratingDAO;
 
-    VideoGameController(VideoGameDAO videoGameDAO, ReviewDAO reviewDAO, CommentDAO commentDAO) {
+    VideoGameController(VideoGameDAO videoGameDAO, ReviewDAO reviewDAO, CommentDAO commentDAO, RatingDAO ratingDAO) {
         this.reviewDAO = reviewDAO;
         this.videoGameDAO = videoGameDAO;
         this.commentDAO = commentDAO;
+        this.ratingDAO = ratingDAO;
     }
 
 
@@ -104,4 +104,8 @@ public class VideoGameController {
         commentDAO.deleteComment(commentId);
     }
 
+    @RequestMapping (path = "/ratings", method = RequestMethod.POST)
+    public Rating addRating(@RequestBody Rating rating){
+        return ratingDAO.addRating(rating);
+    }
 }
