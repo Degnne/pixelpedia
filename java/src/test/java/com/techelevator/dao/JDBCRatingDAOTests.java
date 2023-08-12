@@ -47,7 +47,7 @@ public class JDBCRatingDAOTests extends BaseDaoTests{
     }
 
     private void assertRatingMatch(Rating expected, Rating actual){
-        Assert.assertEquals(expected.getRatingId(), actual.getAudioRating());
+        Assert.assertEquals(expected.getRatingId(), actual.getRatingId());
         Assert.assertEquals(expected.getUserId(), actual.getUserId());
         Assert.assertEquals(expected.getGameId(), actual.getGameId());
         Assert.assertEquals(expected.getReviewId(), actual.getReviewId());
