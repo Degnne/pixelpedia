@@ -119,7 +119,7 @@ public class VideoGameController {
         return ratingDAO.getAllRatingsByGameId(id);
     }
 
-    @RequestMapping (path = "/ratings/{id}", method = RequestMethod.DELETE)
+    @RequestMapping (path = "/ratings/{ratingId}", method = RequestMethod.DELETE)
     public void deleteRating(@PathVariable int ratingId){
         ratingDAO.deleteRating(ratingId);
     }
