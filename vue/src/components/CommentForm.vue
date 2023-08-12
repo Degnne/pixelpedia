@@ -19,10 +19,7 @@ export default {
     created() {
         if (this.comment) {
             this.newComment = this.comment;
-        } else {
-            this.newComment.reviewId = this.reviewId;
-            this.newComment.userId = this.$store.state.user.id;
-        }        
+        }      
     },
     methods: {
         submit() {
@@ -31,6 +28,8 @@ export default {
                     this.$store.commit('TOGGLE_EDIT_COMMENTS', this.comment.commentId);
                 });
             } else {
+                this.newComment.reviewId = this.reviewId;
+                this.newComment.userId = this.$store.state.user.id;
                 VideoGameService.addComment(this.newComment).then(() => {
                     this.$store.dispatch('loadReviews', this.$route.params.id);
                     this.newComment = {};
