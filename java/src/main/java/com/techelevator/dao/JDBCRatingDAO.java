@@ -5,6 +5,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class JDBCRatingDAO implements RatingDAO {
 
@@ -39,6 +42,21 @@ public class JDBCRatingDAO implements RatingDAO {
                 rating.getAudioRating(), rating.getGameplayRating(), rating.getDifficultyRating() ,ratingId);
 
         return getRatingByRatingId(ratingId);
+    }
+
+    @Override
+    public Rating[] getAllRatingsByGameId(int id) {
+        List<Rating> ratingList = new ArrayList<>();
+        String sql = "SELECT rating_id, user_id, game_id, review_id, overall_rating, story_rating," +
+                " visual_rating, audio_rating, gameplay_rating, difficulty_rating FROM review_rating WHERE  game_id = ?;";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
+
+        while(results.next()){
+            ratingList.add(mapRowToRating(results));
+        }
+
+        return ratingList.toArray(new Rating[ratingList.size()]);
     }
 
 
