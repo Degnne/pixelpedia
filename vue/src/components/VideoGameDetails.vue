@@ -23,6 +23,9 @@
         Rating: 
         <img :src="ratingImgUrl" :alt="videoGame.rating" :title="videoGame.rating">
       </div>
+      <div class="average-ratings">
+        <RatingDisplay :rating="rating" />
+      </div>
       <div class="videogamedetails-jumpbuttons">
         <router-link :to="{hash: '#videogamereviews'}" tag="button" @click.native="anchorHashCheck()">View Reviews</router-link>
         <router-link :to="{hash: '#addvideogamereview'}" tag="button" @click.native="anchorHashCheck()">Add Review</router-link>
@@ -41,11 +44,23 @@
 <script>
 import videogameService from "../services/videogameService";
 import ColorThief from "colorthief";
+import RatingDisplay from '@/components/RatingDisplay.vue'
 
 export default {
+  components: {
+    RatingDisplay
+  },
   data() {
     return {
       videoGame: {},
+      rating: {
+        story: 1,
+        visual: 10,
+        audio: 8,
+        gameplay: 7,
+        difficulty: 10,
+        overall: 8.5
+      },
       palette: null,
       dataLoaded: false
     };
@@ -232,20 +247,22 @@ export default {
   color: black;
   cursor: pointer;
 }
+.average-ratings {
+  grid-area: average-ratings;
+}
 #details {
   background-color: rgba(30, 30, 30, .7);
   border-radius: 20px;
-  height: 60%;
   padding: 10px;
   grid-area: details;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 5px;
+  gap: 20px;
   grid-template-areas: "publisher price date"
                       "studio system rating"
                       "genre genre genre"
                       "description description description"
-                      "jump jump jump";
+                      "average-ratings average-ratings jump";
   align-items: center;
 }
 #detailsPage{
@@ -265,7 +282,7 @@ export default {
   "art art details details";
   align-items: flex-start;
   
-  
+  /*-webkit-box-reflect: below 5px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.1)); */
 }
 
 @keyframes Animation { 

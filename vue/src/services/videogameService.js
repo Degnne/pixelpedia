@@ -60,5 +60,9 @@ export default{
 
     deleteComment(commentId) {
         return axios.delete(`/videogames/reviews/comments/${commentId}`);
+    },
+
+    addRating(rating) {
+        return axios.post('/videogames/ratings', rating);
     }
 }

@@ -13,14 +13,14 @@ import java.time.LocalDate;
 
 public class JDBCReviewDAOTests extends BaseDaoTests {
 
+
+    private JDBCReviewDAO jdbcReviewDAO;
+
     private static final Comment COMMENT_1 = new Comment(1,1,1,"Test Comment", LocalDate.parse("2023-01-01"));
     private static final Comment COMMENT_2 = new Comment(2,2,1, "Test Comment", LocalDate.now());
     private static final Comment COMMENT_3 = new Comment(1,3,1,"Test Comment", LocalDate.parse("2023-01-01"));
-
     private static final Comment[] comments = new Comment[]{COMMENT_1, COMMENT_2, COMMENT_3};
-
     private static final Review REVIEW_1 = new Review(1, 1, 1, "Test", "Test Tile", comments ,LocalDate.parse("2021-01-01"));
-    private JDBCReviewDAO jdbcReviewDAO;
 
     @Before
     public void setup(){

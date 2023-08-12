@@ -2,6 +2,7 @@ BEGIN TRANSACTION;
 
 DROP TABLE IF EXISTS comment_likes;
 DROP TABLE IF EXISTS review_likes;
+DROP TABLE IF EXISTS review_rating;
 DROP TABLE IF EXISTS comment;
 DROP TABLE IF EXISTS review;
 DROP TABLE IF EXISTS users;
@@ -81,6 +82,29 @@ CREATE TABLE comment (
 
 );
 
+CREATE TABLE review_rating (
+    rating_id SERIAL,
+    user_id int,
+    game_id int,
+    review_id  int,
+    overall_rating int,
+    story_rating int,
+    visual_rating int,
+    audio_rating int,
+    gameplay_rating int,
+    difficulty_rating int,
+
+    CONSTRAINT CHK_overall CHECK (overall_rating >= 0 AND overall_rating <= 10),
+    CONSTRAINT CHK_story CHECK (story_rating >= 0 AND overall_rating <=10 ),
+    CONSTRAINT CHK_visual CHECK (visual_rating >=0 AND overall_rating <=10 ),
+    CONSTRAINT CHK_audio CHECK (audio_rating >= 0 AND overall_rating <=10),
+    CONSTRAINT CHK_gameplay CHECK (gameplay_rating >= 0 AND gameplay_rating <=10),
+    CONSTRAINT CHK_difficulty CHECK (difficulty_rating >= 0 AND difficulty_rating <=10),
+    CONSTRAINT PK_rating_id PRIMARY KEY(rating_id),
+    CONSTRAINT FK_user_id FOREIGN KEY (user_id) REFERENCES users(user_id),
+    CONSTRAINT FK_game_id FOREIGN KEY (game_id) REFERENCES video_game(id),
+    CONSTRAINT FK_review_id FOREIGN KEY (review_id) REFERENCES review(review_id)
+);
 
 CREATE TABLE review_likes (
     review_id int,

@@ -48,11 +48,13 @@ public class JDBCReviewDAO implements ReviewDAO {
 
     @Override
     public void deleteReview(int id) {
+        String sql0 = "DELETE FROM comment_likes WHERE comment_id IN (SELECT comment_id FROM comment WHERE review_id = ?);";
         String sql = "DELETE FROM comment WHERE review_id = ?;";
         String sql1 = "DELETE FROM review_likes WHERE review_id = ?;";
         String sql2 = "DELETE FROM review WHERE review_id = ?;";
 
         try{
+            jdbcTemplate.update(sql0, id);
             jdbcTemplate.update(sql, id);
             jdbcTemplate.update(sql1, id);
             jdbcTemplate.update(sql2, id);
