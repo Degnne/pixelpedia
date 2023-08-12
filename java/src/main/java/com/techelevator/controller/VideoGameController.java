@@ -113,4 +113,9 @@ public class VideoGameController {
     public Rating editRating(@RequestBody Rating rating, @PathVariable int ratingId){
         return ratingDAO.editRating(rating, ratingId);
     }
+
+    @RequestMapping (path = "{id}/ratings/", method = RequestMethod.GET)
+    public Rating[] getRatingsByGameID(@PathVariable int id){
+        return ratingDAO.getAllRatingsByGameId(id);
+    }
 }

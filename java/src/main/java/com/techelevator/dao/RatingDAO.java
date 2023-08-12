@@ -6,5 +6,6 @@ public interface RatingDAO {
 
     Rating addRating(Rating rating);
     Rating editRating(Rating rating, int ratingId);
+    Rating[] getAllRatingsByGameId(int id);
 
 }

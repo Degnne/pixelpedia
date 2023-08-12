@@ -44,7 +44,7 @@ public class JDBCVideoGameDAOTests extends BaseDaoTests {
     }
 
     @Test
-    public void damn(){
+    public void todo(){
 
     }
 }
