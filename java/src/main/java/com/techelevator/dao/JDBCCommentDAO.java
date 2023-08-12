@@ -36,7 +36,7 @@ public class JDBCCommentDAO implements CommentDAO {
 
         jdbcTemplate.update(sql, comment.getCommentText(), commentId);
 
-        return getCommentByCommentId(comment.getCommentId());
+        return getCommentByCommentId(commentId);
     }
 
     @Override

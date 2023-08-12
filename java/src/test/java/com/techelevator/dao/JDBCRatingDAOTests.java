@@ -29,8 +29,25 @@ public class JDBCRatingDAOTests extends BaseDaoTests{
         assertRatingMatch(newRating, actual);
     }
 
+    @Test
+    public void edit_rating_test(){
+        Rating rating = jdbcRatingDAO.getRatingByRatingId(1);
+        rating.setOverallRating(1);
+        rating.setStoryRating(2);
+        rating.setVisualRating(3);
+        rating.setAudioRating(8);
+        rating.setGameplayRating(6);
+        rating.setDifficultyRating(10);
+        jdbcRatingDAO.editRating(rating, 1);
+
+
+        Rating actual = jdbcRatingDAO.getRatingByRatingId(1);
+        assertRatingMatch(rating, actual);
+
+    }
+
     private void assertRatingMatch(Rating expected, Rating actual){
-        Assert.assertEquals(expected.getRatingId(), actual.getAudioRating());
+        Assert.assertEquals(expected.getRatingId(), actual.getRatingId());
         Assert.assertEquals(expected.getUserId(), actual.getUserId());
         Assert.assertEquals(expected.getGameId(), actual.getGameId());
         Assert.assertEquals(expected.getReviewId(), actual.getReviewId());

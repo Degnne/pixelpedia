@@ -30,6 +30,17 @@ public class JDBCRatingDAO implements RatingDAO {
         return rating;
     }
 
+    @Override
+    public Rating editRating(Rating rating, int ratingId) {
+        String sql = "UPDATE review_rating SET overall_rating = ?, story_rating = ?, visual_rating = ?, audio_rating = ?, " +
+                "gameplay_rating = ?, difficulty_rating = ? WHERE rating_id = ?;";
+
+        jdbcTemplate.update(sql, rating.getOverallRating(), rating.getStoryRating(), rating.getVisualRating(),
+                rating.getAudioRating(), rating.getGameplayRating(), rating.getDifficultyRating() ,ratingId);
+
+        return getRatingByRatingId(ratingId);
+    }
+
 
     public Rating getRatingByRatingId(int id){
         String sql = "SELECT rating_id, user_id, game_id, review_id, overall_rating, story_rating, visual_rating, audio_rating, " +
