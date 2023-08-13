@@ -11,6 +11,7 @@ import deletevideogame from '../views/ConfirmDeleteView.vue'
 import editvideogame from '../views/EditVideoGameView.vue'
 import emulatorlist from '../views/emulatorView.vue'
 import gameboyadvance from '../views/gbaEmulator.vue'
+import ps1Emulator from '../views/ps1Emulator'
 Vue.use(Router)
 
 /**
@@ -93,7 +94,12 @@ const router = new Router({
       path: '/emulatorlist/psp',
       name: 'gameboyadvance',
       component: gameboyadvance
-    }
+    },
+    {
+      path: '/emulatorlist/ps1',
+      name: 'ps1',
+      component: ps1Emulator
+    },
 
   ]
 })

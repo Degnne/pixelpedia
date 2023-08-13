@@ -23,7 +23,7 @@ export default{
           },
           {
             name: 'PSP',
-            routerLink: '/emulatorlist/psp',
+            routerLink: '/emulatorlist/ps1',
             imageUrl: 'https://hyperspin-fe.com/uploads/monthly_2017_05/591094ad43226_Bezel16x9SonyPSP(Horizontal).png.6fad00fd60766471d0384bcef7aacb7f.png',
             gifImage: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.makeagif.com%2Fmedia%2F8-10-2016%2Fmadrq_.gif&f=1&nofb=1&ipt=d2a71b39429109ee78bdf1af55fd58c7696239631b4f6a80d1e51d153c1ac871&ipo=images',
             blackImage: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpaperaccess.com%2Ffull%2F2563963.jpg&f=1&nofb=1&ipt=93572cde757009d05ba399ee26816879c6e047d1b6bb3a2b7021af42a3f16c28&ipo=images',

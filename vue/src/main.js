@@ -5,6 +5,7 @@ import store from './store/index'
 import axios from 'axios'
 
 Vue.config.productionTip = false
+Vue.config.ignoredElements = ['wasmpsx-player'];
 
 axios.defaults.baseURL = process.env.VUE_APP_REMOTE_API;
 
