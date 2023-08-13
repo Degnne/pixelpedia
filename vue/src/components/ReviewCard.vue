@@ -1,5 +1,6 @@
 <template>
     <div class="videogamereview-container">
+        
         <div class="confirm-review-delete" v-if="confirmingDelete">
             <div>Are you sure you want to delete this review?</div>
             <div>
@@ -15,8 +16,11 @@
                     <button @click.prevent="confirmingDelete = !confirmingDelete">Delete</button>
                 </div>
             </div>
+            <div class="rating-and-review">
+                <RatingDisplay v-if="rating" :rating="rating" />
+                <p class="review-text">{{review.reviewText}}</p>
+            </div>
             
-            <p>{{review.reviewText}}</p>
             <div class="review-username">--{{reviewer.username}}</div>
             <div class="review-date">Reviewed {{review.date}}</div>
             <ReviewForm v-if="$store.state.editingReview.includes(review.reviewId)" :review="review" />            
@@ -27,6 +31,7 @@
 </template>
 
 <script>
+import RatingDisplay from '@/components/RatingDisplay.vue'
 import ReviewForm from '@/components/ReviewForm.vue'
 import ReviewComments from '@/components/ReviewComments.vue'
 import VideoGameService from '@/services/videogameService.js'
@@ -34,10 +39,11 @@ import UserService from '@/services/UserService.js'
 export default {
     components: {
         ReviewForm,
-        ReviewComments
+        ReviewComments,
+        RatingDisplay
     },
     name: 'review-card',
-    props: ['review'],
+    props: ['review', 'rating'],
     data() {
         return {
             reviewer: {},
@@ -132,5 +138,18 @@ export default {
 }
 .review-username {
     align-self: flex-end;
+}
+
+.videogamereview-container .ratingbar-container {
+    border: 1px solid white;
+}
+
+.videogamereview-container .rating-and-review {
+    display: flex;
+    justify-content:left;
+}
+
+.review-text {
+    margin-left: 50px;
 }
 </style>

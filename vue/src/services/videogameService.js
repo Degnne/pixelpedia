@@ -64,5 +64,9 @@ export default{
 
     addRating(rating) {
         return axios.post('/videogames/ratings', rating);
+    },
+
+    getRatingsForGame(gameId) {
+        return axios.get(`/videogames/${gameId}/ratings/`);
     }
 }

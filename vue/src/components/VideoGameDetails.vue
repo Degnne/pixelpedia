@@ -24,7 +24,8 @@
         <img :src="ratingImgUrl" :alt="videoGame.rating" :title="videoGame.rating">
       </div>
       <div class="average-ratings">
-        <RatingDisplay :rating="rating" />
+        <h4>Average Rating</h4>
+        <RatingDisplay :rating="averageRatings" />
       </div>
       <div class="videogamedetails-jumpbuttons">
         <router-link :to="{hash: '#videogamereviews'}" tag="button" @click.native="anchorHashCheck()">View Reviews</router-link>
@@ -54,13 +55,14 @@ export default {
     return {
       videoGame: {},
       rating: {
-        story: 1,
-        visual: 10,
-        audio: 8,
-        gameplay: 7,
-        difficulty: 10,
-        overall: 8.5
+        storyRating: 1,
+        visualRating: 10,
+        audioRating: 8,
+        gameplayRating: 7,
+        difficultyRating: 10,
+        overallRating: 8.5
       },
+      ratings: [],
       palette: null,
       dataLoaded: false
     };
@@ -80,7 +82,7 @@ export default {
     },
     deleteGame() {
       this.$router.push({ name: 'deletevideogame', params: { id: this.videoGame.id } });
-    }
+    }    
   },
   computed: {
     ratingImgUrl() {
@@ -96,6 +98,16 @@ export default {
       }
 
       return 'none';
+    },
+    averageRatings() {
+      const ratings = {};
+      ratings.storyRating = 0;
+      ratings.visualRating = 0;
+      ratings.audioRating = 0;
+      ratings.gameplayRating = 0;
+      ratings.difficultyRating = 0;
+      ratings.overallRating = 0;
+      return ratings;
     }
   },
   mounted() {
@@ -120,7 +132,9 @@ export default {
         img.crossOrigin = 'Anonymous';
         img.src = googleProxyURL + encodeURIComponent(imageURL);
       });
-
+      videogameService.getRatingsForGame(this.$route.params.id).then(response => {
+        this.ratings = response.data;
+      });
       this.anchorHashCheck()
   }
 };

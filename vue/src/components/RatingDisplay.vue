@@ -1,48 +1,47 @@
 <template>
   <div>
-      Average Ratings
       <table>
               <tr>
                   <td>Story:</td>
                   <td>
-                      <RatingBar :rating="rating.story" />
+                      <RatingBar :rating="rating.storyRating" />
                   </td>
-                  <td>{{rating.story}}</td>
+                  <td>{{rating.storyRating}}</td>
               </tr>
               <tr>
                   <td>Visual:</td>
                   <td>
-                      <RatingBar :rating="rating.visual" />
+                      <RatingBar :rating="rating.visualRating" />
                   </td>
-                  <td>{{rating.visual}}</td>
+                  <td>{{rating.visualRating}}</td>
               </tr>
               <tr>
                   <td>Audio:</td>
                   <td>
-                      <RatingBar :rating="rating.audio" />
+                      <RatingBar :rating="rating.audioRating" />
                   </td>
-                  <td>{{rating.audio}}</td>
+                  <td>{{rating.audioRating}}</td>
               </tr>
               <tr>
                   <td>Gameplay:</td>
                   <td>
-                      <RatingBar :rating="rating.gameplay" />
+                      <RatingBar :rating="rating.gameplayRating" />
                   </td>
-                  <td>{{rating.gameplay}}</td>
+                  <td>{{rating.gameplayRating}}</td>
               </tr>
               <tr>
                   <td>Difficulty:</td>
                   <td>
-                      <RatingBar :rating="rating.difficulty" />
+                      <RatingBar :rating="rating.difficultyRating" />
                   </td>
-                  <td>{{rating.difficulty}}</td>
+                  <td>{{rating.difficultyRating}}</td>
               </tr>
               <tr>
                   <td>Overall:</td>
                   <td>
-                      <RatingBar :rating="rating.overall" :isOverall="true" />
+                      <RatingBar :rating="rating.overallRating" :isOverall="true" />
                   </td>
-                  <td>{{rating.overall}}</td>
+                  <td>{{rating.overallRating}}</td>
               </tr>
           </table>
   </div>
