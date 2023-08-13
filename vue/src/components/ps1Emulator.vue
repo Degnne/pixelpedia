@@ -28,7 +28,7 @@ export default {
         };
         if (!document.querySelector('script[src="/wasmpsx.min.js"]')) {
         this.emulatorScript = document.createElement('script');
-        this.emulatorScript.src = '/wasmpsx.min.js';
+        this.emulatorScript.src = '/wasmpsx-master/wasmpsx.min.js';
         document.head.appendChild(this.emulatorScript);
     }
     },
@@ -43,7 +43,7 @@ export default {
      loadGameFromFile() {
         const gameFile = this.$refs.gameInput.files[0];
         if (gameFile) {
-          this.$refs.wasmpsxElement.readFile(gameFile);  // assuming readFile() accepts a File object
+          this.$refs.wasmpsxElement.readFile(gameFile);
         } else {
           console.warn("No game file selected");
         }
