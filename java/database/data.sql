@@ -10,7 +10,53 @@ INSERT INTO company (company_name) VALUES ('Team Meat');    --4
 INSERT INTO company (company_name) VALUES ('THQ');          --5
 INSERT INTO company (company_name) VALUES ('Microsoft');    --6
 INSERT INTO company (company_name) VALUES ('Sony');    --7
-INSERT INTO company (company_name) VALUES ('SEGA');    --7
+INSERT INTO company (company_name) VALUES ('SEGA');    --8
+INSERT INTO company (company_name) VALUES ('Ubisoft');      -- 9
+INSERT INTO company (company_name) VALUES ('Electronic Arts (EA)');   -- 10
+INSERT INTO company (company_name) VALUES ('Square Enix');  -- 11
+INSERT INTO company (company_name) VALUES ('Capcom');       -- 12
+INSERT INTO company (company_name) VALUES ('Blizzard Entertainment');   -- 13
+INSERT INTO company (company_name) VALUES ('Valve');        -- 14
+INSERT INTO company (company_name) VALUES ('Epic Games');   -- 15
+INSERT INTO company (company_name) VALUES ('Rockstar Games');   -- 16
+INSERT INTO company (company_name) VALUES ('CD Projekt');   -- 17
+INSERT INTO company (company_name) VALUES ('Bethesda Game Studios');   -- 18
+INSERT INTO company (company_name) VALUES ('Konami');       -- 19
+INSERT INTO company (company_name) VALUES ('BioWare');      -- 20
+INSERT INTO company (company_name) VALUES ('Insomniac Games');   -- 21
+INSERT INTO company (company_name) VALUES ('Kojima Productions');   -- 22
+INSERT INTO company (company_name) VALUES ('Gearbox Software');   -- 23
+INSERT INTO company (company_name) VALUES ('Ubisoft Montreal');   -- 24
+INSERT INTO company (company_name) VALUES ('Respawn Entertainment');   -- 25
+INSERT INTO company (company_name) VALUES ('Naughty Dog');    -- 26
+INSERT INTO company (company_name) VALUES ('Riot Games');    -- 27
+INSERT INTO company (company_name) VALUES ('2K Games');    -- 28
+INSERT INTO company (company_name) VALUES ('BioWare');    -- 29
+INSERT INTO company (company_name) VALUES ('Konami');    -- 30
+INSERT INTO company (company_name) VALUES ('Obsidian Entertainment');    -- 31
+INSERT INTO company (company_name) VALUES ('Turn 10 Studios');    -- 32
+INSERT INTO company (company_name) VALUES ('Square Enix');    -- 33
+INSERT INTO company (company_name) VALUES ('Insomniac Games');    -- 34
+INSERT INTO company (company_name) VALUES ('Double Fine Productions');    -- 35
+INSERT INTO company (company_name) VALUES ('Treyarch');    -- 36
+INSERT INTO company (company_name) VALUES ('Crystal Dynamics');    -- 37
+INSERT INTO company (company_name) VALUES ('id Software');    -- 38
+INSERT INTO company (company_name) VALUES ('Monolith Productions');    -- 39
+INSERT INTO company (company_name) VALUES ('Ubisoft Toronto');    -- 40
+INSERT INTO company (company_name) VALUES ('505 Games');    -- 41
+INSERT INTO company (company_name) VALUES ('Monolith Soft');    -- 42
+INSERT INTO company (company_name) VALUES ('FromSoftware');    -- 43
+INSERT INTO company (company_name) VALUES ('Sega AM2');    -- 44
+INSERT INTO company (company_name) VALUES ('Rare');    -- 45
+INSERT INTO company (company_name) VALUES ('Ubisoft Quebec');    -- 46
+INSERT INTO company (company_name) VALUES ('Bioware Edmonton');    -- 47
+INSERT INTO company (company_name) VALUES ('Namco Bandai Games');    -- 48
+INSERT INTO company (company_name) VALUES ('Insomniac Games');    -- 49
+INSERT INTO company (company_name) VALUES ('Crystal Dynamics');    -- 50
+INSERT INTO company (company_name) VALUES ('Game Freak');    -- 51
+INSERT INTO company (company_name) VALUES ('Midway');    -- 52
+INSERT INTO company (company_name) VALUES ('Mojang Studios');    -- 53
+INSERT INTO company (company_name) VALUES ('Bethesda Game Studios');    -- 54
 
 
 
@@ -18,6 +64,30 @@ INSERT INTO video_game (title, release_date, release_price, description, publish
 INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES ('Super Mario Bros.', CURRENT_DATE, 60.00, 'This is Super Mario Bros. It is a game.', 2, 'E','https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/de10961b-5990-4053-b78f-eabbba03ae83/d7ndqiw-9b9e55e3-e573-47c6-bc70-4edfa3b89043.png/v1/fill/w_746,h_1072,q_75,strp/super_mario_bros_nes_cover_by_perrito_gatito-d7ndqiw.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwic3ViIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl0sIm9iaiI6W1t7InBhdGgiOiIvZi9kZTEwOTYxYi01OTkwLTQwNTMtYjc4Zi1lYWJiYmEwM2FlODMvZDduZHFpdy05YjllNTVlMy1lNTczLTQ3YzYtYmM3MC00ZWRmYTNiODkwNDMucG5nIiwid2lkdGgiOiI8PTc0NiIsImhlaWdodCI6Ijw9MTA3MiJ9XV19.mDrgffJcbbl5h5bVylez77M2zeW_MfJyGdcdDRiYCfg');     --2
 INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES ('Super Meat Boy', CURRENT_DATE, 60.00, 'This is Super Meat Boy. It is a game.', 4, 'T','https://www.newgamenetwork.com/images/uploads/games/1294707829_supermeatboycover.png');          --3
 INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES ('Tak and the Power of Juju', CURRENT_DATE, 60.00, 'This is Tak and the Power of Juju. It is a game.', 5, 'E','https://www.giantbomb.com/a/uploads/original/8/87790/2352270-box_tak.png');    --4
+
+
+
+--Segun's newly added games
+INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES ('The Legend of Zelda: Breath of the Wild', '2017-03-03', 59.99, 'An open-world action-adventure game set in the fantasy realm of Hyrule. Players control Link as he explores the vast landscape, battles enemies, and solves puzzles.', 2, 'E10+','https://upload.wikimedia.org/wikipedia/en/c/c6/The_Legend_of_Zelda_Breath_of_the_Wild.jpg');    --5
+INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES ('Spyro The Dragon', '1998-09-09', 39.99, 'A classic platformer where players guide the energetic purple dragon Spyro to rescue captured dragons and thwart the plans of the malevolent Gnasty Gnorc. Explore vibrant worlds, defeat foes, and save the dragon realm in this iconic adventure.', 7, 'E','https://upload.wikimedia.org/wikipedia/en/5/53/Spyro_the_Dragon.jpg');    --6
+INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES ('Pokémon Emerald Version', '2005-05-01', 34.99, 'A role-playing video game set in the Hoenn region, where players embark on a journey to become a Pokémon Trainer. With an enhanced storyline and features compared to its predecessors, players capture and train various Pokémon while thwarting the schemes of the villainous Team Aqua and Team Magma.', 51, 'E','https://m.media-amazon.com/images/M/MV5BMDVhZTFiNDgtM2JhOC00YzMzLWFlYTUtN2Q5ODQ0ZmZmOGVmXkEyXkFqcGdeQXVyMTA0MTM5NjI2._V1_FMjpg_UX1000_.jpg');    --7
+INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES ('Fortnite', '2017-09-26', 00.00, 'Fortnite is a popular battle royale game that drops players onto a vibrant island where they fight to be the last one standing. With its distinct building mechanics, engaging gameplay, and constant updates, it offers a dynamic experience where players can team up, strategize, and outlast opponents in a fast-paced digital battleground.', 15, 'T','https://images.pushsquare.com/8bb5c9aed6792/fortnite-cover.cover_large.jpg');    --8
+INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES ('Super Metroid', '1994-03-19', 59.99, 'Super Metroid is an action-adventure game developed by Nintendo and Intelligent Systems and published by Nintendo for the Super Nintendo Entertainment System in 1994. It is the third installment in the Metroid series, following the events of the Game Boy game Metroid II: Return of Samus.', 2, 'E','https://i.redd.it/uk64xazup0e01.jpg');    --9
+INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES ('Mortal Kombat II', '1994-03-19', 59.99, 'Mortal Kombat 2 is a classic fighting game that builds on the success of its predecessor. Released in 1993, it features an expanded roster of characters, enhanced graphics, and new finishing moves known as "Fatalities." Players engage in intense one-on-one combat, utilizing a mix of martial arts and special abilities, as they strive to defeat opponents and emerge victorious in this iconic arcade fighter.', 52, 'M','https://upload.wikimedia.org/wikipedia/en/d/df/Mortal_Kombat_II_boxart.png?20210316000531');    --10
+INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES ('Uncharted 2: Among Thieves', '2009-10-13', 59.99, 'This is an action-adventure game that takes players on a thrilling journey across exotic locations. Released in 2009, it follows the charismatic treasure hunter Nathan Drake as he embarks on a quest filled with perilous obstacles, epic set pieces, and cinematic storytelling. With its engaging narrative and dynamic gameplay, the game is celebrated for its immersive experience and remains a standout title in the Uncharted series.', 7, 'T','https://assets-prd.ignimgs.com/2021/12/10/uncharted2-1639126191037.jpeg?width=300&crop=1%3A1%2Csmart');    --11
+INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES ('Valorant', '2020-04-07', 0.00, '"Valorant" is a tactical FPS by Riot Games where teams of agents with special abilities engage in strategic battles. Released in 2020, it blends precise gunplay with unique agent skills, creating a dynamic and competitive gaming experience.', 7, 'T','https://cdnportal.mobalytics.gg/production/2020/04/valorant-gun-splash.jpg');    --12
+INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES ('World Of Warcraft', '2004-11-23', 0.00, 'This is a massively multiplayer online role-playing game (MMORPG) by Blizzard Entertainment. Set in the high-fantasy world of Azeroth, players create characters from various races and classes, embarking on epic quests, battling monsters, and interacting with other players in a vast virtual world. With its immersive storytelling and social gameplay, WoW has become one of the most influential and enduring MMORPGs in gaming history.', 13, 'T','https://upload.wikimedia.org/wikipedia/en/f/fc/World_of_Warcraft_The_Burning_Crusade.png');    --13
+INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES ('Duck Hunt', '1984-04-21', 0.00, '"Duck Hunt" is a classic light gun shooting game released by Nintendo in 1984. Initially available as a combo cartridge with the NES, it challenges players to take aim at flying ducks on the screen using the NES Zapper light gun accessory. With its simple yet addictive gameplay, players test their accuracy and reflexes by shooting down ducks and earning points.', 2, 'E','https://upload.wikimedia.org/wikipedia/en/1/14/DuckHuntBox.jpg');    --14
+INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES ('The Sims 4', '2014-09-02', 59.99, '"The Sims 4" is a popular life simulation game where players create, customize, and manage virtual characters lives and activities. Released in 2014, it offers creative freedom and diverse gameplay experiences in a virtual world.', 10, 'T','https://m.media-amazon.com/images/I/71otyq1xFNL.jpg');    --15
+INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES ('Minecraft', '2011-11-18', 29.99, '"Minecraft" is a sandbox video game that offers players a world of limitless creativity and exploration. Released in 2011, it invites players to gather resources, craft tools and structures, and build their own virtual worlds block by block. With various game modes, including survival and creative, players can mine for resources, engage in combat, tame animals, and unleash their imagination to construct impressive structures and landscapes. ', 53, 'E','https://image.api.playstation.com/vulcan/img/cfn/11307uYG0CXzRuA9aryByTHYrQLFz-HVQ3VVl7aAysxK15HMpqjkAIcC_R5vdfZt52hAXQNHoYhSuoSq_46_MT_tDBcLu49I.png');    --16
+INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES ('The Elder Scrolls V: Skyrim', '2011-11-11', 59.99, 'An open-world action RPG released by Bethesda Game Studios in 2011. Set in the fantasy realm of Tamriel, players assume the role of the Dragonborn, a hero with the power to combat dragons and unravel a complex narrative. Famed for its expansive world, intricate quests, and modding community, "Skyrim" has left an indelible mark on the RPG genre ', 54, 'M','https://upload.wikimedia.org/wikipedia/en/1/15/The_Elder_Scrolls_V_Skyrim_cover.png?20120309212335');    --17
+INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES ('Metal Gear Solid', '1998-09-03', 59.99, 'critically acclaimed stealth-action video game developed by Konami. Released in 1998, players take on the role of Solid Snake, a skilled operative, as he navigates complex missions to thwart a nuclear threat. Known for its cinematic storytelling, tactical gameplay, and memorable characters, the game has been praised for its innovation and impact on the gaming industry.', 19, 'M','https://www.giantbomb.com/a/uploads/scale_small/45/459166/3252663-mgs.png');    --18
+
+
+
+
+
+
 --INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES
 --('Pac-Man', '1980-05-22', 30.00, 'This is one of the most popular arcade games of all time.', 1, 'E','https://upload.wikimedia.org/wikipedia/en/thumb/5/53/Pac-Man_arcade_game.jpg/220px-Pac-Man_arcade_game.jpg');
 --
