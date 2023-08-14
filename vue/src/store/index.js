@@ -24,7 +24,13 @@ export default new Vuex.Store({
     gameReviews: [],
     editingReview: [],
     viewingComments: [],
-    editingComments: []
+    editingComments: [],
+    gameRatings: []
+  },
+  getters: {
+    getGameRatings(state) {
+      return state.gameRatings;
+    }
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -45,6 +51,9 @@ export default new Vuex.Store({
     },
     LOAD_REVIEWS(state, reviews) {
       state.gameReviews = reviews;
+    },
+    LOAD_RATINGS(state, ratings) {
+      state.gameRatings = ratings;
     },
     TOGGLE_EDIT_REVIEW(state, reviewId) {
       if (state.editingReview.includes(reviewId)) {
@@ -76,7 +85,10 @@ export default new Vuex.Store({
   actions: {
     loadReviews(context, gameId) {
       VideoGameService.getReviewsByGameId(gameId).then(response => {
-        context.commit('LOAD_REVIEWS', response.data);
+        context.commit('LOAD_REVIEWS', response.data);        
+      });
+      VideoGameService.getRatingsForGame(gameId).then(response => {
+        context.commit('LOAD_RATINGS', response.data);
       });
     }
   }

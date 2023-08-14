@@ -25,7 +25,8 @@
       </div>
       <div class="average-ratings">
         <h4>Average Rating</h4>
-        <RatingDisplay :rating="averageRatings" />
+        <RatingDisplay :rating="averageRatings" v-if="this.$store.getters.getGameRatings.length > 0" />
+        <div v-if="this.$store.getters.getGameRatings.length < 1">Not Yet Rated</div>
       </div>
       <div class="videogamedetails-jumpbuttons">
         <router-link :to="{hash: '#videogamereviews'}" tag="button" @click.native="anchorHashCheck()">View Reviews</router-link>
@@ -54,15 +55,6 @@ export default {
   data() {
     return {
       videoGame: {},
-      rating: {
-        storyRating: 1,
-        visualRating: 10,
-        audioRating: 8,
-        gameplayRating: 7,
-        difficultyRating: 10,
-        overallRating: 8.5
-      },
-      ratings: [],
       palette: null,
       dataLoaded: false
     };
@@ -100,14 +92,27 @@ export default {
       return 'none';
     },
     averageRatings() {
-      const ratings = {};
-      ratings.storyRating = 0;
-      ratings.visualRating = 0;
-      ratings.audioRating = 0;
-      ratings.gameplayRating = 0;
-      ratings.difficultyRating = 0;
-      ratings.overallRating = 0;
-      return ratings;
+      const ratings = this.$store.getters.getGameRatings;
+      const avgRatings = {};
+      avgRatings.storyRating = ratings.reduce((sum, rating) => {
+        return sum += rating.storyRating;
+      }, 0) / ratings.length;
+      avgRatings.visualRating = ratings.reduce((sum, rating) => {
+        return sum += rating.visualRating;
+      }, 0) / ratings.length;
+      avgRatings.audioRating = ratings.reduce((sum, rating) => {
+        return sum += rating.audioRating;
+      }, 0) / ratings.length;
+      avgRatings.gameplayRating = ratings.reduce((sum, rating) => {
+        return sum += rating.gameplayRating;
+      }, 0) / ratings.length;
+      avgRatings.difficultyRating = ratings.reduce((sum, rating) => {
+        return sum += rating.difficultyRating;
+      }, 0) / ratings.length;
+      avgRatings.overallRating = ratings.reduce((sum, rating) => {
+        return sum += rating.overallRating;
+      }, 0) / ratings.length;
+      return avgRatings;
     }
   },
   mounted() {
@@ -131,9 +136,6 @@ export default {
 
         img.crossOrigin = 'Anonymous';
         img.src = googleProxyURL + encodeURIComponent(imageURL);
-      });
-      videogameService.getRatingsForGame(this.$route.params.id).then(response => {
-        this.ratings = response.data;
       });
       this.anchorHashCheck()
   }
@@ -269,8 +271,9 @@ export default {
   border-radius: 20px;
   padding: 10px;
   grid-area: details;
+  max-width: 800px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: auto auto auto;
   gap: 20px;
   grid-template-areas: "publisher price date"
                       "studio system rating"

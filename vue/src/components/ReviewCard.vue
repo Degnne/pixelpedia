@@ -8,9 +8,10 @@
                 <button @click.prevent="confirmingDelete = false">No</button>
             </div>
         </div>
+        
         <div class="videogamereview">
             <div class="review-titlearea">
-                <h4>{{review.reviewTitle}}</h4>
+                <h4>{{review ? review.reviewTitle : 'Rating'}}</h4>
                 <div class="review-edit-delete">
                     <button @click.prevent="editReview()">Edit</button>
                     <button @click.prevent="confirmingDelete = !confirmingDelete">Delete</button>
@@ -18,15 +19,22 @@
             </div>
             <div class="rating-and-review">
                 <RatingDisplay v-if="rating" :rating="rating" />
-                <p class="review-text">{{review.reviewText}}</p>
+                <p class="review-text" v-if="review">{{review.reviewText}}</p>
             </div>
             
-            <div class="review-username">--{{reviewer.username}}</div>
-            <div class="review-date">Reviewed {{review.date}}</div>
-            <ReviewForm v-if="$store.state.editingReview.includes(review.reviewId)" :review="review" />            
+            <div class="review-username" v-if="this.reviewer">--{{reviewer.username}}</div>
+            <div class="review-date" v-if="review">Reviewed {{review.date}}</div>
+            <div>
+                <ReviewForm v-if="editing" :review="review" :rating="rating" /> 
+            </div>
+                       
         </div>
-        <div class="number-of-comments" @click="viewComments()">{{numberOfComments}} {{numberOfComments === 1 ? 'Comment' : 'Comments'}}</div>
-        <ReviewComments v-if="$store.state.viewingComments.includes(review.reviewId)" :comments="review.comments" :reviewId="review.reviewId" />
+        
+        <div v-if="review">
+            <div class="number-of-comments" @click="viewComments()">{{numberOfComments}} {{numberOfComments === 1 ? 'Comment' : 'Comments'}}</div>
+            <ReviewComments v-if="$store.state.viewingComments.includes(review.reviewId)" :comments="review.comments" :reviewId="review.reviewId" />
+        </div>
+        
     </div>
 </template>
 
@@ -47,16 +55,29 @@ export default {
     data() {
         return {
             reviewer: {},
-            confirmingDelete: false
+            confirmingDelete: false,
+            editingRating: false
         }
     },
     computed: {
         numberOfComments() {
-            if (this.review.comments) {
-                return this.review.comments.length;
-            } else {
-                return 0;
+            if (this.review) {
+                if (this.review.comments) {
+                    return this.review.comments.length;
+                } else {
+                    return 0;
+                }
             }
+            return 0;
+        },
+        editing() {
+            if (this.review) {
+                return this.$store.state.editingReview.includes(this.review.reviewId);
+            }
+            if (this.editingRating) {
+                return true;
+            }
+            return false;
         }
     },
     methods: {
@@ -64,19 +85,30 @@ export default {
             this.$store.commit('TOGGLE_VIEW_COMMENTS', this.review.reviewId);
         },
         editReview() {
-            this.$store.commit('TOGGLE_EDIT_REVIEW', this.review.reviewId);
+            if(this.review) {
+                this.$store.commit('TOGGLE_EDIT_REVIEW', this.review.reviewId);
+            } else {
+                this.editingRating = !this.editingRating;
+            }
         },
         deleteSelf() {
             this.confirmingDelete = false;
             VideoGameService.deleteReview(this.review.reviewId).then(() => {
                 this.$store.dispatch('loadReviews', this.$route.params.id);
             });
-        }        
+        }      
     },
     created() {
-        UserService.getUserById(this.review.userId).then(response => {
-            this.reviewer = response.data;
-        });
+        if (this.review) {
+            UserService.getUserById(this.review.userId).then(response => {
+                this.reviewer = response.data;
+            });
+        } else if (this.rating) {
+            UserService.getUserById(this.rating.userId).then(response => {
+                this.reviewer = response.data;
+            });
+        }
+        
     }
 }
 </script>

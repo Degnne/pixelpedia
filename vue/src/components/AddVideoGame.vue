@@ -51,7 +51,7 @@
                 <div><input type="text" placeholder="Studio" list="studiolist" v-model="studioToAdd"><input type="submit" value="Add"></div>
                 <div v-for="studio in newVideoGame.studios" :key="'studio-' + studio">{{studio}} <button @click="removeStudio(studio)">X</button></div>
                 <datalist id="studiolist">
-                    <option v-for="studio in companies" :key="`option-${studio}`">{{studio}}</option>
+                    <option v-for="studio in companies" :key="`studio-option-${studio}`">{{studio}}</option>
                 </datalist>
             </form>
         </div>

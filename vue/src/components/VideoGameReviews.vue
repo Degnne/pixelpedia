@@ -1,9 +1,10 @@
 <template>
   <div id="videogamereviews">
       <h3>Reviews for {{videogame.title}}</h3>
-      <ReviewCard v-for="(review, index) in reviews" :key="index" :review="review" :rating="rating" />
+      <ReviewCard v-for="(review, index) in reviews" :key="index" :review="review" :rating="ratingForReview(review.reviewId)" />
       <h3 id="addvideogamereview">Rate & Review</h3>
-      <ReviewForm :show="true" />
+      <ReviewCard v-if="userRating" :rating="userRating" :review="userReview" />
+      <ReviewForm v-if="!userRating" :show="true" :rating="userRating" :review="userReview" />
   </div>
 </template>
 
@@ -33,6 +34,26 @@ export default {
     computed: {
         reviews() {
             return this.$store.state.gameReviews;
+        },
+        ratings() {
+            return this.$store.state.gameRatings;
+        },
+        userRating() {
+            return this.$store.getters.getGameRatings.find(rating => {
+                return rating.userId = this.$store.state.user.id;
+            });
+        },
+        userReview() {
+            return this.$store.state.gameReviews.find(review => {
+                return review.userId = this.$store.state.user.id;
+            });
+        }
+    },
+    methods: {
+        ratingForReview(reviewId) {
+            return this.ratings.find(rating => 
+                rating.reviewId === reviewId
+            );
         }
     },
     created() {
