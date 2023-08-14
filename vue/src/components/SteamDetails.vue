@@ -1,0 +1,39 @@
+<template>
+  <div>
+      <h3>Steam Details</h3>
+      Current Players: {{currentPlayers}}
+      <h4>Latest News:</h4>
+      <div v-for="(newsitem, index) in news.newsitems" :key="index">{{newsitem.title}}</div>
+      <div><h4><a :href="`https://store.steampowered.com/app/${steamId}`" target="_blank">Got To Steam Page -></a></h4></div>
+  </div>
+</template>
+
+<script>
+import SteamService from '@/services/SteamService.js'
+//import VideoGameService from '@/services/videogameService.js'
+export default {
+   data() {
+      return {
+        steamId: 1222670,
+        currentPlayers: 0,
+        news: {}
+      }
+   },
+   created() {
+       //Get SteamId from game
+      //VideoGameService.getVideoGameById(this.$route.params.id).then((response) => {
+         SteamService.getCurrentPlayersForGame(this.steamId).then(response => {
+            this.currentPlayers = response.data.response.player_count;
+         });
+         SteamService.getNewsForGame(this.steamId).then(response => {
+             this.news = response.data.appnews;
+             console.log(this.news);
+         });
+      //});
+   }
+}
+</script>
+
+<style>
+
+</style>
