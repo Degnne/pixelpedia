@@ -24,10 +24,10 @@ public class JDBCReviewDAO implements ReviewDAO {
     public Review addReview(Review review) {
 
         String sql = "INSERT INTO review (user_id, game_id, review_txt, review_title, date_time) " +
-                    "VALUES (?, ?, ?, ?, ?) RETURNING review_id;";
+                    "VALUES (?, ?, ?, ?, current_date) RETURNING review_id;";
 
         int newReview = jdbcTemplate.queryForObject(sql, int.class, review.getUserId(), review.getGameId(),
-                review.getReviewText(), review.getReviewTitle(), review.getDate());
+                review.getReviewText(), review.getReviewTitle());
 
         review.setReviewId(newReview);
         review.setComments(getCommentsByReviewId(review.getReviewId()));
