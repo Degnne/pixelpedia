@@ -51,11 +51,12 @@ export default {
         RatingDisplay
     },
     name: 'review-card',
-    props: ['review', 'rating'],
+    props: ['review'],
     data() {
         return {
             reviewer: {},
-            confirmingDelete: false
+            confirmingDelete: false,
+            rating: {}
         }
     },
     computed: {
@@ -117,6 +118,9 @@ export default {
                 this.reviewer = response.data;
             });
         }
+        
+        this.rating = this.$store.getters.getRatingForReview(this.review.reviewId);
+       
         
     }
 }
