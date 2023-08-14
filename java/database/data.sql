@@ -32,7 +32,7 @@ INSERT INTO company (company_name) VALUES ('Naughty Dog');    -- 26
 INSERT INTO company (company_name) VALUES ('Riot Games');    -- 27
 INSERT INTO company (company_name) VALUES ('2K Games');    -- 28
 INSERT INTO company (company_name) VALUES ('BioWare');    -- 29
-INSERT INTO company (company_name) VALUES ('Konami');    -- 30
+INSERT INTO company (company_name) VALUES ('Konami-test');    -- 30
 INSERT INTO company (company_name) VALUES ('Obsidian Entertainment');    -- 31
 INSERT INTO company (company_name) VALUES ('Turn 10 Studios');    -- 32
 INSERT INTO company (company_name) VALUES ('Square Enix');    -- 33
@@ -54,9 +54,12 @@ INSERT INTO company (company_name) VALUES ('Namco Bandai Games');    -- 48
 INSERT INTO company (company_name) VALUES ('Insomniac Games');    -- 49
 INSERT INTO company (company_name) VALUES ('Crystal Dynamics');    -- 50
 INSERT INTO company (company_name) VALUES ('Game Freak');    -- 51
-INSERT INTO company (company_name) VALUES ('Midway');    -- 52
+INSERT INTO company (company_name) VALUES ('Midway Games');    -- 52
 INSERT INTO company (company_name) VALUES ('Mojang Studios');    -- 53
 INSERT INTO company (company_name) VALUES ('Bethesda Game Studios');    -- 54
+INSERT INTO company (company_name) VALUES ('Avalanche Software');    -- 55
+INSERT INTO company (company_name) VALUES ('Maxis');    -- 56
+INSERT INTO company (company_name) VALUES ('Lionhead Studios');    -- 57
 
 
 
@@ -81,10 +84,18 @@ INSERT INTO video_game (title, release_date, release_price, description, publish
 INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES ('The Sims 4', '2014-09-02', 59.99, '"The Sims 4" is a popular life simulation game where players create, customize, and manage virtual characters lives and activities. Released in 2014, it offers creative freedom and diverse gameplay experiences in a virtual world.', 10, 'T','https://m.media-amazon.com/images/I/71otyq1xFNL.jpg');    --15
 INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES ('Minecraft', '2011-11-18', 29.99, '"Minecraft" is a sandbox video game that offers players a world of limitless creativity and exploration. Released in 2011, it invites players to gather resources, craft tools and structures, and build their own virtual worlds block by block. With various game modes, including survival and creative, players can mine for resources, engage in combat, tame animals, and unleash their imagination to construct impressive structures and landscapes. ', 53, 'E','https://image.api.playstation.com/vulcan/img/cfn/11307uYG0CXzRuA9aryByTHYrQLFz-HVQ3VVl7aAysxK15HMpqjkAIcC_R5vdfZt52hAXQNHoYhSuoSq_46_MT_tDBcLu49I.png');    --16
 INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES ('The Elder Scrolls V: Skyrim', '2011-11-11', 59.99, 'An open-world action RPG released by Bethesda Game Studios in 2011. Set in the fantasy realm of Tamriel, players assume the role of the Dragonborn, a hero with the power to combat dragons and unravel a complex narrative. Famed for its expansive world, intricate quests, and modding community, "Skyrim" has left an indelible mark on the RPG genre ', 54, 'M','https://upload.wikimedia.org/wikipedia/en/1/15/The_Elder_Scrolls_V_Skyrim_cover.png?20120309212335');    --17
-INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES ('Metal Gear Solid', '1998-09-03', 59.99, 'critically acclaimed stealth-action video game developed by Konami. Released in 1998, players take on the role of Solid Snake, a skilled operative, as he navigates complex missions to thwart a nuclear threat. Known for its cinematic storytelling, tactical gameplay, and memorable characters, the game has been praised for its innovation and impact on the gaming industry.', 19, 'M','https://www.giantbomb.com/a/uploads/scale_small/45/459166/3252663-mgs.png');    --18
+INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES ('Metal Gear Solid', '1998-09-03', 59.99, 'Critically acclaimed stealth-action video game developed by Konami. Released in 1998, players take on the role of Solid Snake, a skilled operative, as he navigates complex missions to thwart a nuclear threat. Known for its cinematic storytelling, tactical gameplay, and memorable characters, the game has been praised for its innovation and impact on the gaming industry.', 19, 'M','https://www.giantbomb.com/a/uploads/scale_small/45/459166/3252663-mgs.png');    --18
+INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES ('Cyberpunk 2077', '2020-12-10', 59.99, 'An open-world action RPG developed by CD Projekt Red. Released in 2020, the game is set in a dystopian future where players assume the role of V, a mercenary navigating the bustling metropolis of Night City. With a focus on player choice, cybernetic enhancements, and a narrative-driven experience, the game explores themes of technology, society, and personal identity in a visually stunning and immersive world.', 17, 'M','https://i.ytimg.com/vi/Ld37nwZz1RQ/hq720.jpg?sqp=-oaymwE7CK4FEIIDSFryq4qpAy0IARUAAAAAGAElAADIQj0AgKJD8AEB-AH-CYAC0AWKAgwIABABGGUgSyhAMA8=&rs=AOn4CLCvQCD4AzH5JVLLRsqwJ34xdzNyPw');    --19
+INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES ('Punch-Out!!', '1987-10-18', 49.99, '"Punch-Out!!" is a classic boxing game from 1987 for the NES. Players control Little Mac, a determined fighter, as he takes on a series of quirky opponents in a quest for the championship title. Master timing and tactics to defeat opponents and become the boxing champion.', 2, 'T','https://m.media-amazon.com/images/I/51TK9HNJ3PL.jpg');    --20
+INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES ('Fable', '2004-09-14', 49.99, 'Released in 2004, is an action role-playing game that invites players into the fantasy realm of Albion. Developed by Lionhead Studios, the game follows the journey of a young hero as they make moral choices that shape their destiny. With a dynamic world influenced by player actions, a rich storyline, and a focus on character customization and development, "Fable" offers players the chance to explore a vibrant and immersive fantasy universe where their decisions have far-reaching consequences.', 6, 'M','https://upload.wikimedia.org/wikipedia/en/5/5b/Fablebox.jpg');    --21
+INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES ('Starcraft II: Wings Of Liberty', '2010-07-27', 59.99, 'A real-time strategy game developed by Blizzard Entertainment. Set in a distant future, the game offers three distinct factions – Terran, Zerg, and Protoss – each with their own unique units and strategies. With an engaging single-player campaign following Jim Raynors quest for justice, and a competitive multiplayer mode, the game is known for its deep strategy, balanced gameplay, and impactful storytelling. Its enduring popularity and professional esports scene have solidified its position as a cornerstone of the real-time strategy genre.', 13, 'T','https://upload.wikimedia.org/wikipedia/en/2/20/StarCraft_II_-_Box_Art.jpg');    --22
+INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES ('Final Fantasy VII', '1997-01-31', 59.99, 'A classic Japanese role-playing game developed by Square Enix. Set in the fictional world of Gaia, the game follows Cloud Strife, a former soldier, and his allies as they band together to thwart the plans of the sinister Shinra Corporation. With a blend of turn-based combat, a captivating storyline, and memorable characters, the game explores themes of environmentalism and personal redemption. Its groundbreaking 3D graphics and emotional depth have made it a beloved and influential title in the RPG genre.', 33, 'T','https://m.media-amazon.com/images/M/MV5BMGMxZDliYTktZTRmYy00MDc5LTk1YjMtMGY4NTM4ZDYzYmY2XkEyXkFqcGdeQXVyNzUzNTQ2MjQ@._V1_.jpg');    --23
+INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES ('Dark Souls II', '2014-03-11', 59.99, 'Released in 2014, is an action RPG developed by FromSoftware. Set in a dark fantasy world, players embark on a challenging journey as the Undead, facing formidable enemies and overcoming intricate traps. With a focus on punishing difficulty, intricate level design, and deep exploration, the game demands strategic combat, mastery of timing, and a willingness to learn from failures. Its atmospheric world and methodical gameplay have garnered both praise and a dedicated fan base, solidifying its reputation as a demanding and rewarding gaming experience.', 43, 'M', 'https://image.api.playstation.com/vulcan/img/rnd/202010/0919/KsbzaxvzYc4rhCpU5XcewIfn.png');    --24
+INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES ('Portal 2', '2011-04-18', 59.99, 'Released in 2011, is a puzzle-platformer game developed by Valve Corporation. Building upon the success of its predecessor, the game introduces new mechanics, characters, and a deeper narrative. Players wield the Aperture Science Handheld Portal Device to create interdimensional portals, solving intricate puzzles and navigating through cleverly designed test chambers. With a mix of challenging puzzles, witty humor, and a compelling story, "Portal 2" offers a unique and engaging gaming experience that challenges players logic and creativity in a futuristic and mysterious setting.', 14, 'T','https://upload.wikimedia.org/wikipedia/en/f/f9/Portal2cover.jpg');    --25
+INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES ('Animal Crossing: New Horizons', '2020-03-03', 59.99, 'a life simulation game that whisks players away to a deserted island paradise. Set in a tranquil and customizable world, players can gather resources, build structures, and create their dream island community. With its relaxed pace, charming characters, and creative freedom, the game offers a cozy escape where players can fish, catch bugs, design their surroundings, and connect with friends in a heartwarming digital getaway.', 2, 'E','https://m.media-amazon.com/images/I/7141W51gqML._AC_UF894,1000_QL80_.jpg');    --26
 
 
-
+--Maurice's added games
 
 
 
@@ -135,6 +146,9 @@ INSERT INTO genre (genre_name) VALUES ('Tactical FPS');          --22
 INSERT INTO genre (genre_name) VALUES ('Education');          --23
 INSERT INTO genre (genre_name) VALUES ('Exercise');          --24
 INSERT INTO genre (genre_name) VALUES ('Party');          --25
+INSERT INTO genre (genre_name) VALUES ('Fighting');          --26
+INSERT INTO genre (genre_name) VALUES ('Shooter');          --27
+
 
 
 INSERT INTO vg_genre (vg_id, genre_id) VALUES (1, 2);
@@ -144,6 +158,50 @@ INSERT INTO vg_genre (vg_id, genre_id) VALUES (4, 1);
 INSERT INTO vg_genre (vg_id, genre_id) VALUES (1, 4);
 INSERT INTO vg_genre (vg_id, genre_id) VALUES (1, 5);
 INSERT INTO vg_genre (vg_id, genre_id) VALUES (1, 3);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (5, 10);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (5, 1);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (6, 1);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (6, 10);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (7, 10);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (7, 17);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (8, 12);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (8, 13);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (8, 4);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (9, 6);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (9, 4);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (10, 26);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (10, 6);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (11, 1);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (11, 10);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (12, 2);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (12, 22);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (13, 10);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (13, 15);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (13, 9);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (14, 5);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (15, 17);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (16, 10);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (17, 10);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (17, 9);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (18, 7);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (18, 5);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (19, 27);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (19, 2);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (20, 5);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (21, 9);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (22, 17);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (22, 3);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (23, 10);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (23, 17);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (24, 9);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (24, 16);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (25, 14);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (25, 11);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (26, 25);
+
+
+
+
 
 
 INSERT INTO system (system_name, manufacturer_id) VALUES ('NES', 2);    --1
@@ -170,14 +228,96 @@ INSERT INTO system (system_name, manufacturer_id) VALUES ('Nomad', 8);   --21
 INSERT INTO system (system_name, manufacturer_id) VALUES ('32X', 8);   --22
 INSERT INTO system (system_name, manufacturer_id) VALUES ('SEGA CD', 8);   --23
 INSERT INTO system (system_name, manufacturer_id) VALUES ('Game Gear', 8);   --24
+INSERT INTO system (system_name, manufacturer_id) VALUES ('PC', 6);   --25
+INSERT INTO system (system_name, manufacturer_id) VALUES ('Nintendo Wii U', 2);   --26
 
 
 INSERT INTO vg_system (vg_id, system_id) VALUES (2, 1);
 INSERT INTO vg_system (vg_id, system_id) VALUES (1, 2);
+INSERT INTO vg_system (vg_id, system_id) VALUES (1, 2);
+INSERT INTO vg_system (vg_id, system_id) VALUES (3, 25);
+INSERT INTO vg_system (vg_id, system_id) VALUES (3, 3);
+INSERT INTO vg_system (vg_id, system_id) VALUES (3, 8);
+INSERT INTO vg_system (vg_id, system_id) VALUES (3, 12);
+INSERT INTO vg_system (vg_id, system_id) VALUES (4, 14);
+INSERT INTO vg_system (vg_id, system_id) VALUES (4, 11);
+INSERT INTO vg_system (vg_id, system_id) VALUES (4,6);
+INSERT INTO vg_system (vg_id, system_id) VALUES (5,26);
+INSERT INTO vg_system (vg_id, system_id) VALUES (5,12);
+INSERT INTO vg_system (vg_id, system_id) VALUES (6,5);
+INSERT INTO vg_system (vg_id, system_id) VALUES (7,11);
+INSERT INTO vg_system (vg_id, system_id) VALUES (8,25);
+INSERT INTO vg_system (vg_id, system_id) VALUES (8,8);
+INSERT INTO vg_system (vg_id, system_id) VALUES (8,9);
+INSERT INTO vg_system (vg_id, system_id) VALUES (8,12);
+INSERT INTO vg_system (vg_id, system_id) VALUES (8, 4);
+INSERT INTO vg_system (vg_id, system_id) VALUES (9, 15);
+INSERT INTO vg_system (vg_id, system_id) VALUES (10, 15);
+INSERT INTO vg_system (vg_id, system_id) VALUES (11, 7);
+INSERT INTO vg_system (vg_id, system_id) VALUES (12, 25);
+INSERT INTO vg_system (vg_id, system_id) VALUES (13, 25);
+INSERT INTO vg_system (vg_id, system_id) VALUES (14, 1);
+INSERT INTO vg_system (vg_id, system_id) VALUES (15, 25);
+INSERT INTO vg_system (vg_id, system_id) VALUES (15, 8);
+INSERT INTO vg_system (vg_id, system_id) VALUES (15, 4);
+INSERT INTO vg_system (vg_id, system_id) VALUES (16, 25);
+INSERT INTO vg_system (vg_id, system_id) VALUES (17, 25);
+INSERT INTO vg_system (vg_id, system_id) VALUES (17, 7);
+INSERT INTO vg_system (vg_id, system_id) VALUES (17, 8);
+INSERT INTO vg_system (vg_id, system_id) VALUES (17, 3);
+INSERT INTO vg_system (vg_id, system_id) VALUES (17, 4);
+INSERT INTO vg_system (vg_id, system_id) VALUES (18, 25);
+INSERT INTO vg_system (vg_id, system_id) VALUES (18, 5);
+INSERT INTO vg_system (vg_id, system_id) VALUES (19, 25);
+INSERT INTO vg_system (vg_id, system_id) VALUES (19, 8);
+INSERT INTO vg_system (vg_id, system_id) VALUES (19, 9);
+INSERT INTO vg_system (vg_id, system_id) VALUES (19, 4);
+INSERT INTO vg_system (vg_id, system_id) VALUES (19, 8);
+INSERT INTO vg_system (vg_id, system_id) VALUES (20, 1);
+INSERT INTO vg_system (vg_id, system_id) VALUES (21, 2);
+INSERT INTO vg_system (vg_id, system_id) VALUES (21, 3);
+INSERT INTO vg_system (vg_id, system_id) VALUES (21, 25);
+INSERT INTO vg_system (vg_id, system_id) VALUES (22, 1);
+INSERT INTO vg_system (vg_id, system_id) VALUES (23, 5);
+INSERT INTO vg_system (vg_id, system_id) VALUES (24, 7);
+INSERT INTO vg_system (vg_id, system_id) VALUES (24, 3);
+INSERT INTO vg_system (vg_id, system_id) VALUES (24, 4);
+INSERT INTO vg_system (vg_id, system_id) VALUES (24, 8);
+INSERT INTO vg_system (vg_id, system_id) VALUES (25, 25);
+INSERT INTO vg_system (vg_id, system_id) VALUES (25, 7);
+INSERT INTO vg_system (vg_id, system_id) VALUES (25, 3);
+INSERT INTO vg_system (vg_id, system_id) VALUES (25, 12);
+INSERT INTO vg_system (vg_id, system_id) VALUES (26, 12);
+
+
 
 INSERT INTO vg_studio (vg_id, studio_id) VALUES (1, 3);
 INSERT INTO vg_studio (vg_id, studio_id) VALUES (2, 2);
 INSERT INTO vg_studio (vg_id, studio_id) VALUES (3, 4);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (4, 55);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (5, 2);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (6, 21);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (7, 51);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (8, 15);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (9, 2);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (10, 52);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (10, 55);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (11, 26);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (12,27);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (13,13);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (14,2);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (15,56);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (16,53);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (17,54);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (18,22);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (19,17);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (20,2);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (21,57);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (22,13);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (23,11);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (24, 43);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (25, 14);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (26, 2);
 
 
 
