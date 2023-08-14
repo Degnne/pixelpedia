@@ -56,7 +56,6 @@ export default {
         return {
             reviewer: {},
             confirmingDelete: false,
-            rating: {}
         }
     },
     computed: {
@@ -75,6 +74,14 @@ export default {
                 return this.$store.state.editingReview.includes(this.review.reviewId);
             }
             return this.$store.state.editingRating;
+        },
+        rating() {
+            if (this.review) {
+                return this.$store.getters.getRatingForReview(this.review.reviewId);
+            }
+            else {
+                return null;
+            }
         }
     },
     methods: {
@@ -109,6 +116,7 @@ export default {
         }      
     },
     created() {
+        //this.rating = this.$store.getters.getRatingForReview(this.review.reviewId);
         if (this.review) {
             UserService.getUserById(this.review.userId).then(response => {
                 this.reviewer = response.data;
@@ -118,10 +126,6 @@ export default {
                 this.reviewer = response.data;
             });
         }
-        
-        this.rating = this.$store.getters.getRatingForReview(this.review.reviewId);
-       
-        
     }
 }
 </script>
