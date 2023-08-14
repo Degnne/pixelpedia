@@ -72,5 +72,9 @@ export default{
 
     updateRating(rating) {
         return axios.put(`/videogames/ratings/${rating.ratingId}`, rating);
+    },
+
+    deleteRating(ratingId) {
+        return axios.delete(`/videogames/ratings/${ratingId}`);
     }
 }

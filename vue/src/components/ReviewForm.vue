@@ -113,7 +113,16 @@ export default {
             
         },
         updateReview() {
-            if (this.newReview.reviewTitle) {
+            if (this.review) {
+                VideoGameService.updateRating(this.newRating).then(() => {
+                    this.$store.commit('TOGGLE_EDIT_RATING');
+                    this.$store.dispatch('loadReviews', this.$route.params.id);
+                });
+                VideoGameService.editGameReview(this.newReview).then(() => {
+                    this.$store.dispatch('loadReviews', this.$route.params.id);
+                    this.$store.commit('TOGGLE_EDIT_REVIEW', this.review.reviewId);
+                });
+            } else if (this.newReview.reviewTitle) {
                 this.newReview.gameId = this.$route.params.id;
                 this.newReview.userId = this.$store.state.user.id;
                 VideoGameService.addGameReview(this.newReview).then(response => {
@@ -124,17 +133,10 @@ export default {
                 });
             } else {
                 VideoGameService.updateRating(this.newRating).then(() => {
+                    this.$store.commit('TOGGLE_EDIT_RATING');
                     this.$store.dispatch('loadReviews', this.$route.params.id);
                 });
-            }
-            
-            if (this.review) {
-                VideoGameService.editGameReview(this.newReview).then(() => {
-                    this.$store.dispatch('loadReviews', this.$route.params.id);
-                    this.$store.commit('TOGGLE_EDIT_REVIEW', this.review.reviewId);
-                });
-            }
-            
+            }            
         },
         resetRating() {
             this.newRating = {

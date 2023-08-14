@@ -55,8 +55,7 @@ export default {
     data() {
         return {
             reviewer: {},
-            confirmingDelete: false,
-            editingRating: false
+            confirmingDelete: false
         }
     },
     computed: {
@@ -74,10 +73,7 @@ export default {
             if (this.review) {
                 return this.$store.state.editingReview.includes(this.review.reviewId);
             }
-            if (this.editingRating) {
-                return true;
-            }
-            return false;
+            return this.$store.state.editingRating;
         }
     },
     methods: {
@@ -88,14 +84,27 @@ export default {
             if(this.review) {
                 this.$store.commit('TOGGLE_EDIT_REVIEW', this.review.reviewId);
             } else {
-                this.editingRating = !this.editingRating;
+                this.$store.commit('TOGGLE_EDIT_RATING');
             }
         },
         deleteSelf() {
             this.confirmingDelete = false;
-            VideoGameService.deleteReview(this.review.reviewId).then(() => {
-                this.$store.dispatch('loadReviews', this.$route.params.id);
-            });
+            if (this.rating) {
+                VideoGameService.deleteRating(this.rating.ratingId).then(() => {
+                    if (this.review) {
+                        VideoGameService.deleteReview(this.review.reviewId).then(() => {
+                            this.$store.dispatch('loadReviews', this.$route.params.id);
+                        });
+                    } else {
+                        this.$store.dispatch('loadReviews', this.$route.params.id);
+                    }                 
+                });   
+            } else {
+                VideoGameService.deleteReview(this.review.reviewId).then(() => {
+                    this.$store.dispatch('loadReviews', this.$route.params.id);
+                });
+            }
+                     
         }      
     },
     created() {

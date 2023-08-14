@@ -25,12 +25,18 @@ export default new Vuex.Store({
     editingReview: [],
     viewingComments: [],
     editingComments: [],
-    gameRatings: []
+    gameRatings: [],
+    editingRating: false
   },
   getters: {
     getGameRatings(state) {
       return state.gameRatings;
-    }
+    },
+    getRatingForReview: (state) => (reviewId) => {
+      return state.gameRatings.find(rating => 
+        rating.reviewId === reviewId
+      );
+    }  
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -75,6 +81,9 @@ export default new Vuex.Store({
       } else {
         state.editingComments.push(commentId);
       }
+    },
+    TOGGLE_EDIT_RATING(state) {
+      state.editingRating = !state.editingRating;
     },
     RESET_REVIEWS_AND_COMMENTS(state) {
       state.editingReview = [];

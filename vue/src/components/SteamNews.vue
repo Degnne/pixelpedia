@@ -5,12 +5,12 @@
 </template>
 
 <script>
-//import SteamService from '@/services/SteamService.js'
+// import SteamService from '@/services/SteamService.js'
 export default {
    created() {
-    //    SteamService.getNews(949230).then(response => {
-    //        console.log(response);
-    //    });
+      //  SteamService.getNews(949230).then(response => {
+      //      console.log(response);
+      //  });
    }
 }
 </script>
