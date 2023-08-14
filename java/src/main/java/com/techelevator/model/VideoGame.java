@@ -16,13 +16,14 @@ public class VideoGame {
     private String[] systems;
     private String rating;
     private String boxArt;
+    private int steamId;
 
 
     public VideoGame (){
 
     }
 
-    public VideoGame(int id, String title, LocalDate releaseDate, BigDecimal releasePrice, String description, String publisherName, String rating, String boxArt) {
+    public VideoGame(int id, String title, LocalDate releaseDate, BigDecimal releasePrice, String description, String publisherName, String rating, String boxArt, int steamId ) {
         this.id = id;
         this.title = title;
         this.releaseDate = releaseDate;
@@ -31,6 +32,7 @@ public class VideoGame {
         this.publisherName = publisherName;
         this.rating = rating;
         this.boxArt = boxArt;
+        this.steamId = steamId;
     }
 
     public String[] getSystems() {
@@ -121,5 +123,11 @@ public class VideoGame {
         this.boxArt = boxArt;
     }
 
+    public int getSteamId() {
+        return steamId;
+    }
 
+    public void setSteamId(int steamId) {
+        this.steamId = steamId;
+    }
 }

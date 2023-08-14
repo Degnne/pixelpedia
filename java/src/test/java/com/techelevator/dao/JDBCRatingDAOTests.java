@@ -71,5 +71,6 @@ public class JDBCRatingDAOTests extends BaseDaoTests{
         Assert.assertEquals(expected.getAudioRating(), actual.getAudioRating());
         Assert.assertEquals(expected.getGameplayRating(), actual.getGameplayRating());
         Assert.assertEquals(expected.getDifficultyRating(), actual.getDifficultyRating());
+
     }
 }

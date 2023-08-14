@@ -14,6 +14,7 @@ public class JDBCVideoGameDAO implements VideoGameDAO {
 
     private JdbcTemplate jdbcTemplate;
 
+
     public JDBCVideoGameDAO(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
@@ -22,7 +23,7 @@ public class JDBCVideoGameDAO implements VideoGameDAO {
     public List<VideoGame> getVideoGameList() {
         List<VideoGame> videoGames = new ArrayList<>();
 
-        String sql = "SELECT id, title, release_date, release_price, description, company_name, box_art, rating FROM video_game " +
+        String sql = "SELECT id, title, release_date, release_price, description, company_name, box_art, rating, steam_id FROM video_game " +
                 "JOIN company ON publisher_id = company_id;";
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
@@ -41,7 +42,7 @@ public class JDBCVideoGameDAO implements VideoGameDAO {
 
     @Override
     public VideoGame getVideoGameById(int id) {
-        String sql = "SELECT id, title, release_date, release_price, description, company_name, box_art, rating FROM video_game " +
+        String sql = "SELECT id, title, release_date, release_price, description, company_name, box_art, rating, steam_id FROM video_game " +
                 "JOIN company ON publisher_id = company_id WHERE id=? ";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
 
@@ -61,41 +62,43 @@ public class JDBCVideoGameDAO implements VideoGameDAO {
 
     @Override
     public VideoGame addVideoGame(VideoGame videoGame) {
-        String sql = "INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) " +
-                "VALUES (?,?, ?, ?, (SELECT company_id FROM company WHERE company_name = ?), ?, ?) " +
+        String sql = "INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art, steam_id) " +
+                "VALUES (?,?, ?, ?, (SELECT company_id FROM company WHERE company_name = ?), ?, ?, ?) " +
                 "RETURNING id;";
 
         int newVideoGameId = jdbcTemplate.queryForObject(sql, int.class, videoGame.getTitle(), videoGame.getReleaseDate(),
-                videoGame.getReleasePrice(), videoGame.getDescription(), videoGame.getPublisherName(), videoGame.getRating(), videoGame.getBoxArt());
+                videoGame.getReleasePrice(), videoGame.getDescription(), videoGame.getPublisherName(), videoGame.getRating(), videoGame.getBoxArt(), videoGame.getSteamId());
 
         videoGame.setId(newVideoGameId);
 
         String[] genres = videoGame.getGenres();
         String[] studios = videoGame.getStudios();
         String[] systems = videoGame.getSystems();
-
-        //Loop through array add each item into DB
-        for (int i = 0; i < genres.length; i++) {
-            String genre = genres[i];
-            int genreID = convertGenreNameToID(genre);
-            //call a method that inserts into DB
-            addGenreToVideoGame(newVideoGameId, genreID);
+        if(genres != null) {
+            //Loop through array add each item into DB
+            for (int i = 0; i < genres.length; i++) {
+                String genre = genres[i];
+                int genreID = convertGenreNameToID(genre);
+                //call a method that inserts into DB
+                addGenreToVideoGame(newVideoGameId, genreID);
+            }
         }
-
-        //Same for studios
-        for (int i = 0; i < studios.length; i++) {
-            String studio = studios[i];
-            int studioID = convertStudioNameToID(studio);
-            addStudioToVideoGame(newVideoGameId, studioID);
+        if(studios != null) {
+            //Same for studios
+            for (int i = 0; i < studios.length; i++) {
+                String studio = studios[i];
+                int studioID = convertStudioNameToID(studio);
+                addStudioToVideoGame(newVideoGameId, studioID);
+            }
         }
-
-        //Same for systems
-        for (int i = 0; i < systems.length; i++) {
-            String system = systems[i];
-            int systemID = convertSystemNameToID(system);
-            addSystemToVideoGame(newVideoGameId, systemID);
+        if(systems != null) {
+            //Same for systems
+            for (int i = 0; i < systems.length; i++) {
+                String system = systems[i];
+                int systemID = convertSystemNameToID(system);
+                addSystemToVideoGame(newVideoGameId, systemID);
+            }
         }
-
 
         return videoGame;
     }
@@ -103,20 +106,32 @@ public class JDBCVideoGameDAO implements VideoGameDAO {
     @Override
     public void deleteVideoGame(int videoGameId) {
         //Deletes Video Games
-        String sql = "DELETE FROM vg_system WHERE vg_id = ?;";
-        String sql2 = "DELETE FROM vg_studio WHERE vg_id = ?;";
-        String sql3 = "DELETE FROM vg_genre WHERE vg_id = ?;";
-        String sql4 = "DELETE FROM video_game WHERE id = ?;";
+        String sql = "DELETE FROM vg_studio WHERE vg_id = ?;";
+        String sql1 = "DELETE FROM vg_genre WHERE vg_id = ?;";
+        String sql2 = "DELETE FROM vg_system WHERE vg_id = ?;";
+        String sql3 = "DELETE FROM review_likes WHERE review_id IN (SELECT review_id FROM review_rating WHERE game_id = ?);";
+        String sql4 = "DELETE FROM review_rating WHERE game_id = ?;";
+        String sql5 = "DELETE FROM comment_likes WHERE comment_id IN (SELECT comment_id FROM comment JOIN review ON comment.review_id = review.review_id WHERE game_id = ?);";
+        String sql6 = "DELETE FROM comment WHERE review_id = (SELECT review_id FROM review WHERE game_id = ?);";
+        String sql7 = "DELETE FROM review WHERE game_id = ?;";
+        String sql8 = "DELETE FROM video_game WHERE id = ?;";
 
-        deleteVideoGameReviewsByGameId(videoGameId);
 
-        deleteVideoGameCommentsByGameId(videoGameId);
+        //deleteVideoGameCommentsByGameId(videoGameId);
+        //deleteVideoGameReviewsByGameId(videoGameId);
+
+
 
         try {
-            jdbcTemplate.update(sql, videoGameId);
-            jdbcTemplate.update(sql2, videoGameId);
-            jdbcTemplate.update(sql3, videoGameId);
-            jdbcTemplate.update(sql4, videoGameId);
+            jdbcTemplate.update(sql,videoGameId);
+            jdbcTemplate.update(sql1,videoGameId);
+            jdbcTemplate.update(sql2,videoGameId);
+            jdbcTemplate.update(sql3,videoGameId);
+            jdbcTemplate.update(sql4,videoGameId);
+            jdbcTemplate.update(sql5,videoGameId);
+            jdbcTemplate.update(sql6,videoGameId);
+            jdbcTemplate.update(sql7,videoGameId);
+            jdbcTemplate.update(sql8,videoGameId);
 
         } catch (DataIntegrityViolationException e) {
 
@@ -170,11 +185,11 @@ public class JDBCVideoGameDAO implements VideoGameDAO {
     public VideoGame updateVideoGame(VideoGame videoGame) {
         VideoGame newvideogame = new VideoGame();
         String sql = "UPDATE video_game " +
-                    "SET title = ?, release_date = ?, release_price = ?, description = ?, publisher_id = (SELECT company_id FROM company WHERE company_name = ?), rating = ?, box_art = ? " +
+                    "SET title = ?, release_date = ?, release_price = ?, description = ?, publisher_id = (SELECT company_id FROM company WHERE company_name = ?), rating = ?, box_art = ?, steam_id = ? " +
                     "WHERE id = ?;";
 
        jdbcTemplate.update(sql, videoGame.getTitle(), videoGame.getReleaseDate(),
-                videoGame.getReleasePrice(), videoGame.getDescription(), videoGame.getPublisherName(), videoGame.getRating(), videoGame.getBoxArt(), videoGame.getId());
+                videoGame.getReleasePrice(), videoGame.getDescription(), videoGame.getPublisherName(), videoGame.getRating(), videoGame.getBoxArt(), videoGame.getSteamId(), videoGame.getId());
 
 
 
@@ -446,7 +461,7 @@ public class JDBCVideoGameDAO implements VideoGameDAO {
         videoGame.setPublisherName(sqlRowSet.getString("company_name"));
         videoGame.setRating(sqlRowSet.getString("rating"));
         videoGame.setBoxArt(sqlRowSet.getString("box_art"));
-
+        videoGame.setSteamId(sqlRowSet.getInt("steam_id"));
         return videoGame;
     }
 
