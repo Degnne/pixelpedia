@@ -54,9 +54,12 @@ INSERT INTO company (company_name) VALUES ('Namco Bandai Games');    -- 48
 INSERT INTO company (company_name) VALUES ('Insomniac Games');    -- 49
 INSERT INTO company (company_name) VALUES ('Crystal Dynamics');    -- 50
 INSERT INTO company (company_name) VALUES ('Game Freak');    -- 51
-INSERT INTO company (company_name) VALUES ('Midway');    -- 52
+INSERT INTO company (company_name) VALUES ('Midway Games');    -- 52
 INSERT INTO company (company_name) VALUES ('Mojang Studios');    -- 53
 INSERT INTO company (company_name) VALUES ('Bethesda Game Studios');    -- 54
+INSERT INTO company (company_name) VALUES ('Avalanche Software');    -- 55
+INSERT INTO company (company_name) VALUES ('Maxis');    -- 56
+INSERT INTO company (company_name) VALUES ('Lionhead Studios');    -- 57
 
 
 
@@ -92,7 +95,7 @@ INSERT INTO video_game (title, release_date, release_price, description, publish
 INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES ('Animal Crossing: New Horizons', '2020-03-03', 59.99, 'a life simulation game that whisks players away to a deserted island paradise. Set in a tranquil and customizable world, players can gather resources, build structures, and create their dream island community. With its relaxed pace, charming characters, and creative freedom, the game offers a cozy escape where players can fish, catch bugs, design their surroundings, and connect with friends in a heartwarming digital getaway.', 2, 'E','https://m.media-amazon.com/images/I/7141W51gqML._AC_UF894,1000_QL80_.jpg');    --26
 
 
-
+--Maurice's added games
 
 
 
@@ -143,6 +146,9 @@ INSERT INTO genre (genre_name) VALUES ('Tactical FPS');          --22
 INSERT INTO genre (genre_name) VALUES ('Education');          --23
 INSERT INTO genre (genre_name) VALUES ('Exercise');          --24
 INSERT INTO genre (genre_name) VALUES ('Party');          --25
+INSERT INTO genre (genre_name) VALUES ('Fighting');          --26
+INSERT INTO genre (genre_name) VALUES ('Shooter');          --27
+
 
 
 INSERT INTO vg_genre (vg_id, genre_id) VALUES (1, 2);
@@ -152,6 +158,50 @@ INSERT INTO vg_genre (vg_id, genre_id) VALUES (4, 1);
 INSERT INTO vg_genre (vg_id, genre_id) VALUES (1, 4);
 INSERT INTO vg_genre (vg_id, genre_id) VALUES (1, 5);
 INSERT INTO vg_genre (vg_id, genre_id) VALUES (1, 3);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (5, 10);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (5, 1);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (6, 1);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (6, 10);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (7, 10);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (7, 17);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (8, 12);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (8, 13);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (8, 4);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (9, 6);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (9, 4);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (10, 26);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (10, 6);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (11, 1);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (11, 10);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (12, 2);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (12, 22);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (13, 10);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (13, 15);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (13, 9);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (14, 5);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (15, 17);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (16, 10);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (17, 10);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (17, 9);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (18, 7);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (18, 5);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (19, 27);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (19, 2);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (20, 5);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (21, 9);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (22, 17);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (22, 3);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (23, 10);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (23, 17);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (24, 9);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (24, 16);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (25, 14);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (25, 11);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (26, 25);
+
+
+
+
 
 
 INSERT INTO system (system_name, manufacturer_id) VALUES ('NES', 2);    --1
@@ -178,14 +228,96 @@ INSERT INTO system (system_name, manufacturer_id) VALUES ('Nomad', 8);   --21
 INSERT INTO system (system_name, manufacturer_id) VALUES ('32X', 8);   --22
 INSERT INTO system (system_name, manufacturer_id) VALUES ('SEGA CD', 8);   --23
 INSERT INTO system (system_name, manufacturer_id) VALUES ('Game Gear', 8);   --24
+INSERT INTO system (system_name, manufacturer_id) VALUES ('PC', 6);   --25
+INSERT INTO system (system_name, manufacturer_id) VALUES ('Nintendo Wii U', 2);   --26
 
 
 INSERT INTO vg_system (vg_id, system_id) VALUES (2, 1);
 INSERT INTO vg_system (vg_id, system_id) VALUES (1, 2);
+INSERT INTO vg_system (vg_id, system_id) VALUES (1, 2);
+INSERT INTO vg_system (vg_id, system_id) VALUES (3, 25);
+INSERT INTO vg_system (vg_id, system_id) VALUES (3, 3);
+INSERT INTO vg_system (vg_id, system_id) VALUES (3, 8);
+INSERT INTO vg_system (vg_id, system_id) VALUES (3, 12);
+INSERT INTO vg_system (vg_id, system_id) VALUES (4, 14);
+INSERT INTO vg_system (vg_id, system_id) VALUES (4, 11);
+INSERT INTO vg_system (vg_id, system_id) VALUES (4,6);
+INSERT INTO vg_system (vg_id, system_id) VALUES (5,26);
+INSERT INTO vg_system (vg_id, system_id) VALUES (5,12);
+INSERT INTO vg_system (vg_id, system_id) VALUES (6,5);
+INSERT INTO vg_system (vg_id, system_id) VALUES (7,11);
+INSERT INTO vg_system (vg_id, system_id) VALUES (8,25);
+INSERT INTO vg_system (vg_id, system_id) VALUES (8,8);
+INSERT INTO vg_system (vg_id, system_id) VALUES (8,9);
+INSERT INTO vg_system (vg_id, system_id) VALUES (8,12);
+INSERT INTO vg_system (vg_id, system_id) VALUES (8, 4);
+INSERT INTO vg_system (vg_id, system_id) VALUES (9, 15);
+INSERT INTO vg_system (vg_id, system_id) VALUES (10, 15);
+INSERT INTO vg_system (vg_id, system_id) VALUES (11, 7);
+INSERT INTO vg_system (vg_id, system_id) VALUES (12, 25);
+INSERT INTO vg_system (vg_id, system_id) VALUES (13, 25);
+INSERT INTO vg_system (vg_id, system_id) VALUES (14, 1);
+INSERT INTO vg_system (vg_id, system_id) VALUES (15, 25);
+INSERT INTO vg_system (vg_id, system_id) VALUES (15, 8);
+INSERT INTO vg_system (vg_id, system_id) VALUES (15, 4);
+INSERT INTO vg_system (vg_id, system_id) VALUES (16, 25);
+INSERT INTO vg_system (vg_id, system_id) VALUES (17, 25);
+INSERT INTO vg_system (vg_id, system_id) VALUES (17, 7);
+INSERT INTO vg_system (vg_id, system_id) VALUES (17, 8);
+INSERT INTO vg_system (vg_id, system_id) VALUES (17, 3);
+INSERT INTO vg_system (vg_id, system_id) VALUES (17, 4);
+INSERT INTO vg_system (vg_id, system_id) VALUES (18, 25);
+INSERT INTO vg_system (vg_id, system_id) VALUES (18, 5);
+INSERT INTO vg_system (vg_id, system_id) VALUES (19, 25);
+INSERT INTO vg_system (vg_id, system_id) VALUES (19, 8);
+INSERT INTO vg_system (vg_id, system_id) VALUES (19, 9);
+INSERT INTO vg_system (vg_id, system_id) VALUES (19, 4);
+INSERT INTO vg_system (vg_id, system_id) VALUES (19, 8);
+INSERT INTO vg_system (vg_id, system_id) VALUES (20, 1);
+INSERT INTO vg_system (vg_id, system_id) VALUES (21, 2);
+INSERT INTO vg_system (vg_id, system_id) VALUES (21, 3);
+INSERT INTO vg_system (vg_id, system_id) VALUES (21, 25);
+INSERT INTO vg_system (vg_id, system_id) VALUES (22, 1);
+INSERT INTO vg_system (vg_id, system_id) VALUES (23, 5);
+INSERT INTO vg_system (vg_id, system_id) VALUES (24, 7);
+INSERT INTO vg_system (vg_id, system_id) VALUES (24, 3);
+INSERT INTO vg_system (vg_id, system_id) VALUES (24, 4);
+INSERT INTO vg_system (vg_id, system_id) VALUES (24, 8);
+INSERT INTO vg_system (vg_id, system_id) VALUES (25, 25);
+INSERT INTO vg_system (vg_id, system_id) VALUES (25, 7);
+INSERT INTO vg_system (vg_id, system_id) VALUES (25, 3);
+INSERT INTO vg_system (vg_id, system_id) VALUES (25, 12);
+INSERT INTO vg_system (vg_id, system_id) VALUES (26, 12);
+
+
 
 INSERT INTO vg_studio (vg_id, studio_id) VALUES (1, 3);
 INSERT INTO vg_studio (vg_id, studio_id) VALUES (2, 2);
 INSERT INTO vg_studio (vg_id, studio_id) VALUES (3, 4);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (4, 55);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (5, 2);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (6, 21);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (7, 51);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (8, 15);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (9, 2);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (10, 52);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (10, 55);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (11, 26);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (12,27);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (13,13);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (14,2);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (15,56);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (16,53);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (17,54);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (18,22);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (19,17);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (20,2);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (21,57);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (22,13);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (23,11);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (24, 43);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (25, 14);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (26, 2);
 
 
 
