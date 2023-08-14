@@ -3,7 +3,7 @@
     <div @mouseover="hover = true" @mouseleave="hover = false">
       <img class="boxart" v-bind:src="videogame.boxArt" alt="" :class="{bounce: !hover}">
     </div>
-    <div  @mouseover="hover = true" @mouseleave="hover = false" class="boxart-details">
+    <div  @mouseover="hover = true" @mouseleave="hover = false" class="boxart-details" :class="{'boxart-details-text-hover' : hover}">
       <div class="boxart-details-text">{{videogame.title}}</div>      
     </div> 
   </div>
@@ -33,7 +33,7 @@ export default {
     min-width: 100px;
     transition: all .5s;
     position: relative;
-    z-index: 2;
+    z-index: 1;
   }
 
   .bounce {
@@ -42,7 +42,7 @@ export default {
 
   .boxart:hover {
     transform: translateY(-2rem);
-    z-index: 0;
+    z-index: 1;
   }
 
   .boxart-details {
@@ -65,6 +65,10 @@ export default {
     font-weight: bold;
     bottom: 0px;
     padding: 6px;
+  }
+
+  .boxart-details-text-hover {
+    z-index: 2;
   }
 
   @keyframes bounce {
