@@ -96,7 +96,7 @@ INSERT INTO video_game (title, release_date, release_price, description, publish
 
 
 --Maurice's added games
-
+ --27
 
 
 --INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES
@@ -287,6 +287,69 @@ INSERT INTO vg_system (vg_id, system_id) VALUES (25, 7);
 INSERT INTO vg_system (vg_id, system_id) VALUES (25, 3);
 INSERT INTO vg_system (vg_id, system_id) VALUES (25, 12);
 INSERT INTO vg_system (vg_id, system_id) VALUES (26, 12);
+INSERT INTO vg_system (vg_id, system_id) VALUES (27, 13);
+INSERT INTO vg_system (vg_id, system_id) VALUES (27, 26);
+INSERT INTO vg_system (vg_id, system_id) VALUES (28, 19);
+INSERT INTO vg_system (vg_id, system_id) VALUES (28, 8);
+INSERT INTO vg_system (vg_id, system_id) VALUES (28, 2);
+INSERT INTO vg_system (vg_id, system_id) VALUES (29, 7);
+INSERT INTO vg_system (vg_id, system_id) VALUES (29, 3);
+INSERT INTO vg_system (vg_id, system_id) VALUES (30, 5);
+INSERT INTO vg_system (vg_id, system_id) VALUES (31, 2);
+INSERT INTO vg_system (vg_id, system_id) VALUES (32, 12);
+INSERT INTO vg_system (vg_id, system_id) VALUES (33, 7);
+INSERT INTO vg_system (vg_id, system_id) VALUES (33, 3);
+INSERT INTO vg_system (vg_id, system_id) VALUES (34, 25);
+INSERT INTO vg_system (vg_id, system_id) VALUES (35, 8);
+INSERT INTO vg_system (vg_id, system_id) VALUES (35, 2);
+INSERT INTO vg_system (vg_id, system_id) VALUES (35, 9);
+INSERT INTO vg_system (vg_id, system_id) VALUES (35, 2);
+INSERT INTO vg_system (vg_id, system_id) VALUES (36, 3);
+INSERT INTO vg_system (vg_id, system_id) VALUES (36, 7);
+INSERT INTO vg_system (vg_id, system_id) VALUES (37, 8);
+INSERT INTO vg_system (vg_id, system_id) VALUES (37, 4);
+INSERT INTO vg_system (vg_id, system_id) VALUES (38, 17);
+INSERT INTO vg_system (vg_id, system_id) VALUES (39, 7);
+INSERT INTO vg_system (vg_id, system_id) VALUES (39, 3);
+INSERT INTO vg_system (vg_id, system_id) VALUES (40, 7);
+INSERT INTO vg_system (vg_id, system_id) VALUES (40, 3);
+INSERT INTO vg_system (vg_id, system_id) VALUES (41, 8);
+INSERT INTO vg_system (vg_id, system_id) VALUES (41, 9);
+INSERT INTO vg_system (vg_id, system_id) VALUES (42, 6);
+INSERT INTO vg_system (vg_id, system_id) VALUES (42, 14);
+INSERT INTO vg_system (vg_id, system_id) VALUES (42, 2);
+INSERT INTO vg_system (vg_id, system_id) VALUES (42, 3);
+INSERT INTO vg_system (vg_id, system_id) VALUES (43, 8);
+INSERT INTO vg_system (vg_id, system_id) VALUES (43, 4);
+INSERT INTO vg_system (vg_id, system_id) VALUES (43, 12);
+INSERT INTO vg_system (vg_id, system_id) VALUES (43, 9);
+INSERT INTO vg_system (vg_id, system_id) VALUES (43, 2);
+INSERT INTO vg_system (vg_id, system_id) VALUES (43, 3);
+INSERT INTO vg_system (vg_id, system_id) VALUES (44, 7);
+INSERT INTO vg_system (vg_id, system_id) VALUES (44, 8);
+INSERT INTO vg_system (vg_id, system_id) VALUES (44, 9);
+INSERT INTO vg_system (vg_id, system_id) VALUES (45, 8);
+INSERT INTO vg_system (vg_id, system_id) VALUES (45, 9);
+INSERT INTO vg_system (vg_id, system_id) VALUES (45, 2);
+INSERT INTO vg_system (vg_id, system_id) VALUES (46, 8);
+INSERT INTO vg_system (vg_id, system_id) VALUES (46, 2);
+INSERT INTO vg_system (vg_id, system_id) VALUES (46, 4);
+INSERT INTO vg_system (vg_id, system_id) VALUES (47, 2);
+INSERT INTO vg_system (vg_id, system_id) VALUES (48, 25);
+INSERT INTO vg_system (vg_id, system_id) VALUES (49, 6);
+INSERT INTO vg_system (vg_id, system_id) VALUES (49, 14);
+INSERT INTO vg_system (vg_id, system_id) VALUES (49, 2);
+INSERT INTO vg_system (vg_id, system_id) VALUES (50, 25);
+INSERT INTO vg_system (vg_id, system_id) VALUES (50, 4);
+INSERT INTO vg_system (vg_id, system_id) VALUES (50, 8);
+
+
+
+
+
+
+
+
 
 
 
