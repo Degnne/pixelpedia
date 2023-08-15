@@ -3,7 +3,7 @@
     <header>
       <div id="nav">
       <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
-      <router-link v-bind:to="{ name: 'addvideogame' }">Add Video Game</router-link>&nbsp;|&nbsp;
+      <span v-if="$store.getters.userIsAdmin"><router-link v-bind:to="{ name: 'addvideogame' }" v-if="$store.getters.userIsAdmin">Add Video Game</router-link>&nbsp;|&nbsp;</span>
       <router-link v-bind:to="{ name: 'emulatorlist' }">Emulators</router-link>&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
     </div>
@@ -14,6 +14,15 @@
     <footer></footer>
   </div>
 </template>
+
+<script>
+
+export default {
+  
+}
+</script>
+
+
 <style>
   #app{
     margin: 0px;
@@ -70,10 +79,12 @@
     height: 20px;
     border: none;
     margin: 2px;
+    background-color: lightgray;
   }
 
   button:hover {
     cursor: pointer;
+    background-color: white;
   }
 
   input, textarea {

@@ -1,7 +1,7 @@
 <template>
   <div id="register" class="text-center">
     <form @submit.prevent="register">
-      <h1>Create Account</h1>
+      <h3>Create Account</h3>
       <div role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
@@ -74,6 +74,9 @@ export default {
 </script>
 
 <style scoped>
+#register {
+  display: flex;
+}
 .form-input-group {
   margin-bottom: 1rem;
 }

@@ -12,9 +12,9 @@
         <div class="videogamereview">
             <div class="review-titlearea">
                 <h4>{{review ? review.reviewTitle : 'Rating'}}</h4>
-                <div class="review-edit-delete" v-if="canEdit">
-                    <button @click.prevent="editReview()">Edit</button>
-                    <button @click.prevent="confirmingDelete = !confirmingDelete">Delete</button>
+                <div class="review-edit-delete">
+                    <button @click.prevent="editReview()" v-if="canEdit">Edit</button>
+                    <button @click.prevent="confirmingDelete = !confirmingDelete" v-if="canDelete">Delete</button>
                 </div>
             </div>
             <div class="rating-and-review">
@@ -80,8 +80,19 @@ export default {
             return this.$store.state.editingRating;
         },
         canEdit() {
-            return true;
-            //return this.reviewId === this.$store.state.user.id;
+            if (this.$store.state.user.id === this.reviewer.id) {
+                return true;
+            }
+            return false;
+        },
+        canDelete() {
+            if (this.$store.getters.userIsAdmin) {
+                return true;
+            }
+            if (this.$store.state.user.id === this.reviewer.id) {
+                return true;
+            }
+            return false;
         }
     },
     methods: {

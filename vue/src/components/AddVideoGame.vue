@@ -25,7 +25,7 @@
               <label for="rating">Rating: </label>
               <select name="rating" id="rating" v-model="newVideoGame.rating" required>
                   <option value="E">E</option>
-                  <option value="E10">E10+</option>
+                  <option value="E10+">E10+</option>
                   <option value="T">T</option>
                   <option value="M">M</option>
               </select>
@@ -64,6 +64,10 @@
                     <option v-for="system in systems" :key="`option-${system}`">{{system}}</option>
                 </datalist>
             </form>
+          </div>
+          <div id="steamid-div">
+              <label for="steamid">Steam ID: </label>
+              <input type="text" name="steamid" v-model="newVideoGame.steamId">
           </div>
           <div id="description-div">
               <label for="description">Description: </label>
@@ -167,8 +171,12 @@ export default {
     grid-template-areas: "title release-date release-price"
                         "publisher boxart rating"
                         "genres studios systems"
+                        "steamid . ."
                         "description description description"
                         "submit submit submit";
+}
+#steamid-div {
+    grid-area: steamid;
 }
 #title-div {
     grid-area: title;

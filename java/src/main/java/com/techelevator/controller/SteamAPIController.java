@@ -20,7 +20,15 @@ public class SteamAPIController {
 
     @GetMapping("/app/{id}/news")
     public Object getNewsForGame(@PathVariable int id) {
-        String url = baseUrl +"/ISteamNews/GetNewsForApp/v2?appid=" + id;
+        String url = baseUrl +"/ISteamNews/GetNewsForApp/v2?appid=" + id + "&count=5";
+        RestTemplate restTemplate = new RestTemplate();
+        Object result = restTemplate.getForObject(url, Object.class);
+        return result;
+    }
+
+    @GetMapping("/app/{id}/achievementpercentages")
+    public Object getAchievementPercentagesForGame(@PathVariable int id) {
+        String url = baseUrl + "/ISteamUserStats/GetGlobalAchievementPercentagesForApp/v0002/?gameid=" + id;
         RestTemplate restTemplate = new RestTemplate();
         Object result = restTemplate.getForObject(url, Object.class);
         return result;
