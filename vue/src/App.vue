@@ -6,7 +6,7 @@
       <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
       <span v-if="$store.getters.userIsAdmin"><router-link v-bind:to="{ name: 'addvideogame' }" v-if="$store.getters.userIsAdmin">Add Video Game</router-link>&nbsp;|&nbsp;</span>
       <router-link v-bind:to="{ name: 'emulatorlist' }">Emulators</router-link>&nbsp;|&nbsp;
-      <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
+      <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout ({{$store.state.user.username}})</router-link>
     </div>
     </header>    
     <main>
@@ -50,6 +50,7 @@ export default {
   }
   #sitename {
     margin: 20px;
+    text-shadow: 1px 1px 2px black;
   }
   #nav {
     margin: 20px;

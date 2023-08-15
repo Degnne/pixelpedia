@@ -60,6 +60,9 @@ INSERT INTO company (company_name) VALUES ('Bethesda Game Studios');    -- 54
 INSERT INTO company (company_name) VALUES ('Avalanche Software');    -- 55
 INSERT INTO company (company_name) VALUES ('Maxis');    -- 56
 INSERT INTO company (company_name) VALUES ('Lionhead Studios');    -- 57
+INSERT INTO company (company_name) VALUES ('Paradox Interactive');  --58
+INSERT INTO company (company_name) VALUES ('Paradox Development Studio'); --59
+INSERT INTO company (company_name) VALUES ('Colossal Order'); --60
 
 
 
@@ -124,8 +127,12 @@ INSERT INTO video_game (title, release_date, release_price, description, publish
 INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES('Pac-Man 256', '2015-08-19', 4.99,  'Pac-Man 256 is an endless maze runner video game developed by Hipster Whale and published by Bandai Namco Entertainment. It was originally released for mobile devices in 2015 and later for other platforms', 48, 'T', 'https://www.gamespot.com/a/uploads/original/280/2802776/2925392-key_art_02_1438755552.jpg');   -- 50
 
 
-
-
+--Jeff's added games
+INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art, steam_id) VALUES ('Europa Universalis IV', '2013-08-13', 39.99, 'Europa Universalis IV gives you control of a nation through four dramatic centuries. Rule your land and dominate the world with unparalleled freedom, depth and historical accuracy. Write a new history of the world and build an empire for the ages.', 58, 'T', 'https://m.media-amazon.com/images/I/817pmfOZsTL._AC_UF1000,1000_QL80_.jpg', 236850);   --51
+INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art, steam_id) VALUES ('Victoria 3', '2022-10-25', 49.99, 'Paradox Development Studio invites you to build your ideal society in the tumult of the exciting and transformative 19th century. Balance the competing interests in your society and earn your place in the sun in Victoria 3, one of the most anticipated games in Paradox’s history.', 58, 'T', 'https://upload.wikimedia.org/wikipedia/en/f/fb/Victoria_3_cover_art.jpg', 529340);    --52
+INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art, steam_id) VALUES ('Crusader Kings III', '2020-09-01', 49.99, 'Love, fight, scheme, and claim greatness. Determine your noble house’s legacy in the sprawling grand strategy of Crusader Kings III. Death is only the beginning as you guide your dynasty’s bloodline in the rich and larger-than-life simulation of the Middle Ages.', 58, 'T', 'https://upload.wikimedia.org/wikipedia/en/a/a3/Crusader_Kings_III.jpg', 1158310);  --53
+INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art, steam_id) VALUES ('Stellaris', '2016-05-09', 39.99, 'Explore a galaxy full of wonders in this sci-fi grand strategy game from Paradox Development Studios. Interact with diverse alien races, discover strange new worlds with unexpected events and expand the reach of your empire. Each new adventure holds almost limitless possibilities.', 58, 'T', 'https://upload.wikimedia.org/wikipedia/en/b/bd/Stellaris_cover.png', 281990); --54
+INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art, steam_id) VALUES ('Cities: Skylines', '2015-03-10', 29.99, 'Cities: Skylines is a modern take on the classic city simulation. The game introduces new game play elements to realize the thrill and hardships of creating and maintaining a real city whilst expanding on some well-established tropes of the city building experience.', 58, 'E', 'https://m.media-amazon.com/images/M/MV5BNmM3NGMyNzYtN2MzNi00MGFjLTliYjQtN2M4MWRjOWM4Zjk1XkEyXkFqcGdeQXVyNTgyNTA4MjM@._V1_FMjpg_UX1000_.jpg', 255710); --55
 
 --INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES
 --('Pac-Man', '1980-05-22', 30.00, 'This is one of the most popular arcade games of all time.', 1, 'E','https://upload.wikimedia.org/wikipedia/en/thumb/5/53/Pac-Man_arcade_game.jpg/220px-Pac-Man_arcade_game.jpg');
@@ -176,6 +183,7 @@ INSERT INTO genre (genre_name) VALUES ('Exercise');          --24
 INSERT INTO genre (genre_name) VALUES ('Party');          --25
 INSERT INTO genre (genre_name) VALUES ('Fighting');          --26
 INSERT INTO genre (genre_name) VALUES ('Shooter');          --27
+INSERT INTO genre (genre_name) VALUES ('Strategy');         --28
 
 
 
@@ -226,9 +234,11 @@ INSERT INTO vg_genre (vg_id, genre_id) VALUES (24, 16);
 INSERT INTO vg_genre (vg_id, genre_id) VALUES (25, 14);
 INSERT INTO vg_genre (vg_id, genre_id) VALUES (25, 11);
 INSERT INTO vg_genre (vg_id, genre_id) VALUES (26, 25);
-
-
-
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (51, 28);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (52, 28);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (53, 28);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (54, 28);
+INSERT INTO vg_genre (vg_id, genre_id) VALUES (55, 17);
 
 
 
@@ -370,11 +380,11 @@ INSERT INTO vg_system (vg_id, system_id) VALUES (49, 2);
 INSERT INTO vg_system (vg_id, system_id) VALUES (50, 25);
 INSERT INTO vg_system (vg_id, system_id) VALUES (50, 4);
 INSERT INTO vg_system (vg_id, system_id) VALUES (50, 8);
-
-
-
-
-
+INSERT INTO vg_system (vg_id, system_id) VALUES (51, 25);
+INSERT INTO vg_system (vg_id, system_id) VALUES (52, 25);
+INSERT INTO vg_system (vg_id, system_id) VALUES (53, 25);
+INSERT INTO vg_system (vg_id, system_id) VALUES (54, 25);
+INSERT INTO vg_system (vg_id, system_id) VALUES (55, 25);
 
 
 
@@ -408,7 +418,11 @@ INSERT INTO vg_studio (vg_id, studio_id) VALUES (23,11);
 INSERT INTO vg_studio (vg_id, studio_id) VALUES (24, 43);
 INSERT INTO vg_studio (vg_id, studio_id) VALUES (25, 14);
 INSERT INTO vg_studio (vg_id, studio_id) VALUES (26, 2);
-
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (51, 59);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (52, 59);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (53, 59);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (54, 59);
+INSERT INTO vg_studio (vg_id, studio_id) VALUES (55, 60);
 
 
 INSERT INTO review (review_id, review_txt, review_title) VALUES (0, 'Test', 'Test');

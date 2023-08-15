@@ -11,7 +11,7 @@
       </select>
     </div>
     <div id="videogamelist">  
-    <div v-for="videogame in filteredVideoGameList" v-bind:key="videogame.id" class="videoGameCard"><router-link  v-bind:to="{name: 'videogamedetails', params: {id: videogame.id}}"> <video-game-card v-bind:videogame="videogame"/> </router-link></div>
+    <div v-for="videogame in filteredVideoGameList" v-bind:key="videogame.id" class="videoGameCard"><router-link  v-bind:to="{name: 'videogamedetails', params: {id: videogame.id}, hash: '#detailsPage'}"> <video-game-card v-bind:videogame="videogame"/> </router-link></div>
     </div>
   </div>
 </template>

@@ -185,6 +185,7 @@ export default {
   padding: 3px;
   background-color: dimgray;
   border-radius: 5px;
+  white-space: nowrap;
 }
 .price{
   grid-area: price;
@@ -196,6 +197,7 @@ export default {
   padding: 3px;
   background-color: dimgray;
   border-radius: 5px;
+  white-space: nowrap;
 }
 .system{
   grid-area: system;
@@ -205,6 +207,7 @@ export default {
   padding: 3px;
   background-color: dimgray;
   border-radius: 5px;
+  white-space: nowrap;
 }
 .publisher{
   grid-area: publisher;
@@ -216,6 +219,7 @@ export default {
   padding: 3px;
   background-color: dimgray;
   border-radius: 5px;
+  white-space: nowrap;
 }
 .studio{
   grid-area: studio;
@@ -225,6 +229,7 @@ export default {
   padding: 3px;
   background-color: dimgray;
   border-radius: 5px;
+  white-space: nowrap;
 }
 .genre{
   grid-area: genre;
@@ -237,6 +242,7 @@ export default {
   padding: 3px;
   background-color: dimgray;
   border-radius: 5px;
+  white-space: nowrap;
 }
 .description{
   grid-area: description;
@@ -256,6 +262,13 @@ export default {
 }
 .videogamedetails-jumpbuttons {
   grid-area: jump;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.videogamedetails-jumpbuttons button {
+  font-size: 1rem;
+  width: 200px;
 }
 #delete-game {
   background-color: rgb(228, 59, 59);

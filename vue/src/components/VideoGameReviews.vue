@@ -2,6 +2,7 @@
   <div id="videogamereviews">
       <h3>Reviews for {{videogame.title}}</h3>
       <ReviewCard v-for="(review, index) in reviews" :review="review" :key="index" />
+      <div v-if="reviews.length < 1">Not Yet Reviewed</div>
       <h3 id="addvideogamereview">Rate & Review</h3>
       <ReviewCard v-if="userRating && !userReview" :review="userReview" /><div v-if="userReview">You've already reviewed this game.</div>
       <ReviewForm v-if="!userRating" :show="true" :review="userReview" />

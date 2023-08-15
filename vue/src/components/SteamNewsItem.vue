@@ -1,7 +1,7 @@
 <template>
   <div class="steamnewsitem">
       <a :href="newsitem.url" target="_blank"><h4>{{newsitem.title}}</h4></a>
-      <div class="steamnewsitemdate">Posted {{formattedDate}}</div>
+      <div class="steamnewsitemdate">{{formattedDate}}</div>
   </div>
 </template>
 
@@ -28,6 +28,8 @@ export default {
     background-color: rgba(51, 51, 51, 1);
     border-radius: 10px;
     padding: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
     margin: 3px;
     display: flex;
     justify-content: space-between;
