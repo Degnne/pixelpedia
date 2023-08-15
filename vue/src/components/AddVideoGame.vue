@@ -13,7 +13,7 @@
           </div>
           <div id="release-price-div">
               <label for="release-price">Release Price: </label>
-              <input type="number" id="release-price" v-model="newVideoGame.releasePrice" required>
+              <input type="number" id="release-price" v-model="newVideoGame.releasePrice" step=".01" required>
           </div>
           <div id="publisher-div">
               <label for="publisher">Publisher: </label>

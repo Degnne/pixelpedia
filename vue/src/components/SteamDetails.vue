@@ -1,5 +1,5 @@
 <template>
-  <div id="steamdetails">
+  <div id="steamdetails" v-if="steamId">
       <h3>Steam Details</h3>
       <h4>Current Players:</h4> {{currentPlayers}}
       <!--h4>Achievement Percentages: </h4>
@@ -16,14 +16,14 @@
 <script>
 import SteamNewsItem from '@/components/SteamNewsItem.vue'
 import SteamService from '@/services/SteamService.js'
-//import VideoGameService from '@/services/videogameService.js'
+import VideoGameService from '@/services/videogameService.js'
 export default {
    components: {
       SteamNewsItem
    },
    data() {
       return {
-        steamId: 1222670,
+        steamId: 0,
         currentPlayers: 0,
         news: {},
         achievementPercentages: {}
@@ -31,18 +31,22 @@ export default {
    },
    created() {
        //Get SteamId from game
-      //VideoGameService.getVideoGameById(this.$route.params.id).then((response) => {
-         SteamService.getCurrentPlayersForGame(this.steamId).then(response => {
-            this.currentPlayers = response.data.response.player_count;
-         });
-         SteamService.getNewsForGame(this.steamId).then(response => {
-             this.news = response.data.appnews;
-         });
-         SteamService.getAchievementPercentagesForGame(255710).then(response => {
-            this.achievementPercentages = response.data.achievementpercentages;
-            console.log(this.achievementPercentages);
-         })
-      //});
+      VideoGameService.getVideoGameById(this.$route.params.id).then((response) => {
+         this.steamId = response.data.steamId;
+         if (this.steamId > 0) {
+            SteamService.getCurrentPlayersForGame(this.steamId).then(response => {
+               this.currentPlayers = response.data.response.player_count;
+            });
+            SteamService.getNewsForGame(this.steamId).then(response => {
+               this.news = response.data.appnews;
+            });
+            SteamService.getAchievementPercentagesForGame(255710).then(response => {
+               this.achievementPercentages = response.data.achievementpercentages;
+               console.log(this.achievementPercentages);
+            })
+         }
+         
+      });
    }
 }
 </script>

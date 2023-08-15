@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <header>
-      <div id="nav">
+      <div id="sitename"><h1><router-link v-bind:to="{ name: 'home' }">PixelPedia</router-link></h1></div>
+      <div id="nav" v-if="$store.state.token != ''">
       <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
       <span v-if="$store.getters.userIsAdmin"><router-link v-bind:to="{ name: 'addvideogame' }" v-if="$store.getters.userIsAdmin">Add Video Game</router-link>&nbsp;|&nbsp;</span>
       <router-link v-bind:to="{ name: 'emulatorlist' }">Emulators</router-link>&nbsp;|&nbsp;
@@ -27,7 +28,7 @@ export default {
   #app{
     margin: 0px;
     padding: 0px;
-    height: 100vh;
+    height: 100%;
     width: 100%;
     display: grid;
     grid-template-columns: 33% 1fr 33%;
@@ -42,10 +43,16 @@ export default {
   header{
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     background-color: #333;
     align-items: center;
     grid-area: Header;
+  }
+  #sitename {
+    margin: 20px;
+  }
+  #nav {
+    margin: 20px;
   }
   main{
     grid-area: body;

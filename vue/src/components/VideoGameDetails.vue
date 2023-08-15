@@ -29,7 +29,7 @@
         <div v-if="this.$store.getters.getGameRatings.length < 1">Not Yet Rated</div>
       </div>
       <div class="videogamedetails-jumpbuttons">
-        <router-link :to="{hash: '#steamdetails'}" tag="button" @click.native="anchorHashCheck()">Steam Details</router-link>
+        <router-link :to="{hash: '#steamdetails'}" tag="button" @click.native="anchorHashCheck()" v-if="isOnSteam">Steam Details</router-link>
         <router-link :to="{hash: '#videogamereviews'}" tag="button" @click.native="anchorHashCheck()">View Reviews</router-link>
         <router-link :to="{hash: '#addvideogamereview'}" tag="button" @click.native="anchorHashCheck()">Rate & Review</router-link>
       </div>
@@ -78,6 +78,9 @@ export default {
     }    
   },
   computed: {
+    isOnSteam() {
+      return this.dataLoaded && this.videoGame.steamId;
+    },
     canEdit() {
       return this.$store.getters.userIsAdmin;
     },
