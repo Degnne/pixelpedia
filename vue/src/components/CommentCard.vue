@@ -11,8 +11,8 @@
         {{comment.commentText}}
     </div>
     <div class="comment-edit-delete">
-        <button @click.prevent="$store.commit('TOGGLE_EDIT_COMMENTS', comment.commentId)">Edit</button>
-        <button @click.prevent="confirmingDelete = !confirmingDelete">Delete</button>
+        <button @click.prevent="$store.commit('TOGGLE_EDIT_COMMENTS', comment.commentId)" v-if="canEdit">Edit</button>
+        <button @click.prevent="confirmingDelete = !confirmingDelete" v-if="canDelete">Delete</button>
     </div>
     <div class="comment-user">--{{commenter.username}}</div>
     <div class="comment-date">{{comment.date}}</div>
@@ -34,6 +34,23 @@ export default {
         return {
             commenter: {},
             confirmingDelete: false
+        }
+    },
+    computed: {
+        canEdit() {
+            if (this.$store.state.user.id === this.comment.userId) {
+                return true;
+            }
+            return false;
+        },
+        canDelete() {
+            if (this.$store.getters.userIsAdmin) {
+                return true;
+            }
+            if (this.$store.state.user.id === this.comment.userId) {
+                return true;
+            }
+            return false;
         }
     },
     created() {

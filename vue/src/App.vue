@@ -1,9 +1,10 @@
 <template>
   <div id="app">
     <header>
-      <div id="nav">
+      <div id="sitename"><h1><router-link v-bind:to="{ name: 'home' }">PixelPedia</router-link></h1></div>
+      <div id="nav" v-if="$store.state.token != ''">
       <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
-      <router-link v-bind:to="{ name: 'addvideogame' }">Add Video Game</router-link>&nbsp;|&nbsp;
+      <span v-if="$store.getters.userIsAdmin"><router-link v-bind:to="{ name: 'addvideogame' }" v-if="$store.getters.userIsAdmin">Add Video Game</router-link>&nbsp;|&nbsp;</span>
       <router-link v-bind:to="{ name: 'emulatorlist' }">Emulators</router-link>&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
     </div>
@@ -14,11 +15,20 @@
     <footer></footer>
   </div>
 </template>
+
+<script>
+
+export default {
+  
+}
+</script>
+
+
 <style>
   #app{
     margin: 0px;
     padding: 0px;
-    height: 100vh;
+    height: 100%;
     width: 100%;
     display: grid;
     grid-template-columns: 33% 1fr 33%;
@@ -33,10 +43,16 @@
   header{
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     background-color: #333;
     align-items: center;
     grid-area: Header;
+  }
+  #sitename {
+    margin: 20px;
+  }
+  #nav {
+    margin: 20px;
   }
   main{
     grid-area: body;
@@ -70,10 +86,12 @@
     height: 20px;
     border: none;
     margin: 2px;
+    background-color: lightgray;
   }
 
   button:hover {
     cursor: pointer;
+    background-color: white;
   }
 
   input, textarea {

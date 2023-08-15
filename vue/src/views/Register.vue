@@ -1,13 +1,17 @@
 <template>
   <div id="register" class="text-center">
-    <form @submit.prevent="register">
-      <h1>Create Account</h1>
+    <form @submit.prevent="register" ref="form">
+      <h3>Create Account</h3>
       <div role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
       <div class="form-input-group">
         <label for="username">Username</label>
         <input type="text" id="username" v-model="user.username" required autofocus />
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input type="email" name="to_name" id="to_name" required />
       </div>
       <div class="form-input-group">
         <label for="password">Password</label>
@@ -19,13 +23,14 @@
       </div>
       <button type="submit">Create Account</button>
       <p><router-link :to="{ name: 'login' }">Already have an account? Log in.</router-link></p>
+      
     </form>
   </div>
 </template>
 
 <script>
 import authService from '../services/AuthService';
-
+import emailjs from '@emailjs/browser';
 export default {
   name: 'register',
   data() {
@@ -41,6 +46,15 @@ export default {
     };
   },
   methods: {
+    sendEmail() {
+       console.log("here");
+      emailjs.sendForm('service_u0buhqc', 'template_0s6i6lf', this.$refs.form, 'EPwWGZtt26YL7MaUr')
+        .then((result) => {
+            console.log('SUCCESS!', result.text);
+        }, (error) => {
+            console.log('FAILED...', error.text);
+        });
+    },
     register() {
       if (this.user.password != this.user.confirmPassword) {
         this.registrationErrors = true;
@@ -54,6 +68,7 @@ export default {
                 path: '/login',
                 query: { registration: 'success' },
               });
+              this.sendEmail();
             }
           })
           .catch((error) => {
@@ -74,6 +89,9 @@ export default {
 </script>
 
 <style scoped>
+#register {
+  display: flex;
+}
 .form-input-group {
   margin-bottom: 1rem;
 }

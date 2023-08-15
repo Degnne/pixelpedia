@@ -32,12 +32,12 @@ export default {
         },
         userRating() {
             return this.$store.getters.getGameRatings.find(rating => {
-                return rating.userId = this.$store.state.user.id;
+                return rating.userId === this.$store.state.user.id;
             });
         },
         userReview() {
             return this.$store.state.gameReviews.find(review => {
-                return review.userId = this.$store.state.user.id;
+                return review.userId === this.$store.state.user.id;
             });
         }
     },
@@ -48,9 +48,7 @@ export default {
         VideoGameService.getVideoGameById(this.$route.params.id).then(response => {
             this.videogame = response.data;
         });
-        this.$store.dispatch('loadReviews', this.$route.params.id).then(() => {
-            
-        });
+        this.$store.dispatch('loadReviews', this.$route.params.id);
     }
 }
 </script>
