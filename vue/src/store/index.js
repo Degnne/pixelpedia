@@ -36,7 +36,14 @@ export default new Vuex.Store({
       return state.gameRatings.find(rating => 
         rating.reviewId === reviewId
       );
-    }  
+    },
+    userIsAdmin(state) {
+      if (state.user.authorities) {
+        const userAuth = state.user.authorities.find(auth => auth.name === 'ROLE_ADMIN');
+        return userAuth != null;
+      }
+      return false;
+    }
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {

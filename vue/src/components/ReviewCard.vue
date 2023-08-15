@@ -13,8 +13,8 @@
             <div class="review-titlearea">
                 <h4>{{review ? review.reviewTitle : 'Rating'}}</h4>
                 <div class="review-edit-delete">
-                    <button @click.prevent="editReview()">Edit</button>
-                    <button @click.prevent="confirmingDelete = !confirmingDelete">Delete</button>
+                    <button @click.prevent="editReview()" v-if="canEdit">Edit</button>
+                    <button @click.prevent="confirmingDelete = !confirmingDelete" v-if="canDelete">Delete</button>
                 </div>
             </div>
             <div class="rating-and-review">
@@ -56,12 +56,12 @@ export default {
         return {
             reviewer: {},
             confirmingDelete: false,
-            
+            reviewId: 0
         }
     },
     computed: {
         rating() {
-            return this.$store.getters.getRatingForReview(this.review.reviewId);
+            return this.$store.getters.getRatingForReview(this.reviewId);
         },
         numberOfComments() {
             if (this.review) {
@@ -78,6 +78,21 @@ export default {
                 return this.$store.state.editingReview.includes(this.review.reviewId);
             }
             return this.$store.state.editingRating;
+        },
+        canEdit() {
+            if (this.$store.state.user.id === this.reviewer.id) {
+                return true;
+            }
+            return false;
+        },
+        canDelete() {
+            if (this.$store.getters.userIsAdmin) {
+                return true;
+            }
+            if (this.$store.state.user.id === this.reviewer.id) {
+                return true;
+            }
+            return false;
         }
     },
     methods: {
@@ -111,9 +126,9 @@ export default {
                      
         }      
     },
-    created() {
-        this.rating = this.$store.getters.getRatingForReview(this.review.reviewId);
+    created() {        
         if (this.review) {
+            this.reviewId = this.review.reviewId;
             UserService.getUserById(this.review.userId).then(response => {
                 this.reviewer = response.data;
             });

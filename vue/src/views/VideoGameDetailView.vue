@@ -1,7 +1,7 @@
 <template>
   <div>
     <VideoGameDetails />
-    <SteamNews />
+    <SteamDetails />
     <VideoGameReviews />    
   </div>
 </template>
@@ -9,13 +9,13 @@
 <script>
 import VideoGameDetails from '../components/VideoGameDetails.vue';
 import VideoGameReviews from '../components/VideoGameReviews.vue';
-import SteamNews from '../components/SteamNews.vue';
+import SteamDetails from '../components/SteamDetails.vue';
 
 export default {
   components: { 
     VideoGameDetails,
     VideoGameReviews,
-    SteamNews
+    SteamDetails
   }
 };
 </script>

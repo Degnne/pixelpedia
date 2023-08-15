@@ -97,10 +97,12 @@ export default {
                 this.newReview.userId = this.$store.state.user.id;
                 VideoGameService.addGameReview(this.newReview).then((response) => {
                     this.newRating.reviewId = response.data.reviewId;
-                    VideoGameService.addRating(this.newRating);
-                    this.$store.dispatch('loadReviews', this.$route.params.id);
-                    this.newReview = {};
-                    this.resetRating();
+                    VideoGameService.addRating(this.newRating).then(() => {
+                        this.$store.dispatch('loadReviews', this.$route.params.id);
+                        this.newReview = {};
+                        this.resetRating();
+                    });
+                    
                 }).catch(error => {
                     console.error(error);
                 });
