@@ -16,14 +16,16 @@
             <div class="comment-text">
                 {{comment.commentText}}
             </div>
+            <div class="comment-date">{{comment.date}}</div>
             <div class="comment-edit-delete">
                 <button @click.prevent="$store.commit('TOGGLE_EDIT_COMMENTS', comment.commentId)" v-if="canEdit">Edit</button>
                 <button @click.prevent="confirmingDelete = !confirmingDelete" v-if="canDelete">Delete</button>
             </div>
             
-            <div class="comment-date">{{comment.date}}</div>
+            
             <CommentForm v-if="$store.state.editingComments.includes(this.comment.commentId)" :comment="comment" />
         </div>
+        
   </div>
 </template>
 
