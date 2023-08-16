@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="videogamelistcontainer">
+      <div class="search-and-order">
       <input type="text" placeholder="Search" v-model="searchTerm" class="searchbox">
       Order By: 
       <select name="" id="" v-model="orderBy">
@@ -8,8 +9,9 @@
           <option value="dateNew">Date (Newest to Oldest)</option>
           <option value="dateOld">Date (Oldest to Newest)</option>
       </select>
+    </div>
     <div id="videogamelist">  
-    <div v-for="videogame in filteredVideoGameList" v-bind:key="videogame.id" class="videoGameCard"><router-link  v-bind:to="{name: 'videogamedetails', params: {id: videogame.id}}"> <video-game-card v-bind:videogame="videogame"/> </router-link></div>
+    <div v-for="videogame in filteredVideoGameList" v-bind:key="videogame.id" class="videoGameCard"><router-link  v-bind:to="{name: 'videogamedetails', params: {id: videogame.id}, hash: '#detailsPage'}"> <video-game-card v-bind:videogame="videogame"/> </router-link></div>
     </div>
   </div>
 </template>
@@ -138,11 +140,21 @@ export default {
 </script>
 
 <style>
+.videogamelistcontainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.search-and-order {
+    margin: 10px;
+    margin-top: 20px;
+    justify-self: center;
+}
 .searchbox {
     border-radius: 5px;
     border: none;
 }
-.videoGameCard, a {
+.videoGameCard a {
     text-decoration: none;
     color: whitesmoke;
 }
@@ -153,10 +165,12 @@ export default {
     background-color: lightslategray;
     border-radius: 10px;
     position: relative;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, .3);
 }
 #videogamelist{
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     margin-top: 25px;
 }
 

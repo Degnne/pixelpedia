@@ -1,6 +1,6 @@
 <template>
   <div>
-      <form action="#" class="reviewform" @submit.prevent="review ? updateReview() : addRating()">
+      <form action="#" class="reviewform" @submit.prevent="review || rating ? updateReview() : addRating()">
           <div class="rating-and-review">
               <div>
               <h4>Rating</h4>
@@ -60,14 +60,7 @@ import VideoGameService from '@/services/videogameService.js'
 export default {
     data() {
         return {
-            newRating: {
-                storyRating: 0,
-                visualRating: 0,
-                audioRating: 0,
-                gameplayRating: 0,
-                difficultyRating: 0,
-                overallRating: 0
-            },
+            newRating: {},
             newReview: {},
             showSelf: true,
             plusReview: false
@@ -75,7 +68,7 @@ export default {
     },
     computed: {
         submitButtonText() {
-            if (this.review) {
+            if (this.review || this.rating) {
                 return 'Update';
             } else if (this.plusReview) {
                 return 'Submit Rating & Review';
@@ -83,13 +76,17 @@ export default {
             return 'Submit Rating';
         }
     },
-    props: ['review'],
+    props: ['review', 'rating'],
     created() {
         this.showSelf = this.show;
         if (this.review) {
             this.newReview = this.review;
         }
-        
+        if (this.rating) {
+            this.newRating = this.rating;
+        } else {
+            this.resetRating();
+        }
     },
     methods: {
         addRating() {
@@ -100,24 +97,48 @@ export default {
                 this.newReview.userId = this.$store.state.user.id;
                 VideoGameService.addGameReview(this.newReview).then((response) => {
                     this.newRating.reviewId = response.data.reviewId;
-                    VideoGameService.addRating(this.newRating);
-                    this.$store.dispatch('loadReviews', this.$route.params.id);
-                    this.newReview = {};
-                    this.resetRating();
+                    VideoGameService.addRating(this.newRating).then(() => {
+                        this.$store.dispatch('loadReviews', this.$route.params.id);
+                        this.newReview = {};
+                        this.resetRating();
+                    });
+                    
                 }).catch(error => {
                     console.error(error);
                 });
             } else {
-                VideoGameService.addRating(this.newRating);
+                VideoGameService.addRating(this.newRating).then(() => {
+                    this.$store.dispatch('loadReviews', this.$route.params.id);
                 this.resetRating();
+                });                
             }
             
         },
         updateReview() {
-            VideoGameService.editGameReview(this.newReview).then(() => {
-                this.$store.dispatch('loadReviews', this.$route.params.id);
-                this.$store.commit('TOGGLE_EDIT_REVIEW', this.review.reviewId);
-            });
+            if (this.review) {
+                VideoGameService.updateRating(this.newRating).then(() => {
+                    this.$store.commit('TOGGLE_EDIT_RATING');
+                    this.$store.dispatch('loadReviews', this.$route.params.id);
+                });
+                VideoGameService.editGameReview(this.newReview).then(() => {
+                    this.$store.dispatch('loadReviews', this.$route.params.id);
+                    this.$store.commit('TOGGLE_EDIT_REVIEW', this.review.reviewId);
+                });
+            } else if (this.newReview.reviewTitle) {
+                this.newReview.gameId = this.$route.params.id;
+                this.newReview.userId = this.$store.state.user.id;
+                VideoGameService.addGameReview(this.newReview).then(response => {
+                    this.newRating.reviewId = response.data.reviewId;
+                    VideoGameService.updateRating(this.newRating).then(() => {
+                        this.$store.dispatch('loadReviews', this.$route.params.id);
+                    });
+                });
+            } else {
+                VideoGameService.updateRating(this.newRating).then(() => {
+                    this.$store.commit('TOGGLE_EDIT_RATING');
+                    this.$store.dispatch('loadReviews', this.$route.params.id);
+                });
+            }            
         },
         resetRating() {
             this.newRating = {
@@ -143,7 +164,7 @@ export default {
 }
 .rating-and-review {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .plusreview {

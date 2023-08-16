@@ -13,7 +13,7 @@
           </div>
           <div id="release-price-div">
               <label for="release-price">Release Price: </label>
-              <input type="number" id="release-price" v-model="newVideoGame.releasePrice" required>
+              <input type="number" id="release-price" v-model="newVideoGame.releasePrice" step=".01" required>
           </div>
           <div id="publisher-div">
               <label for="publisher">Publisher: </label>
@@ -25,7 +25,7 @@
               <label for="rating">Rating: </label>
               <select name="rating" id="rating" v-model="newVideoGame.rating" required>
                   <option value="E">E</option>
-                  <option value="E10">E10+</option>
+                  <option value="E10+">E10+</option>
                   <option value="T">T</option>
                   <option value="M">M</option>
               </select>
@@ -51,7 +51,7 @@
                 <div><input type="text" placeholder="Studio" list="studiolist" v-model="studioToAdd"><input type="submit" value="Add"></div>
                 <div v-for="studio in newVideoGame.studios" :key="'studio-' + studio">{{studio}} <button @click="removeStudio(studio)">X</button></div>
                 <datalist id="studiolist">
-                    <option v-for="studio in companies" :key="`option-${studio}`">{{studio}}</option>
+                    <option v-for="studio in companies" :key="`studio-option-${studio}`">{{studio}}</option>
                 </datalist>
             </form>
         </div>
@@ -64,6 +64,10 @@
                     <option v-for="system in systems" :key="`option-${system}`">{{system}}</option>
                 </datalist>
             </form>
+          </div>
+          <div id="steamid-div">
+              <label for="steamid">Steam ID: </label>
+              <input type="text" name="steamid" v-model="newVideoGame.steamId">
           </div>
           <div id="description-div">
               <label for="description">Description: </label>
@@ -167,8 +171,12 @@ export default {
     grid-template-areas: "title release-date release-price"
                         "publisher boxart rating"
                         "genres studios systems"
+                        "steamid . ."
                         "description description description"
                         "submit submit submit";
+}
+#steamid-div {
+    grid-area: steamid;
 }
 #title-div {
     grid-area: title;
@@ -208,9 +216,6 @@ export default {
 #submit-div input {
     width: 100%;
     height: 20px;
-    background-color: lightgreen;
-    border-radius: 5px;
-    border: none;
 }
 #submit-div input:hover {
     background-color: white;

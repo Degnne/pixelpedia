@@ -1,7 +1,7 @@
 <template>
   <div id="login">
     <form @submit.prevent="login">
-      <h1 >Please Sign In</h1>
+      <h3>Please Sign In</h3>
       <div role="alert" v-if="invalidCredentials">
         Invalid username and password!
       </div>
@@ -67,5 +67,8 @@ export default {
 }
 label {
   margin-right: 0.5rem;
+}
+#login {
+  align-self: center;
 }
 </style>

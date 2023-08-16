@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.techelevator.model.VideoGameList;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -82,13 +83,30 @@ public class JdbcUserDao implements UserDao {
         return jdbcTemplate.update(insertUserSql, username, password_hash, ssRole) == 1;
     }
 
+    @Override
+    public VideoGameList[] getVideoGameListByUserId(int id) {
+        String sql = "";
+
+
+
+        return null;
+    }
+
     private User mapRowToUser(SqlRowSet rs) {
         User user = new User();
         user.setId(rs.getInt("user_id"));
         user.setUsername(rs.getString("username"));
         user.setPassword(rs.getString("password_hash"));
         user.setAuthorities(Objects.requireNonNull(rs.getString("role")));
+        user.setSteamId(rs.getInt("steam_user_id"));
+        user.setBio(rs.getString("bio"));
+        user.setEmail(rs.getString("email"));
+        user.setTagline(rs.getString("tagline"));
+        user.setAvatarURL(rs.getString("avatar_pic"));
         user.setActivated(true);
         return user;
     }
 }
+
+
+

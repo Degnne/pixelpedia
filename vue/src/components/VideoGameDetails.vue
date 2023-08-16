@@ -6,34 +6,44 @@
     <img class= "art" ref="boxArt" id="boxArt" v-bind:src="videoGame.boxArt" alt="">
     <div class= "title"><h2>{{ videoGame.title }}</h2></div>
     <div id="details">
-      <div class = "price">Release Price: <span>${{videoGame.releasePrice}}</span></div>
-      <div class = "date">Release Date: <span>{{ videoGame.releaseDate }}</span></div>
-      <div class = "description"><span>{{ videoGame.description }}</span></div>
-      <div class = "publisher">Publisher: <span>{{ videoGame.publisherName }}</span></div>
-      <div class = "system">Systems: 
+      <div class = "price"><h6>Release Price:</h6> <span>${{videoGame.releasePrice}}</span></div>
+      <div class = "date"><h6>Release Date:</h6> <span>{{ videoGame.releaseDate }}</span></div>
+      <div class = "description">
+        <h6>Description:</h6>
+        <span>{{ videoGame.description }}</span>
+      </div>
+      <div class = "publisher"><h6>Publisher:</h6> <span>{{ videoGame.publisherName }}</span></div>
+      <div class = "system"><h6>Systems:</h6> 
         <span v-for="system in videoGame.systems" v-bind:key="system">{{system}}</span>
       </div>
-      <div class="studio">Studios: 
+      <div class="studio"><h6>Studios:</h6> 
         <span v-for="studio in videoGame.studios" v-bind:key="studio">{{studio}}</span>
       </div>
-      <div class="genre">Genres: 
-        <span v-for="genre in videoGame.genres" v-bind:key="genre">{{genre}} </span>
+      <div class="genre"><h6>Genres:</h6>
+        <div class="genres">
+          <span v-for="genre in videoGame.genres" v-bind:key="genre">{{genre}} </span>
+        </div>
       </div>
       <div class="rating" v-if="dataLoaded">
-        Rating: 
+        <h6>Rating:</h6> 
         <img :src="ratingImgUrl" :alt="videoGame.rating" :title="videoGame.rating">
       </div>
+      
+      
+    </div>
+    <div id="details-ratings">
       <div class="average-ratings">
-        <h4>Average Rating</h4>
-        <RatingDisplay :rating="averageRatings" />
+        <h6>Average Rating:</h6>
+        <RatingDisplay :rating="averageRatings" v-if="this.$store.getters.getGameRatings.length > 0" />
+        <div v-if="this.$store.getters.getGameRatings.length < 1">Not Yet Rated</div>
       </div>
       <div class="videogamedetails-jumpbuttons">
+        <router-link :to="{hash: '#steamdetails'}" tag="button" @click.native="anchorHashCheck()" v-if="isOnSteam">Steam Details</router-link>
         <router-link :to="{hash: '#videogamereviews'}" tag="button" @click.native="anchorHashCheck()">View Reviews</router-link>
-        <router-link :to="{hash: '#addvideogamereview'}" tag="button" @click.native="anchorHashCheck()">Add Review</router-link>
+        <router-link :to="{hash: '#addvideogamereview'}" tag="button" @click.native="anchorHashCheck()">Rate & Review</router-link>
       </div>
     </div>
-    
-    <div class="edit-delete">
+    <div class="edit-delete" v-if="canEdit">
       <button @click="$router.push({name: 'editvideogame', params: {id: videoGame.id}})" id="edit-game">Edit</button>
       <button @click.prevent="deleteGame" id="delete-game">Delete</button>
     </div>
@@ -54,15 +64,6 @@ export default {
   data() {
     return {
       videoGame: {},
-      rating: {
-        storyRating: 1,
-        visualRating: 10,
-        audioRating: 8,
-        gameplayRating: 7,
-        difficultyRating: 10,
-        overallRating: 8.5
-      },
-      ratings: [],
       palette: null,
       dataLoaded: false
     };
@@ -85,6 +86,12 @@ export default {
     }    
   },
   computed: {
+    isOnSteam() {
+      return this.dataLoaded && this.videoGame.steamId;
+    },
+    canEdit() {
+      return this.$store.getters.userIsAdmin;
+    },
     ratingImgUrl() {
       return require(`../assets/${this.videoGame.rating}.png`);
     },
@@ -100,14 +107,27 @@ export default {
       return 'none';
     },
     averageRatings() {
-      const ratings = {};
-      ratings.storyRating = 0;
-      ratings.visualRating = 0;
-      ratings.audioRating = 0;
-      ratings.gameplayRating = 0;
-      ratings.difficultyRating = 0;
-      ratings.overallRating = 0;
-      return ratings;
+      const ratings = this.$store.getters.getGameRatings;
+      const avgRatings = {};
+      avgRatings.storyRating = ratings.reduce((sum, rating) => {
+        return sum += rating.storyRating;
+      }, 0) / ratings.length;
+      avgRatings.visualRating = ratings.reduce((sum, rating) => {
+        return sum += rating.visualRating;
+      }, 0) / ratings.length;
+      avgRatings.audioRating = ratings.reduce((sum, rating) => {
+        return sum += rating.audioRating;
+      }, 0) / ratings.length;
+      avgRatings.gameplayRating = ratings.reduce((sum, rating) => {
+        return sum += rating.gameplayRating;
+      }, 0) / ratings.length;
+      avgRatings.difficultyRating = ratings.reduce((sum, rating) => {
+        return sum += rating.difficultyRating;
+      }, 0) / ratings.length;
+      avgRatings.overallRating = ratings.reduce((sum, rating) => {
+        return sum += rating.overallRating;
+      }, 0) / ratings.length;
+      return avgRatings;
     }
   },
   mounted() {
@@ -131,9 +151,6 @@ export default {
 
         img.crossOrigin = 'Anonymous';
         img.src = googleProxyURL + encodeURIComponent(imageURL);
-      });
-      videogameService.getRatingsForGame(this.$route.params.id).then(response => {
-        this.ratings = response.data;
       });
       this.anchorHashCheck()
   }
@@ -161,10 +178,11 @@ export default {
 .rating {
   grid-area: rating;
   display: flex;
-  align-items: center;
+  flex-direction: column;
 }
 .rating img {
   width: 50px;
+  align-self: center;
 }
 .date{
   grid-area: date;
@@ -176,6 +194,7 @@ export default {
   padding: 3px;
   background-color: dimgray;
   border-radius: 5px;
+  white-space: nowrap;
 }
 .price{
   grid-area: price;
@@ -187,6 +206,7 @@ export default {
   padding: 3px;
   background-color: dimgray;
   border-radius: 5px;
+  white-space: nowrap;
 }
 .system{
   grid-area: system;
@@ -196,6 +216,7 @@ export default {
   padding: 3px;
   background-color: dimgray;
   border-radius: 5px;
+  white-space: nowrap;
 }
 .publisher{
   grid-area: publisher;
@@ -207,6 +228,7 @@ export default {
   padding: 3px;
   background-color: dimgray;
   border-radius: 5px;
+  white-space: nowrap;
 }
 .studio{
   grid-area: studio;
@@ -216,18 +238,22 @@ export default {
   padding: 3px;
   background-color: dimgray;
   border-radius: 5px;
+  white-space: nowrap;
 }
 .genre{
   grid-area: genre;
+  
+}
+.genres {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
 }
 .genre span{
   margin: 3px;
   padding: 3px;
   background-color: dimgray;
   border-radius: 5px;
+  white-space: nowrap;
 }
 .description{
   grid-area: description;
@@ -247,6 +273,13 @@ export default {
 }
 .videogamedetails-jumpbuttons {
   grid-area: jump;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.videogamedetails-jumpbuttons button {
+  font-size: 1rem;
+  width: 200px;
 }
 #delete-game {
   background-color: rgb(228, 59, 59);
@@ -264,20 +297,35 @@ export default {
 .average-ratings {
   grid-area: average-ratings;
 }
+#details h6, #details-ratings h6 {
+  font-size: 1rem;
+  margin: 5px;
+  border-bottom: 1px solid white;
+}
 #details {
   background-color: rgba(30, 30, 30, .7);
   border-radius: 20px;
   padding: 10px;
   grid-area: details;
+  max-width: 800px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 20px;
+  grid-template-columns: auto auto 120px;
+  gap: 30px;
   grid-template-areas: "publisher price date"
                       "studio system rating"
-                      "genre genre genre"
-                      "description description description"
-                      "average-ratings average-ratings jump";
+                      "genre genre rating"
+                      "description description description";
   align-items: center;
+}
+#details-ratings {
+  background-color: rgba(30, 30, 30, .7);
+  border-radius: 20px;
+  padding: 10px;
+  grid-area: ratings;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 30px;
+  grid-template-areas: "average-ratings average-ratings jump";
 }
 #detailsPage{
   padding: 10px;
@@ -291,9 +339,8 @@ export default {
   "title title title edit-delete" 
   "art art details details"
   "art art details details"
-  "art art details details"
-  "art art details details"
-  "art art details details";
+  "art art ratings ratings"
+  "art art ratings ratings";
   align-items: flex-start;
   
   /*-webkit-box-reflect: below 5px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.1)); */

@@ -24,7 +24,7 @@ public class JDBCReviewDAO implements ReviewDAO {
     public Review addReview(Review review) {
 
         String sql = "INSERT INTO review (user_id, game_id, review_txt, review_title, date_time) " +
-                    "VALUES (?, ?, ?, ?, CURRENT_DATE) RETURNING review_id;";
+                    "VALUES (?, ?, ?, ?, current_date) RETURNING review_id;";
 
         int newReview = jdbcTemplate.queryForObject(sql, int.class, review.getUserId(), review.getGameId(),
                 review.getReviewText(), review.getReviewTitle());
@@ -48,12 +48,14 @@ public class JDBCReviewDAO implements ReviewDAO {
 
     @Override
     public void deleteReview(int id) {
+        String sql00= "DELETE FROM review_rating WHERE review_id = ?;";
         String sql0 = "DELETE FROM comment_likes WHERE comment_id IN (SELECT comment_id FROM comment WHERE review_id = ?);";
         String sql = "DELETE FROM comment WHERE review_id = ?;";
         String sql1 = "DELETE FROM review_likes WHERE review_id = ?;";
         String sql2 = "DELETE FROM review WHERE review_id = ?;";
 
         try{
+            jdbcTemplate.update(sql00, id);
             jdbcTemplate.update(sql0, id);
             jdbcTemplate.update(sql, id);
             jdbcTemplate.update(sql1, id);

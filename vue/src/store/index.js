@@ -24,7 +24,26 @@ export default new Vuex.Store({
     gameReviews: [],
     editingReview: [],
     viewingComments: [],
-    editingComments: []
+    editingComments: [],
+    gameRatings: [],
+    editingRating: false
+  },
+  getters: {
+    getGameRatings(state) {
+      return state.gameRatings;
+    },
+    getRatingForReview: (state) => (reviewId) => {
+      return state.gameRatings.find(rating => 
+        rating.reviewId === reviewId
+      );
+    },
+    userIsAdmin(state) {
+      if (state.user.authorities) {
+        const userAuth = state.user.authorities.find(auth => auth.name === 'ROLE_ADMIN');
+        return userAuth != null;
+      }
+      return false;
+    }
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -45,6 +64,9 @@ export default new Vuex.Store({
     },
     LOAD_REVIEWS(state, reviews) {
       state.gameReviews = reviews;
+    },
+    LOAD_RATINGS(state, ratings) {
+      state.gameRatings = ratings;
     },
     TOGGLE_EDIT_REVIEW(state, reviewId) {
       if (state.editingReview.includes(reviewId)) {
@@ -67,6 +89,9 @@ export default new Vuex.Store({
         state.editingComments.push(commentId);
       }
     },
+    TOGGLE_EDIT_RATING(state) {
+      state.editingRating = !state.editingRating;
+    },
     RESET_REVIEWS_AND_COMMENTS(state) {
       state.editingReview = [];
       state.viewingComments = [];
@@ -76,7 +101,10 @@ export default new Vuex.Store({
   actions: {
     loadReviews(context, gameId) {
       VideoGameService.getReviewsByGameId(gameId).then(response => {
-        context.commit('LOAD_REVIEWS', response.data);
+        context.commit('LOAD_REVIEWS', response.data);        
+      });
+      VideoGameService.getRatingsForGame(gameId).then(response => {
+        context.commit('LOAD_RATINGS', response.data);
       });
     }
   }

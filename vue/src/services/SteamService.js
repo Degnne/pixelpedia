@@ -1,15 +1,19 @@
 import axios from 'axios';
 
-const steam = axios.create({
-	// Configuration
-	baseURL: 'http://api.steampowered.com',
-	timeout: 8000
-});
-
 export default {
 
-    getNews(steamAppId) {
-        return steam.get(`/ISteamNews/GetNewsForApp/v0002/?appid=${steamAppId}&count=3&maxlength=300&format=json`);
+    getCurrentPlayersForGame(steamAppId) {
+        //steamAppId = 1222670;
+        return axios.get(`/steam/app/${steamAppId}/currentplayers`);
+    },
+
+    getNewsForGame(steamAppId) {
+        //steamAppId = 1222670;
+        return axios.get(`/steam/app/${steamAppId}/news`);
+    },
+
+    getAchievementPercentagesForGame(steamAppId) {
+        return axios.get(`/steam/app/${steamAppId}/achievementpercentages`);
     }
 
 }
