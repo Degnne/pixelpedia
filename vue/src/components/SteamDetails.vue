@@ -1,7 +1,8 @@
 <template>
   <div id="steamdetails" v-if="steamId">
       <h3>Steam Details</h3>
-      <h4>Current Players:</h4> {{currentPlayers}}
+      <h4>Current Players:</h4> 
+      <div class="steam-player-count">{{currentPlayers.toLocaleString()}}</div>
       <!--h4>Achievement Percentages: </h4>
       <div v-for="(achievement, index) in achievementPercentages.achievements" :key="'achievement-' + index">
          {{achievement.name}} - {{achievement.percent}}%
@@ -9,7 +10,7 @@
       <h4>Latest News:</h4>
       <SteamNewsItem v-for="(newsitem, index) in news.newsitems" :key="index" :newsitem="newsitem" />
       
-      <div><h4><a :href="`https://store.steampowered.com/app/${steamId}`" target="_blank">Got To Steam Page -></a></h4></div>
+      <div class="goto-steam-page"><h4><a :href="`https://store.steampowered.com/app/${steamId}`" target="_blank">Got To Steam Page -></a></h4></div>
   </div>
 </template>
 
@@ -52,5 +53,18 @@ export default {
 </script>
 
 <style>
-
+#steamdetails {
+   display: flex;
+   flex-direction: column;
+}
+.steam-player-count {
+   background-color: rgba(30, 30, 30, .7);
+   padding: 5px;
+   border-radius: 5px;
+   width: 100px;
+   text-align: right;
+}
+.goto-steam-page {
+   align-self: flex-end;
+}
 </style>

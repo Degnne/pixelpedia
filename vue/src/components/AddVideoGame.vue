@@ -216,9 +216,6 @@ export default {
 #submit-div input {
     width: 100%;
     height: 20px;
-    background-color: lightgreen;
-    border-radius: 5px;
-    border: none;
 }
 #submit-div input:hover {
     background-color: white;

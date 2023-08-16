@@ -22,7 +22,8 @@
                 <p class="review-text" v-if="review">{{review.reviewText}}</p>
             </div>
             
-            <div class="review-username" v-if="this.reviewer">--{{reviewer.username}}</div>
+            
+            <div class="review-username" v-if="this.reviewer"><UserCard :user="reviewer" /></div>
             <div class="review-date" v-if="review">Reviewed {{review.date}}</div>
             <div>
                 <ReviewForm v-if="editing" :review="review" :rating="rating" /> 
@@ -39,6 +40,7 @@
 </template>
 
 <script>
+import UserCard from '@/components/UserCard.vue'
 import RatingDisplay from '@/components/RatingDisplay.vue'
 import ReviewForm from '@/components/ReviewForm.vue'
 import ReviewComments from '@/components/ReviewComments.vue'
@@ -46,6 +48,7 @@ import VideoGameService from '@/services/videogameService.js'
 import UserService from '@/services/UserService.js'
 export default {
     components: {
+        UserCard,
         ReviewForm,
         ReviewComments,
         RatingDisplay
@@ -180,7 +183,7 @@ export default {
 }
 .videogamereview {
     border-radius: 20px;
-    background-color: rgba(119,136,153, 1);
+    background: linear-gradient(rgba(119,136,153, 1), rgba(119, 136, 153, 0));
     padding: 10px;
     margin-top: 10px;
     display: flex;
