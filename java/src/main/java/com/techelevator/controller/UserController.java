@@ -23,7 +23,7 @@ public class UserController {
 
     @RequestMapping (path = "/{userid}/lists", method = RequestMethod.GET)
     public VideoGameList[] getUserVideoGameList(@PathVariable int userid){
-        return getUserVideoGameList(userid);
+        return userDao.getVideoGameListByUserId(userid);
     }
 
 
