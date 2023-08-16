@@ -7,6 +7,7 @@ DROP TABLE IF EXISTS comment;
 DROP TABLE IF EXISTS review;
 DROP TABLE IF EXISTS users;
 
+DROP TABLE IF EXISTS vg_list;
 DROP TABLE IF EXISTS vg_system;
 DROP TABLE IF EXISTS vg_genre;
 DROP TABLE IF EXISTS vg_studio;
@@ -27,15 +28,18 @@ CREATE TABLE users (
 	username varchar(50) NOT NULL UNIQUE,
 	password_hash varchar(200) NOT NULL,
 	role varchar(50) NOT NULL,
+	avatar_pic varchar(300),
+	bio TEXT,
+	steam_user_id int,
+	email VARCHAR(320),
+	tagline varchar(120),
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
 );
 
 
 
 
---
 
---
 
 
 CREATE TABLE company (
@@ -130,6 +134,15 @@ CREATE TABLE system (
 	CONSTRAINT PK_system_id PRIMARY KEY (system_id),
 	CONSTRAINT FK_manufacturer FOREIGN KEY (manufacturer_id) REFERENCES company (company_id)
 );
+
+CREATE TABLE vg_list (
+    user_id int,
+    list_name varchar(25) NOT NULL,
+    vg_id int,
+    CONSTRAINT FK_user_id FOREIGN KEY (user_id) REFERENCES users(user_id),
+    CONSTRAINT FK_vg_id FOREIGN KEY (vg_id) REFERENCES video_game(id)
+);
+
 
 CREATE TABLE vg_system (
 	vg_id INT,
