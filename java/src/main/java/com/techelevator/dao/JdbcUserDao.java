@@ -96,9 +96,16 @@ public class JdbcUserDao implements UserDao {
         List<Integer> customList = getVideoGamesByListNameAndId("Custom", vgid);
         List<VideoGame> videoGameLists = new ArrayList<>();
 
+        VideoGameList[] gameLists = new VideoGameList[4];
+        gameLists[0].setListName("Played");
+        List<VideoGame> thisList = new ArrayList<VideoGame>();
         for(Integer id : playedList){
-            videoGameLists.add(videoGameDAO.getVideoGameById(id));
+
+            thisList.add(videoGameDAO.getVideoGameById(id));
+
+
         }
+        gameLists[0].setVideoGameArray(thisList.toArray(new VideoGame[0]));
         for(Integer id : currentlyList){
             videoGameLists.add(videoGameDAO.getVideoGameById(id));
         }
@@ -110,7 +117,8 @@ public class JdbcUserDao implements UserDao {
         }
 
 
-        return videoGameLists.toArray(new [videoGameLists.size()]);
+        //return videoGameLists.toArray(new [videoGameLists.size()]);
+       return gameLists;
     }
 
 
