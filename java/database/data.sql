@@ -460,6 +460,23 @@ INSERT INTO review_rating(user_id, game_id, review_id, overall_rating, story_rat
 INSERT INTO review_rating(user_id, game_id, review_id, overall_rating, story_rating, visual_rating, audio_rating, gameplay_rating, difficulty_rating) VALUES (1, 3, 3, 2, 0, 0, 1, 4, 3);
 INSERT INTO review_rating(user_id, game_id, review_id, overall_rating, story_rating, visual_rating, audio_rating, gameplay_rating, difficulty_rating) VALUES (1, 4, 4, 8, 6, 4, 2, 7, 3);
 
+INSERT INTO vg_list (user_id, list_name, vg_id) VALUES (1, 'Played', 10);
+INSERT INTO vg_list (user_id, list_name, vg_id) VALUES (1, 'Played', 20);
+INSERT INTO vg_list (user_id, list_name, vg_id) VALUES (1, 'Played', 12);
+INSERT INTO vg_list (user_id, list_name, vg_id) VALUES (1, 'Played', 3);
+INSERT INTO vg_list (user_id, list_name, vg_id) VALUES (1, 'Played', 5);
+INSERT INTO vg_list (user_id, list_name, vg_id) VALUES (1, 'Currently', 3);
+INSERT INTO vg_list (user_id, list_name, vg_id) VALUES (1, 'Currently', 4);
+INSERT INTO vg_list (user_id, list_name, vg_id) VALUES (1, 'Currently', 1);
+INSERT INTO vg_list (user_id, list_name, vg_id) VALUES (1, 'Wishlist', 11);
+INSERT INTO vg_list (user_id, list_name, vg_id) VALUES (1, 'Wishlist', 17);
+INSERT INTO vg_list (user_id, list_name, vg_id) VALUES (1, 'Wishlist', 32);
+INSERT INTO vg_list (user_id, list_name, vg_id) VALUES (1, 'Wishlist', 44);
+INSERT INTO vg_list (user_id, list_name, vg_id) VALUES (1, 'Custom', 50);
+INSERT INTO vg_list (user_id, list_name, vg_id) VALUES (1, 'Custom', 47);
+INSERT INTO vg_list (user_id, list_name, vg_id) VALUES (1, 'Custom', 42);
+INSERT INTO vg_list (user_id, list_name, vg_id) VALUES (1, 'Custom',36);
+
 
 
 -- Insert 50 more video games
