@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="profilepage">
       <button v-if="canEdit" @click.prevent="$router.push({name: 'editprofile'})">Edit Profile</button>
       <div id="userdetails" :style="{ 
         background: gradientBackground + '0% 0% / 200% 200% repeat',
@@ -13,17 +13,33 @@
         </div>
         <div id="details"><div>{{user.bio}}</div></div>
       </div>
+      <div v-for="userList in userLists" :key="userList.listName">
+          <h3>{{userList.listName}}</h3>
+          <div v-if="dataLoaded" class="list-container">
+            <div v-for="(game, index) in userList.videoGameArray" :key="userList.listName + '-' + index" class="videoGameCard">
+                <router-link  v-bind:to="{name: 'videogamedetails', params: {id: getGameId(game)}, hash: '#detailsPage'}">
+                    <VideoGameCard :videogame="game"/>
+                </router-link>
+            </div>
+        </div>
+      </div>
   </div>
 </template>
 
 <script>
 import UserService from '@/services/UserService.js'
 import ColorThief from "colorthief";
+import VideoGameCard from '@/components/VideoGameCard.vue'
 export default {
+    components: {
+        VideoGameCard
+    },
     data() {
         return {
             user: {},
-            palette: null
+            palette: null,
+            userLists: [],
+            dataLoaded: false
         }
     },
     computed: {
@@ -41,6 +57,13 @@ export default {
 
             return 'none';
         },
+    },
+    methods: {
+        getGameId(videogame) {
+            console.log(videogame);
+            console.log(videogame.id);
+            return videogame.id;
+        }
     },
     mounted() {
         const userId = this.$route.params.id;
@@ -60,12 +83,24 @@ export default {
             img.crossOrigin = 'Anonymous';
             img.src = googleProxyURL + encodeURIComponent(imageURL);
         });
+        UserService.getListsForUser(userId).then(response => {
+            this.userLists = response.data;
+            this.dataLoaded = true;
+        });
         
     }
 }
 </script>
 
 <style>
+#profilepage {
+    display: flex;
+    flex-direction: column;
+}
+#profilepage button {
+    width: 100px;
+    align-self: flex-end;
+}
 #userdetails {
     width: 600px;
     border-radius: 20px;
@@ -73,6 +108,7 @@ export default {
     display: flex;
     justify-content: space-between;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, .3);
+    align-self: center;
 }
 #userdetails h2 {
     margin-top: 0px;
@@ -85,5 +121,9 @@ export default {
 }
 .userimage {
     width: 200px;
+}
+.list-container {
+    display: flex;
+    flex-wrap: wrap;
 }
 </style>

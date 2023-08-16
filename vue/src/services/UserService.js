@@ -7,7 +7,7 @@ export default{
     },
 
     getListsForUser(userId) {
-        return userId;
+        return axios.get(`/users/${userId}/lists`);
     }
 
 }

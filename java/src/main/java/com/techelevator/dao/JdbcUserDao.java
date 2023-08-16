@@ -94,13 +94,20 @@ public class JdbcUserDao implements UserDao {
         VideoGameList[] gameLists = new VideoGameList[4];
         gameLists[0] = new VideoGameList();
         gameLists[0].setListName("Played");
+        gameLists[0].setUserId(userid);
         gameLists[0].setVideoGameArray(getVideoGamesByListNameAndId("Played", userid).toArray(new VideoGame[0]));
+        gameLists[1] = new VideoGameList();
         gameLists[1].setListName("Currently");
-        gameLists[1].setVideoGameArray(getVideoGamesByListNameAndId("Currently", userid).toArray(new VideoGame[1]));
+        gameLists[1].setUserId(userid);
+        gameLists[1].setVideoGameArray(getVideoGamesByListNameAndId("Currently", userid).toArray(new VideoGame[0]));
+        gameLists[2] = new VideoGameList();
         gameLists[2].setListName("Wishlist");
-        gameLists[2].setVideoGameArray(getVideoGamesByListNameAndId("Wishlist", userid).toArray(new VideoGame[2]));
+        gameLists[2].setUserId(userid);
+        gameLists[2].setVideoGameArray(getVideoGamesByListNameAndId("Wishlist", userid).toArray(new VideoGame[0]));
+        gameLists[3] = new VideoGameList();
         gameLists[3].setListName("Custom");
-        gameLists[3].setVideoGameArray(getVideoGamesByListNameAndId("Custom", userid).toArray(new VideoGame[3]));
+        gameLists[3].setUserId(userid);
+        gameLists[3].setVideoGameArray(getVideoGamesByListNameAndId("Custom", userid).toArray(new VideoGame[0]));
 
 
        return gameLists;
@@ -114,7 +121,7 @@ public class JdbcUserDao implements UserDao {
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, listName, id);
 
-        if(results.next()){
+        while(results.next()){
             idList.add(results.getInt("vg_id"));
         }
         for(Integer vgid : idList ){
