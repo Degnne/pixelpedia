@@ -14,6 +14,11 @@ public class User {
    private String password;
    @JsonIgnore
    private boolean activated;
+   private String bio;
+   private int steamId;
+   private String email;
+   private String tagline;
+   private String avatarURL;
    private Set<Authority> authorities = new HashSet<>();
 
    public User() { }
@@ -56,6 +61,46 @@ public class User {
 
    public void setActivated(boolean activated) {
       this.activated = activated;
+   }
+
+   public String getBio() {
+      return bio;
+   }
+
+   public void setBio(String bio) {
+      this.bio = bio;
+   }
+
+   public int getSteamId() {
+      return steamId;
+   }
+
+   public void setSteamId(int steamId) {
+      this.steamId = steamId;
+   }
+
+   public String getEmail() {
+      return email;
+   }
+
+   public void setEmail(String email) {
+      this.email = email;
+   }
+
+   public String getTagline() {
+      return tagline;
+   }
+
+   public void setTagline(String tagline) {
+      this.tagline = tagline;
+   }
+
+   public String getAvatarURL() {
+      return avatarURL;
+   }
+
+   public void setAvatarURL(String avatarURL) {
+      this.avatarURL = avatarURL;
    }
 
    public Set<Authority> getAuthorities() {

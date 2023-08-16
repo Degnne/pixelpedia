@@ -1,7 +1,7 @@
 BEGIN TRANSACTION;
 
-INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
-INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
+INSERT INTO users (username,password_hash,role,  avatar_pic, bio, steam_user_id, email, tagline) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER', 'https://blog.short.io/content/images/2018/01/short.cm-logo-1024x1024.png', 'This is test Bio!', '1234567', 'google@google.com', 'This is test tagline!' );
+INSERT INTO users (username,password_hash,role, avatar_pic, bio, steam_user_id, email, tagline) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN', 'https://blog.short.io/content/images/2018/01/short.cm-logo-1024x1024.png', 'This is test Bio.', '5678910', 'bing@bing.com', 'This is test tagline.' );
 
 INSERT INTO company (company_name) VALUES ('Activision');   --1
 INSERT INTO company (company_name) VALUES ('Nintendo');     --2
