@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.techelevator.model.VideoGame;
+import com.techelevator.model.VideoGameList;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -17,9 +19,11 @@ import com.techelevator.model.User;
 public class JdbcUserDao implements UserDao {
 
     private final JdbcTemplate jdbcTemplate;
+    private final VideoGameDAO videoGameDAO;
 
-    public JdbcUserDao(JdbcTemplate jdbcTemplate) {
+    public JdbcUserDao(JdbcTemplate jdbcTemplate, VideoGameDAO videoGameDAO) {
         this.jdbcTemplate = jdbcTemplate;
+        this.videoGameDAO = videoGameDAO;
     }
 
     @Override
@@ -80,6 +84,46 @@ public class JdbcUserDao implements UserDao {
         String ssRole = role.toUpperCase().startsWith("ROLE_") ? role.toUpperCase() : "ROLE_" + role.toUpperCase();
 
         return jdbcTemplate.update(insertUserSql, username, password_hash, ssRole) == 1;
+    }
+
+    @Override
+    public VideoGameList[] getVideoGameListByUserId(int vgid) {
+        //String sql for the video game list for each list type
+        //That returns multiple lines Loop through each
+        List<Integer> playedList = getVideoGamesByListNameAndId("Played", vgid);
+        List<Integer> currentlyList = getVideoGamesByListNameAndId("Currently", vgid);
+        List<Integer> wishlistList = getVideoGamesByListNameAndId("Wishlist", vgid);
+        List<Integer> customList = getVideoGamesByListNameAndId("Custom", vgid);
+        List<VideoGame> videoGameLists = new ArrayList<>();
+
+        for(Integer id : playedList){
+            videoGameLists.add(videoGameDAO.getVideoGameById(id));
+        }
+        for(Integer id : currentlyList){
+            videoGameLists.add(videoGameDAO.getVideoGameById(id));
+        }
+        for(Integer id : wishlistList){
+            videoGameLists.add(videoGameDAO.getVideoGameById(id));
+        }
+        for(Integer id : customList){
+            videoGameLists.add(videoGameDAO.getVideoGameById(id));
+        }
+
+
+        return videoGameLists.toArray(new [videoGameLists.size()]);
+    }
+
+
+    private List<Integer> getVideoGamesByListNameAndId(String listName, int id){
+        List<Integer> idList = new ArrayList<>();
+        String sql = "SELECT vg_id FROM vg_list WHERE list_name = ? AND user_id = ?;";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, listName, id);
+
+        if(results.next()){
+            idList.add(results.getInt("vg_id"));
+        }
+        return idList;
     }
 
     private User mapRowToUser(SqlRowSet rs) {
