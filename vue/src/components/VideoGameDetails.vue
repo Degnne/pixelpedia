@@ -6,25 +6,34 @@
     <img class= "art" ref="boxArt" id="boxArt" v-bind:src="videoGame.boxArt" alt="">
     <div class= "title"><h2>{{ videoGame.title }}</h2></div>
     <div id="details">
-      <div class = "price">Release Price: <span>${{videoGame.releasePrice}}</span></div>
-      <div class = "date">Release Date: <span>{{ videoGame.releaseDate }}</span></div>
-      <div class = "description"><span>{{ videoGame.description }}</span></div>
-      <div class = "publisher">Publisher: <span>{{ videoGame.publisherName }}</span></div>
-      <div class = "system">Systems: 
+      <div class = "price"><h6>Release Price:</h6> <span>${{videoGame.releasePrice}}</span></div>
+      <div class = "date"><h6>Release Date:</h6> <span>{{ videoGame.releaseDate }}</span></div>
+      <div class = "description">
+        <h6>Description:</h6>
+        <span>{{ videoGame.description }}</span>
+      </div>
+      <div class = "publisher"><h6>Publisher:</h6> <span>{{ videoGame.publisherName }}</span></div>
+      <div class = "system"><h6>Systems:</h6> 
         <span v-for="system in videoGame.systems" v-bind:key="system">{{system}}</span>
       </div>
-      <div class="studio">Studios: 
+      <div class="studio"><h6>Studios:</h6> 
         <span v-for="studio in videoGame.studios" v-bind:key="studio">{{studio}}</span>
       </div>
-      <div class="genre">Genres: 
-        <span v-for="genre in videoGame.genres" v-bind:key="genre">{{genre}} </span>
+      <div class="genre"><h6>Genres:</h6>
+        <div class="genres">
+          <span v-for="genre in videoGame.genres" v-bind:key="genre">{{genre}} </span>
+        </div>
       </div>
       <div class="rating" v-if="dataLoaded">
-        Rating: 
+        <h6>Rating:</h6> 
         <img :src="ratingImgUrl" :alt="videoGame.rating" :title="videoGame.rating">
       </div>
+      
+      
+    </div>
+    <div id="details-ratings">
       <div class="average-ratings">
-        <h4>Average Rating</h4>
+        <h6>Average Rating:</h6>
         <RatingDisplay :rating="averageRatings" v-if="this.$store.getters.getGameRatings.length > 0" />
         <div v-if="this.$store.getters.getGameRatings.length < 1">Not Yet Rated</div>
       </div>
@@ -34,7 +43,6 @@
         <router-link :to="{hash: '#addvideogamereview'}" tag="button" @click.native="anchorHashCheck()">Rate & Review</router-link>
       </div>
     </div>
-    
     <div class="edit-delete" v-if="canEdit">
       <button @click="$router.push({name: 'editvideogame', params: {id: videoGame.id}})" id="edit-game">Edit</button>
       <button @click.prevent="deleteGame" id="delete-game">Delete</button>
@@ -170,10 +178,11 @@ export default {
 .rating {
   grid-area: rating;
   display: flex;
-  align-items: center;
+  flex-direction: column;
 }
 .rating img {
   width: 50px;
+  align-self: center;
 }
 .date{
   grid-area: date;
@@ -233,9 +242,11 @@ export default {
 }
 .genre{
   grid-area: genre;
+  
+}
+.genres {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
 }
 .genre span{
   margin: 3px;
@@ -286,6 +297,11 @@ export default {
 .average-ratings {
   grid-area: average-ratings;
 }
+#details h6, #details-ratings h6 {
+  font-size: 1rem;
+  margin: 5px;
+  border-bottom: 1px solid white;
+}
 #details {
   background-color: rgba(30, 30, 30, .7);
   border-radius: 20px;
@@ -293,14 +309,23 @@ export default {
   grid-area: details;
   max-width: 800px;
   display: grid;
-  grid-template-columns: auto auto auto;
-  gap: 20px;
+  grid-template-columns: auto auto 120px;
+  gap: 30px;
   grid-template-areas: "publisher price date"
                       "studio system rating"
-                      "genre genre genre"
-                      "description description description"
-                      "average-ratings average-ratings jump";
+                      "genre genre rating"
+                      "description description description";
   align-items: center;
+}
+#details-ratings {
+  background-color: rgba(30, 30, 30, .7);
+  border-radius: 20px;
+  padding: 10px;
+  grid-area: ratings;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 30px;
+  grid-template-areas: "average-ratings average-ratings jump";
 }
 #detailsPage{
   padding: 10px;
@@ -314,9 +339,8 @@ export default {
   "title title title edit-delete" 
   "art art details details"
   "art art details details"
-  "art art details details"
-  "art art details details"
-  "art art details details";
+  "art art ratings ratings"
+  "art art ratings ratings";
   align-items: flex-start;
   
   /*-webkit-box-reflect: below 5px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.1)); */

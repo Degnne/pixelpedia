@@ -164,7 +164,7 @@ export default {
 }
 .rating-and-review {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .plusreview {
