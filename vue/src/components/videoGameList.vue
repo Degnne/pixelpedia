@@ -165,6 +165,7 @@ export default {
     background-color: lightslategray;
     border-radius: 10px;
     position: relative;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, .3);
 }
 #videogamelist{
     display: flex;
