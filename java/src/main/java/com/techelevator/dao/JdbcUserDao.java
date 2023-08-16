@@ -92,6 +92,7 @@ public class JdbcUserDao implements UserDao {
         List<VideoGame> videoGameLists = new ArrayList<>();
 
         VideoGameList[] gameLists = new VideoGameList[4];
+        gameLists[0] = new VideoGameList();
         gameLists[0].setListName("Played");
         gameLists[0].setVideoGameArray(getVideoGamesByListNameAndId("Played", userid).toArray(new VideoGame[0]));
         gameLists[1].setListName("Currently");
