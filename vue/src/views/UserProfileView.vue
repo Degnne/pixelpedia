@@ -8,7 +8,7 @@
         <div>
             <div class= "title"><h2>{{user.username}}</h2></div>        
             
-            <img :src="user.avatarURL" alt="" class="userimage">
+            <img :src="user.avatarURL" alt="" class="userimage" @load="pixelateImage(this, 10)">
             <div id="profile-tagline">{{user.tagline}}</div>
         </div>
         <div id="details"><div>{{user.bio}}</div></div>
@@ -17,7 +17,7 @@
           <h3>{{userList.listName}}</h3>
           <div v-if="dataLoaded" class="list-container">
             <div v-for="(game, index) in userList.videoGameArray" :key="userList.listName + '-' + index" class="videoGameCard">
-                <router-link  v-bind:to="{name: 'videogamedetails', params: {id: getGameId(game)}, hash: '#detailsPage'}">
+                <router-link v-bind:to="{name: 'videogamedetails', params: {id: getGameId(game)}, hash: '#detailsPage'}">
                     <VideoGameCard :videogame="game"/>
                 </router-link>
             </div>
