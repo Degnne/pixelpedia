@@ -33,7 +33,7 @@ public class UserController {
         userDao.updateVideoGameList(videoGameList);
     }
 
-    @RequestMapping (path = "/lists/deletegame" , method = RequestMethod.DELETE)
+    @RequestMapping (path = "/lists/deletegame" , method = RequestMethod.PUT)
     public void deleteVideoGameList(@RequestBody VideoGameInListDTO videoGameList){
         userDao.deleteVideoGameList(videoGameList);
     }
