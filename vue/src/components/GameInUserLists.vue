@@ -55,16 +55,26 @@ export default {
     },
     methods: {
         addGameToList() {
-            console.log(this.listNameToAdd);
+            if(this.listNameToAdd) {
+                UserService.addGameToList({userId: this.$store.state.user.id, gameId: this.$route.params.id, listName: this.listNameToAdd});
+                UserService.getListsForUser(this.$store.state.user.id).then(response => {
+                    this.lists = response.data;
+                    this.listNameToAdd = '';
+                });
+            }            
         },
         removeGameFromList(listName) {
-            console.log(listName);
-        },
+            UserService.removeGameFromList({userId: this.$store.state.user.id, gameId: this.$route.params.id, listName: listName});
+            UserService.getListsForUser(this.$store.state.user.id).then(response => {
+                    this.lists = response.data;
+                    this.listNameToAdd = '';
+                });
+        }
     },
     created() {
         UserService.getListsForUser(this.$store.state.user.id).then(response => {
-            this.lists = response.data;
-        });
+                this.lists = response.data;
+            });
     }
 }
 </script>
