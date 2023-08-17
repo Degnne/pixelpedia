@@ -100,34 +100,34 @@ class GameBoyAdvanceKeypad {
 	}
 	gamepadHandler(gamepad) {
 		var value = 0;
-		if (gamepad.buttons[this.GAMEPAD_LEFT] > this.GAMEPAD_THRESHOLD) {
+		if (gamepad.buttons[this.GAMEPAD_LEFT].pressed) {
 			value |= 1 << this.LEFT;
 		}
-		if (gamepad.buttons[this.GAMEPAD_UP] > this.GAMEPAD_THRESHOLD) {
+		if (gamepad.buttons[this.GAMEPAD_UP].pressed) {
 			value |= 1 << this.UP;
 		}
-		if (gamepad.buttons[this.GAMEPAD_RIGHT] > this.GAMEPAD_THRESHOLD) {
+		if (gamepad.buttons[this.GAMEPAD_RIGHT].pressed) {
 			value |= 1 << this.RIGHT;
 		}
-		if (gamepad.buttons[this.GAMEPAD_DOWN] > this.GAMEPAD_THRESHOLD) {
+		if (gamepad.buttons[this.GAMEPAD_DOWN].pressed) {
 			value |= 1 << this.DOWN;
 		}
-		if (gamepad.buttons[this.GAMEPAD_START] > this.GAMEPAD_THRESHOLD) {
+		if (gamepad.buttons[this.GAMEPAD_START].pressed) {
 			value |= 1 << this.START;
 		}
-		if (gamepad.buttons[this.GAMEPAD_SELECT] > this.GAMEPAD_THRESHOLD) {
+		if (gamepad.buttons[this.GAMEPAD_SELECT].pressed) {
 			value |= 1 << this.SELECT;
 		}
-		if (gamepad.buttons[this.GAMEPAD_A] > this.GAMEPAD_THRESHOLD) {
+		if (gamepad.buttons[this.GAMEPAD_A].pressed) {
 			value |= 1 << this.A;
 		}
-		if (gamepad.buttons[this.GAMEPAD_B] > this.GAMEPAD_THRESHOLD) {
+		if (gamepad.buttons[this.GAMEPAD_B].pressed) {
 			value |= 1 << this.B;
 		}
-		if (gamepad.buttons[this.GAMEPAD_L] > this.GAMEPAD_THRESHOLD) {
+		if (gamepad.buttons[this.GAMEPAD_L].pressed) {
 			value |= 1 << this.L;
 		}
-		if (gamepad.buttons[this.GAMEPAD_R] > this.GAMEPAD_THRESHOLD) {
+		if (gamepad.buttons[this.GAMEPAD_R].pressed) {
 			value |= 1 << this.R;
 		}
 
