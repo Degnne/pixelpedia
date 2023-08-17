@@ -301,8 +301,7 @@ public class JDBCVideoGameDAO implements VideoGameDAO {
 
     private int convertStudioNameToID(String studio) {
         int id = 0;
-        String sql = "SELECT studio_id FROM vg_studio JOIN company " +
-                "ON vg_studio.studio_id = company.company_id WHERE company_name = ?;";
+        String sql = "SELECT company_id FROM company WHERE company_name = ?;";
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, studio);
 

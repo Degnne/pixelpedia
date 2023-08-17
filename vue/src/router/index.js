@@ -12,6 +12,9 @@ import editvideogame from '../views/EditVideoGameView.vue'
 import emulatorlist from '../views/emulatorView.vue'
 import gameboyadvance from '../views/gbaEmulator.vue'
 import ps1Emulator from '../views/ps1Emulator'
+import userprofile from '../views/UserProfileView.vue'
+import editprofile from '../views/EditProfileView.vue'
+
 Vue.use(Router)
 
 /**
@@ -100,6 +103,16 @@ const router = new Router({
       name: 'ps1',
       component: ps1Emulator
     },
+    {
+      path: '/user/:id',
+      name: 'viewprofile',
+      component: userprofile
+    },
+    {
+      path: '/editprofile',
+      name: 'editprofile',
+      component: editprofile
+    }
 
   ]
 })

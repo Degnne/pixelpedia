@@ -17,5 +17,5 @@ public interface UserDao {
 
     boolean create(String username, String password, String role);
 
-    VideoGameList[] getVideoGameListByUserId (int id);
+    VideoGameList[] getVideoGameListByUserId (int userid);
 }

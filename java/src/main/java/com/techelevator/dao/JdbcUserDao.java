@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.techelevator.model.VideoGame;
 import com.techelevator.model.VideoGameList;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.security.core.parameters.P;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -18,9 +20,11 @@ import com.techelevator.model.User;
 public class JdbcUserDao implements UserDao {
 
     private final JdbcTemplate jdbcTemplate;
+    private final VideoGameDAO videoGameDAO;
 
-    public JdbcUserDao(JdbcTemplate jdbcTemplate) {
+    public JdbcUserDao(JdbcTemplate jdbcTemplate, VideoGameDAO videoGameDAO) {
         this.jdbcTemplate = jdbcTemplate;
+        this.videoGameDAO = videoGameDAO;
     }
 
     @Override
@@ -84,12 +88,47 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
-    public VideoGameList[] getVideoGameListByUserId(int id) {
-        String sql = "";
+    public VideoGameList[] getVideoGameListByUserId(int userid) {
+        List<VideoGame> videoGameLists = new ArrayList<>();
+
+        VideoGameList[] gameLists = new VideoGameList[4];
+        gameLists[0] = new VideoGameList();
+        gameLists[0].setListName("Played");
+        gameLists[0].setUserId(userid);
+        gameLists[0].setVideoGameArray(getVideoGamesByListNameAndId("Played", userid).toArray(new VideoGame[0]));
+        gameLists[1] = new VideoGameList();
+        gameLists[1].setListName("Currently");
+        gameLists[1].setUserId(userid);
+        gameLists[1].setVideoGameArray(getVideoGamesByListNameAndId("Currently", userid).toArray(new VideoGame[0]));
+        gameLists[2] = new VideoGameList();
+        gameLists[2].setListName("Wishlist");
+        gameLists[2].setUserId(userid);
+        gameLists[2].setVideoGameArray(getVideoGamesByListNameAndId("Wishlist", userid).toArray(new VideoGame[0]));
+        gameLists[3] = new VideoGameList();
+        gameLists[3].setListName("Custom");
+        gameLists[3].setUserId(userid);
+        gameLists[3].setVideoGameArray(getVideoGamesByListNameAndId("Custom", userid).toArray(new VideoGame[0]));
 
 
+       return gameLists;
+    }
 
-        return null;
+
+    private List<VideoGame> getVideoGamesByListNameAndId(String listName, int id){
+        List<Integer> idList = new ArrayList<>();
+        List<VideoGame> videoGames = new ArrayList<>();
+        String sql = "SELECT vg_id FROM vg_list WHERE list_name = ? AND user_id = ?;";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, listName, id);
+
+        while(results.next()){
+            idList.add(results.getInt("vg_id"));
+        }
+        for(Integer vgid : idList ){
+            videoGames.add(videoGameDAO.getVideoGameById(vgid));
+        }
+
+        return videoGames;
     }
 
     private User mapRowToUser(SqlRowSet rs) {

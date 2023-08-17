@@ -8,6 +8,7 @@
       <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
       <span v-if="$store.getters.userIsAdmin"><router-link v-bind:to="{ name: 'addvideogame' }" v-if="$store.getters.userIsAdmin">Add Video Game</router-link>&nbsp;|&nbsp;</span>
       <router-link v-bind:to="{ name: 'emulatorlist' }">Emulators</router-link>&nbsp;|&nbsp;
+      <router-link v-bind:to="{ name: 'viewprofile', params: {id: this.$store.state.user.id} }">My Profile</router-link>&nbsp;|&nbsp;
       <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout ({{$store.state.user.username}})</router-link>
     </div>
     </header>    

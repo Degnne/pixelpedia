@@ -6,7 +6,7 @@ public class VideoGameList {
     private String listName;
     private VideoGame[] videoGameArray;
 
-    private VideoGameList (){}
+    public VideoGameList (){}
 
     public VideoGameList(int userId, String listName, VideoGame[] videoGameArray) {
         this.userId = userId;

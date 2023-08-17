@@ -342,6 +342,7 @@ export default {
   "art art ratings ratings"
   "art art ratings ratings";
   align-items: flex-start;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, .3);
   
   /*-webkit-box-reflect: below 5px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.1)); */
 }
