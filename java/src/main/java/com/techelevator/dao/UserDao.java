@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.User;
+import com.techelevator.model.VideoGameInListDTO;
 import com.techelevator.model.VideoGameList;
 
 import java.util.List;
@@ -18,4 +19,11 @@ public interface UserDao {
     boolean create(String username, String password, String role);
 
     VideoGameList[] getVideoGameListByUserId (int userid);
+
+    void updateVideoGameList (VideoGameInListDTO videoGameList);
+
+
+    void deleteVideoGameList (VideoGameInListDTO videoGameList);
+
+
 }
