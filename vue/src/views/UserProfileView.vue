@@ -60,8 +60,6 @@ export default {
     },
     methods: {
         getGameId(videogame) {
-            console.log(videogame);
-            console.log(videogame.id);
             return videogame.id;
         }
     },

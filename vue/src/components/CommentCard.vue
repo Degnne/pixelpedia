@@ -88,11 +88,11 @@ export default {
 }
 .comment-card {
     background: linear-gradient(rgba(30, 30, 30, .8), rgba(30, 30, 30, .2));
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
     border: 1px solid white;
-    padding: 10px;
+    padding: 20px;
     margin: 5px;
     height: 100px;
     width: 90%;

@@ -1,36 +1,70 @@
 <template>
   <div class="gameinuserlist">
       <div class="lists">
-          <span>Played<button v-if="isCurrentUser">X</button></span> 
-          <span>Currently Playing</span>
-          <span>Wishlist</span>
-          <span>Custom List</span>
+          <span v-if="listsGameIsIn.includes('Played')">Played
+              <button v-if="isCurrentUser" @click.prevent="removeGameFromList('Played')">X</button>
+            </span> 
+          <span v-if="listsGameIsIn.includes('Currently')">Currently Playing
+              <button v-if="isCurrentUser" @click.prevent="removeGameFromList('Currently')">X</button>
+            </span>
+          <span v-if="listsGameIsIn.includes('Wishlist')">Wishlist
+              <button v-if="isCurrentUser"  @click.prevent="removeGameFromList('Wishlist')">X</button>
+            </span>
+          <span v-if="listsGameIsIn.includes('Custom')">Custom List
+              <button v-if="isCurrentUser" @click.prevent="removeGameFromList('Custom')">X</button>
+            </span>
       </div>
       <div v-if="isCurrentUser">
           Add to List: 
-          <select name="" id="">
-              <option value="Played">Played</option>
-              <option value="Currently">Currently Playing</option>
-              <option value="Wishlist">Wishlist</option>
-              <option value="Custom">Custom List</option>
+          <select name="" id="" v-model="listNameToAdd">
+              <option value="Played" v-if="!listsGameIsIn.includes('Played')">Played</option>
+              <option value="Currently" v-if="!listsGameIsIn.includes('Currently')">Currently Playing</option>
+              <option value="Wishlist" v-if="!listsGameIsIn.includes('Wishlist')">Wishlist</option>
+              <option value="Custom" v-if="!listsGameIsIn.includes('Custom')">Custom List</option>
           </select>
-          <button>Add</button>
+          <button @click.prevent="addGameToList()">Add</button>
       </div>
   </div>
 </template>
 
 <script>
+import UserService from '@/services/UserService.js'
 export default {
     props: ['gameId', 'userId'],
     data() {
         return {
-            lists: []
+            lists: [],
+            listNameToAdd: ''
         }
     },
     computed: {
         isCurrentUser() {
             return this.userId === this.$store.state.user.id
+        },
+        listsGameIsIn() {
+            const listNames = [];
+            this.lists.forEach(list => {
+                list.videoGameArray.find(game => {
+                    if (game.id === this.$route.params.id) {
+                        listNames.push(list.listName);
+                    }
+                })
+            });
+            return listNames;
         }
+    },
+    methods: {
+        addGameToList() {
+            console.log(this.listNameToAdd);
+        },
+        removeGameFromList(listName) {
+            console.log(listName);
+        },
+    },
+    created() {
+        UserService.getListsForUser(this.$store.state.user.id).then(response => {
+            this.lists = response.data;
+        });
     }
 }
 </script>
