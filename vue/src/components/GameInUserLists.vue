@@ -47,7 +47,7 @@ export default {
             const listNames = [];
             this.lists.forEach(list => {
                 list.videoGameArray.find(game => {
-                    if (game.id === this.$route.params.id) {
+                    if (game.id == this.$route.params.id) {
                         listNames.push(list.listName);
                     }
                 })
