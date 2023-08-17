@@ -130,6 +130,14 @@ public class JdbcUserDao implements UserDao {
 
     }
 
+    @Override
+    public User editUserProfile(User user, int id) {
+        String sql = "UPDATE users SET avatar_pic = ?, bio = ?, steam_user_id = ?, email = ?, tagline = ? WHERE user_id = ?;";
+
+        jdbcTemplate.update(sql, user.getAvatarURL(), user.getBio(), user.getSteamId(), user.getEmail(), user.getTagline(), id);
+        return getUserById(id);
+    }
+
 
     private List<VideoGame> getVideoGamesByListNameAndId(String listName, int id){
         List<Integer> idList = new ArrayList<>();
