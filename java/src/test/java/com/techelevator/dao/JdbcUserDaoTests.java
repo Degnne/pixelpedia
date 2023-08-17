@@ -16,6 +16,7 @@ public class JdbcUserDaoTests extends BaseDaoTests {
     private static final User USER_3 = new User(3, "user3", "user3", "ROLE_USER");
 
     private JdbcUserDao sut;
+    private VideoGameDAO videoGameDAO;
 
     @Before
     public void setup() {
