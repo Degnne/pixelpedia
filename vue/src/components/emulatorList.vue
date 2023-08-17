@@ -22,12 +22,12 @@ export default{
             active: false,
           },
           {
-            name: 'PSP',
+            name: 'PS1',
             routerLink: '/emulatorlist/ps1',
-            imageUrl: 'https://hyperspin-fe.com/uploads/monthly_2017_05/591094ad43226_Bezel16x9SonyPSP(Horizontal).png.6fad00fd60766471d0384bcef7aacb7f.png',
-            gifImage: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.makeagif.com%2Fmedia%2F8-10-2016%2Fmadrq_.gif&f=1&nofb=1&ipt=d2a71b39429109ee78bdf1af55fd58c7696239631b4f6a80d1e51d153c1ac871&ipo=images',
-            blackImage: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpaperaccess.com%2Ffull%2F2563963.jpg&f=1&nofb=1&ipt=93572cde757009d05ba399ee26816879c6e047d1b6bb3a2b7021af42a3f16c28&ipo=images',
-            sound: new Audio('/audio/psp.mp3'),
+            imageUrl: 'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fpluspng.com%2Fimg-png%2Fplaystation-png-hd-playstation-3000.png&f=1&nofb=1&ipt=2d34926b5bafd80d4b935691d0b81139970e9375a2ec41d77ab25d877b0421e4&ipo=images',
+            gifImage: 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExemkwY3ljcWZoeWYyY2Q2M25jZzAwbHd6OGtjdXpjdGRlYjJpOGo1dCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/BdtHOz9xmcvRe/giphy.gif',
+            blackImage: '',
+            sound: new Audio('/audio/playstationJingle.mp3'),
             active: false,
           }
             ]
@@ -70,12 +70,12 @@ export default{
 }
 .psp{
   width: 200px;
+  background-color: black;
+  border-radius: 3px;
 }
 .pspGif{
   position: absolute;
-    width: 110px;
-    right: 50px;
-    bottom:36px;
+    width: 200px;
     z-index: 1;
     border-radius: 3px
 }
