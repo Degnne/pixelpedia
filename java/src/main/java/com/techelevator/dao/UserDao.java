@@ -25,5 +25,6 @@ public interface UserDao {
 
     void deleteVideoGameList (VideoGameInListDTO videoGameList);
 
+    User editUserProfile (User user, int id);
 
 }

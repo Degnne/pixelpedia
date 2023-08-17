@@ -38,4 +38,9 @@ public class UserController {
         userDao.deleteVideoGameList(videoGameList);
     }
 
+    @RequestMapping (path = "/{id}" , method = RequestMethod.PUT)
+    public User editUser (@RequestBody User user, @PathVariable int id){
+        return userDao.editUserProfile(user, id);
+    }
+
 }
