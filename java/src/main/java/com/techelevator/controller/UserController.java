@@ -2,6 +2,8 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.UserDao;
 import com.techelevator.model.User;
+import com.techelevator.model.VideoGame;
+import com.techelevator.model.VideoGameInListDTO;
 import com.techelevator.model.VideoGameList;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,5 +28,9 @@ public class UserController {
         return userDao.getVideoGameListByUserId(userid);
     }
 
+    @RequestMapping (path = "/lists/addgame" , method = RequestMethod.POST)
+    public void updateVideoGameList(@RequestBody VideoGameInListDTO videoGameList){
+        userDao.updateVideoGameList(videoGameList);
+    }
 
 }

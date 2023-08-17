@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 import com.techelevator.model.VideoGame;
+import com.techelevator.model.VideoGameInListDTO;
 import com.techelevator.model.VideoGameList;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -111,6 +112,19 @@ public class JdbcUserDao implements UserDao {
 
 
        return gameLists;
+    }
+
+    @Override
+    public void updateVideoGameList(VideoGameInListDTO videoGameList) {
+        String sql = "INSERT INTO vg_list(user_id, list_name, vg_id) VALUES (?, ?, ?);";
+
+        jdbcTemplate.update(sql, videoGameList.getUserId(), videoGameList.getListName(), videoGameList.getGameId());
+
+    }
+
+    @Override
+    public void deleteVideoGameList(VideoGameInListDTO videoGameList) {
+        
     }
 
 

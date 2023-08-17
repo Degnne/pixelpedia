@@ -100,7 +100,6 @@ INSERT INTO video_game (title, release_date, release_price, description, publish
 
 
 --Maurice's added games
-
 INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES ('Sonic Chronicles: The Dark Brotherhood', '2008-09-30', 34.99 , 'A role-playing game in which players assume the roles of characters in a fictional setting', 29 , 'E',	'https://upload.wikimedia.org/wikipedia/en/9/99/The_Dark_Brotherhood.jpg');         -- 27
 INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES('Shenmue', '2000-11-08', 49.99, '"Shenmue" is an action-adventure video game developed by Sega AM2 and directed by Yu Suzuki. Set in a meticulously detailed open-world environment, the game is known for its immersive storytelling, dynamic gameplay, and ambitious scope.',44, 'T', 'https://assets1.ignimgs.com/2018/09/08/shenmue-1---button-1536367889315.jpg?width=300&crop=1%3A1%2Csmart');         -- 28
 INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES('Guardians of Middle-earth','2012-12-04',14.99, 'Guardians of Middle-earth is a multiplayer online battle arena (MOBA) video game developed by Monolith Productions.It was released on various gaming platforms',39,'T', 'https://upload.wikimedia.org/wikipedia/en/9/95/Guardians_of_MIddle-Earth_cover_art.jpg');           -- 29
@@ -120,7 +119,7 @@ INSERT INTO video_game (title, release_date, release_price, description, publish
 INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES('Teenage Mutant Ninja Turtles', '2014-10-21', 39.99,'"Teenage Mutant Ninja Turtles" is a live-action film released in 2014 that serves as a reboot of the Teenage Mutant Ninja Turtles movie franchise', 30, 'T',  	'https://prd-rteditorial.s3.us-west-2.amazonaws.com/wp-content/uploads/2023/05/31113412/EWKA_Ninja_Turtles_Mutant_Mayhem2.jpg');        --42
 INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES('Apex Legends', '2019-02-04', 0.00, 'Apex Legends is a free-to-play battle royale game developed by Respawn Entertainment and published by Electronic Arts. Set in the Titanfall universe (though without the giant Titans themselves', 25, 'T', 'https://www.charlieintel.com/cdn-cgi/image/width=640,quality=75,format=auto/https://editors.charlieintel.com/wp-content/uploads/2022/04/does-apex-legends-have-sbmm.jpg'); -- 43
 INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES('The Last of Us', '2013-06-14', 59.99, 'The Last of Us is a critically acclaimed action-adventure video game developed by Naughty Dog and published by Sony Computer Entertainment. Originally released in 2013 for the PlayStation 3, the game was later remastered for the PlayStation 4. It is known for its emotionally charged narrative, compelling characters, and intense gameplay', 26, 'M', 'https://media.gamestop.com/i/gamestop/10114511/The-Last-of-Us-Remastered---PlayStation-4?$pdp$$&fmt=webp');    --44
-INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES('Aliens: Colonial Marines', '2013-02-12', 59.99, '"Aliens: Colonial Marines" is a first-person shooter video game developed by Gearbox Software and published by Sega. It was released in February 2013 for various platforms, including PlayStation 3, Xbox 360, and Microsoft Windows', 23, 'M', 'https://scale.coolshop-cdn.com/product-media.coolshop-cdn.com/AK6RY5/de1bb44261e04aa8b9504a2223bce894.jpg/f/aliens-colonial-marines-collection.jpg?height=650');             ---45
+9INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES('Aliens: Colonial Marines', '2013-02-12', 59.99, '"Aliens: Colonial Marines" is a first-person shooter video game developed by Gearbox Software and published by Sega. It was released in February 2013 for various platforms, including PlayStation 3, Xbox 360, and Microsoft Windows', 23, 'M', 'https://scale.coolshop-cdn.com/product-media.coolshop-cdn.com/AK6RY5/de1bb44261e04aa8b9504a2223bce894.jpg/f/aliens-colonial-marines-collection.jpg?height=650');             ---450
 INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES('Grand Theft Auto: Chinatown Wars', '2009-03-17', 34.99, 'Grand Theft Auto: Chinatown Wars–players assume the role of Huang Lee, a young member of the Chinese Triad crime syndicate, who arrives in Liberty City after the murder of his father. The game follows Huangs attempts to uncover the truth behind his fathers death while navigating the criminal underworld and engaging in various illegal activities', 16, 'M', 'https://assets-prd.ignimgs.com/2022/01/07/grand-theft-auto-chinatown-wars-button-char-1641587533817.jpg?width=300&crop=1%3A1%2Csmart');       -- 46
 INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES('Terraria', '2011-05-16', 9.99,'Terraria is a popular sandbox adventure game developed by Re-Logic and published by 505 Games.	The game combines elements of exploration, building, crafting, and combat to create a unique and immersive experience', 41, 'T', 	'https://d1wgd08o7gfznj.cloudfront.net/uploads/email_campaign/hero_image/21923/optimized_cover.png');       -- 47
 INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES('Warcraft III: The Frozen Throne', '2003-07-01', 29.99, 'Warcraft III: The Frozen Throne is an expansion pack for the critically acclaimed real-time strategy game "Warcraft III: Reign of Chaos, developed and published by Blizzard Entertainment. It was released in July 2003 and continues the story of the original game while introducing new gameplay features, units, and campaigns', 13, 'T','https://howlongtobeat.com/games/250px-Warcraftiii-frozen-throne-boxcover.jpg?width=760');        -- 48
@@ -134,27 +133,6 @@ INSERT INTO video_game (title, release_date, release_price, description, publish
 INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art, steam_id) VALUES ('Crusader Kings III', '2020-09-01', 49.99, 'Love, fight, scheme, and claim greatness. Determine your noble house’s legacy in the sprawling grand strategy of Crusader Kings III. Death is only the beginning as you guide your dynasty’s bloodline in the rich and larger-than-life simulation of the Middle Ages.', 58, 'T', 'https://upload.wikimedia.org/wikipedia/en/a/a3/Crusader_Kings_III.jpg', 1158310);  --53
 INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art, steam_id) VALUES ('Stellaris', '2016-05-09', 39.99, 'Explore a galaxy full of wonders in this sci-fi grand strategy game from Paradox Development Studios. Interact with diverse alien races, discover strange new worlds with unexpected events and expand the reach of your empire. Each new adventure holds almost limitless possibilities.', 58, 'T', 'https://upload.wikimedia.org/wikipedia/en/b/bd/Stellaris_cover.png', 281990); --54
 INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art, steam_id) VALUES ('Cities: Skylines', '2015-03-10', 29.99, 'Cities: Skylines is a modern take on the classic city simulation. The game introduces new game play elements to realize the thrill and hardships of creating and maintaining a real city whilst expanding on some well-established tropes of the city building experience.', 58, 'E', 'https://m.media-amazon.com/images/M/MV5BNmM3NGMyNzYtN2MzNi00MGFjLTliYjQtN2M4MWRjOWM4Zjk1XkEyXkFqcGdeQXVyNTgyNTA4MjM@._V1_FMjpg_UX1000_.jpg', 255710); --55
-
---INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES
---('Pac-Man', '1980-05-22', 30.00, 'This is one of the most popular arcade games of all time.', 1, 'E','https://upload.wikimedia.org/wikipedia/en/thumb/5/53/Pac-Man_arcade_game.jpg/220px-Pac-Man_arcade_game.jpg');
---
---INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES
---('Tetris', '1984-06-06', 25.00, 'This is a puzzle game that is simple to learn but difficult to master.', 2, 'E','https://upload.wikimedia.org/wikipedia/en/thumb/0/04/Tetris_cover.jpg/220px-Tetris_cover.jpg');
---
---INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES
---('Super Mario Bros. 3', '1988-09-12', 60.00, 'This is the sequel to Super Mario Bros. and is considered one of the greatest video games of all time.', 1, 'E','https://upload.wikimedia.org/wikipedia/en/thumb/9/91/Super_Mario_Bros._3_box_art.jpg/220px-Super_Mario_Bros._3_box_art.jpg');
---
---INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES
---('The Legend of Zelda: A Link to the Past', '1991-11-21', 60.00, 'This is a sequel to The Legend of Zelda: Ocarina of Time and is considered one of the greatest video games of all time.', 3, 'E','https://upload.wikimedia.org/wikipedia/en/thumb/5/5e/The_Legend_of_Zelda_A_Link_to_the_Past_box_art.png/220px-The_Legend_of_Zelda_A_Link_to_the_Past_box_art.png');
---
---INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES
---('Street Fighter II', '1991-02-10', 35.00, 'This is a fighting game that is considered one of the greatest video games of all time.', 5, 'T','https://upload.wikimedia.org/wikipedia/en/thumb/d/d9/Street_Fighter_II_box_art.jpg/220px-Street_Fighter_II_box_art.jpg');
---
---INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES
---('Sonic the Hedgehog', '1991-06-23', 49.99, 'This is a platform game that is considered one of the greatest video games of all time.', 2, 'E','https://upload.wikimedia.org/wikipedia/en/thumb/f/f1/Sonic_the_Hedgehog_cover.jpg/220px-Sonic_the_Hedgehog_cover.jpg');
---
---INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES
---('Mortal Kombat', '1992-10-13', 59.99, 'This is a fighting game that is considered one of the greatest video games of all time.', 8, 'T','https://upload.wikimedia.org/wikipedia/en/thumb/3/33/Mortal_Kombat_box_art.jpg/220px-Mortal_Kombat_box_art.jpg');
 
 
 INSERT INTO genre (genre_name) VALUES ('Platformer');   --1
@@ -388,10 +366,6 @@ INSERT INTO vg_system (vg_id, system_id) VALUES (54, 25);
 INSERT INTO vg_system (vg_id, system_id) VALUES (55, 25);
 
 
-
-
-
-
 INSERT INTO vg_studio (vg_id, studio_id) VALUES (1, 3);
 INSERT INTO vg_studio (vg_id, studio_id) VALUES (2, 2);
 INSERT INTO vg_studio (vg_id, studio_id) VALUES (3, 4);
@@ -476,109 +450,6 @@ INSERT INTO vg_list (user_id, list_name, vg_id) VALUES (1, 'Custom', 50);
 INSERT INTO vg_list (user_id, list_name, vg_id) VALUES (1, 'Custom', 47);
 INSERT INTO vg_list (user_id, list_name, vg_id) VALUES (1, 'Custom', 42);
 INSERT INTO vg_list (user_id, list_name, vg_id) VALUES (1, 'Custom',36);
-
-
-
--- Insert 50 more video games
---INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art) VALUES
--- ('The Legend of Zelda: Breath of the Wild', '2017-03-03', 59.99, 'Embark on an epic adventure in the open world of Hyrule.', 2, 'E10+', 'https://example.com/zelda_botw.jpg'),
--- ('Red Dead Redemption 2', '2018-10-26', 59.99, 'Experience the life of an outlaw in the Wild West.', 1, 'M', 'https://example.com/red_dead_redemption_2.jpg'),
--- ('Cyberpunk 2077', '2020-12-10', 49.99, 'Explore a dystopian future in this action RPG.', 1, 'M', 'https://example.com/cyberpunk_2077.jpg'),
--- ('DOOM Eternal', '2020-03-20', 39.99, 'Rip and tear through hordes of demons in this high-octane FPS.', 1, 'M', 'https://example.com/doom_eternal.jpg'),
--- ('Animal Crossing: New Horizons', '2020-03-20', 49.99, 'Create your own island paradise in this charming life simulation game.', 2, 'E', 'https://example.com/animal_crossing.jpg'),
--- ('The Witcher 3: Wild Hunt', '2015-05-19', 39.99, 'Embark on a quest to find the Child of Prophecy in this expansive RPG.', 1, 'M', 'https://example.com/witcher_3.jpg'),
--- ('Call of Duty: Modern Warfare', '2019-10-25', 59.99, 'Engage in intense military operations in this realistic FPS.', 1, 'M', 'https://example.com/cod_modern_warfare.jpg'),
--- ('Mass Effect Legendary Edition', '2021-05-14', 49.99, 'Experience the complete Mass Effect trilogy with updated visuals and gameplay.', 1, 'M', 'https://example.com/mass_effect_legendary.jpg'),
--- ("Uncharted 4: A Thief's End", '2016-05-10', 39.99, 'Join Nathan Drake on his final adventure in search of treasure.', 1, 'T', 'https://example.com/uncharted_4.jpg'),
--- ('Cuphead', '2017-09-29', 19.99, 'Face off against challenging bosses in this unique run-and-gun game.', 4, 'E10+', 'https://example.com/cuphead.jpg'),
--- ('Stardew Valley', '2016-02-26', 24.99, 'Build and manage your own farm in this relaxing simulation game.', 6, 'E', 'https://example.com/stardew_valley.jpg'),
--- ('Resident Evil Village', '2021-05-07', 49.99, 'Survive horror and uncover mysteries in a village plagued by supernatural threats.', 1, 'M', 'https://example.com/re_village.jpg'),
--- ('Horizon Zero Dawn', '2017-02-28', 29.99, 'Explore a lush post-apocalyptic world and uncover its secrets.', 1, 'T', 'https://example.com/horizon_zero_dawn.jpg'),
--- ('The Elder Scrolls V: Skyrim', '2011-11-11', 39.99, 'Embark on a grand adventure in the fantasy world of Tamriel.', 1, 'M', 'https://example.com/skyrim.jpg'),
--- ('Dark Souls III', '2016-04-12', 39.99, 'Test your skills in this challenging action RPG known for its difficulty.', 1, 'M', 'https://example.com/dark_souls_3.jpg'),
--- ('Rainbow Six Siege', '2015-12-01', 29.99, 'Engage in tactical multiplayer battles as part of an elite counter-terrorism unit.', 1, 'M', 'https://example.com/rainbow_six_siege.jpg'),
--- ('Super Smash Bros. Ultimate', '2018-12-07', 59.99, 'Battle it out with iconic characters in this frenetic crossover fighting game.', 2, 'E10+', 'https://example.com/smash_bros_ultimate.jpg'),
--- ('Civilization VI', '2016-10-21', 49.99, 'Lead a civilization from ancient times to the modern age in this turn-based strategy game.', 5, 'E10+', 'https://example.com/civ_6.jpg'),
--- ('Grand Theft Auto: San Andreas', '2004-10-26', 19.99, 'Experience the criminal underworld in a fictionalized version of California.', 1, 'M', 'https://example.com/gta_san_andreas.jpg'),
--- ('Metal Gear Solid V: The Phantom Pain', '2015-09-01', 39.99, 'Infiltrate enemy bases and unravel a complex narrative in this stealth-action game.', 1, 'M', 'https://example.com/mgs5.jpg'),
--- ('Fable III', '2010-10-26', 29.99, 'Shape your own destiny in a fantasy world filled with moral choices.', 1, 'M', 'https://example.com/fable_3.jpg'),
--- ('Fallout 4', '2015-11-10', 39.99, 'Navigate the post-apocalyptic wasteland and forge your own path.', 1, 'M', 'https://example.com/fallout_4.jpg'),
--- ('Final Fantasy XV', '2016-11-29', 49.99, 'Join Prince Noctis and his friends on a road trip that leads to a grand adventure.', 2, 'T', 'https://example.com/ffxv.jpg'),
--- ('Borderlands 3', '2019-09-13', 49.99, 'Shoot and loot your way through a chaotic world filled with humor and mayhem.', 1, 'M', 'https://example.com/borderlands_3.jpg'),
--- ('The Sims 4', '2014-09-02', 39.99, 'Create and control virtual lives in this beloved life simulation game.', 1, 'T', 'https://example.com/sims_4.jpg'),
--- ('Doom (1993)', '1993-12-10', 9.99, 'Experience the classic FPS that revolutionized the genre.', 1, 'M', 'https://example.com/doom_1993.jpg'),
--- ('Minecraft Dungeons', '2020-05-26', 29.99, 'Embark on a new adventure set in the Minecraft universe.', 2, 'E10+', 'https://example.com/minecraft_dungeons.jpg'),
--- ('Bioshock', '2007-08-21', 19.99, 'Explore the underwater city of Rapture and uncover its dark secrets.', 3, 'M','https://example.com/bioshock.jpg'),
--- ('Half-Life 2', '2004-11-16', 19.99, 'Fight against alien forces in a dystopian future using advanced weaponry.', 1, 'M', 'https://example.com/half_life_2.jpg'),
--- ('Hollow Knight', '2017-02-24', 14.99, 'Embark on a journey through a beautifully hand-drawn world as a brave knight.', 4, 'E10+', 'https://example.com/hollow_knight.jpg'),
--- ('Undertale', '2015-09-15', 9.99, "Navigate a unique world and make choices that impact the game's outcome.", 8, 'E10+', 'https://example.com/undertale.jpg'),
--- ('Destiny 2', '2017-09-06', 29.99, 'Defend the last safe city on Earth in this online multiplayer shooter.', 3, 'T', 'https://example.com/destiny_2.jpg'),
--- ('Genshin Impact', '2020-09-28', 0.00, 'Explore the fantasy world of Teyvat and uncover its mysteries.', 6, 'T', 'https://example.com/genshin_impact.jpg'),
--- ('Celeste', '2018-01-25', 19.99, 'Climb a mountain and overcome challenges in this indie platformer.', 4, 'E10+', 'https://example.com/celeste.jpg'),
--- ('Braid', '2008-08-06', 9.99, 'Manipulate time and solve intricate puzzles in this unique platformer.', 9, 'E10+', 'https://example.com/braid.jpg'),
--- ('Firewatch', '2016-02-09', 19.99, 'Experience a captivating story as a fire lookout in the Wyoming wilderness.', 8, 'T', 'https://example.com/firewatch.jpg'),
--- ('The Outer Worlds', '2019-10-25', 29.99, 'Navigate a space colony and make choices that shape the course of the story.', 1, 'M', 'https://example.com/outer_worlds.jpg'),
--- ("No Man's Sky", '2016-08-09', 39.99, 'Explore a procedurally generated universe and discover new planets and lifeforms.', 1, 'T', 'https://example.com/no_mans_sky.jpg'),
--- ('Cuphead: The Delicious Last Course', 'TBD', 19.99, "Continue Cuphead and Mugman's adventure with new challenges and bosses.", 4, 'E10+', 'https://example.com/cuphead_dlc.jpg'),
--- ('The Elder Scrolls VI', 'TBD', 59.99, 'Embark on a new journey in the next installment of The Elder Scrolls series.', 1, 'M', 'https://example.com/elder_scrolls_vi.jpg'),
--- ('Starfield', 'TBD', 59.99, "Explore the stars in Bethesda's upcoming spacefaring RPG.", 1, 'T', 'https://example.com/starfield.jpg'),
--- ('Hogwarts Legacy', 'TBD', 49.99, 'Attend Hogwarts School of Witchcraft and Wizardry in the 1800s in this action RPG.', 1, 'T', 'https://example.com/hogwarts_legacy.jpg'),
--- ('Metroid Prime 4', 'TBD', 59.99, 'Join Samus Aran in her next adventure in the beloved Metroid series.', 2, 'T', 'https://example.com/metroid_prime_4.jpg');
-
--- Video Games
---INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art)
---VALUES ('Cuphead', '2017-09-29', 20.00, 'Cuphead is a classic run and gun action game heavily focused on boss battles.', 1, 'E10+', 'https://cdn.mobygames.com/images/covers/l/413370-cuphead-xbox-one-front-cover.jpg');
---
---INSERT INTO video_game (title, release_date, release_price, description, publisher_id, rating, box_art)
---VALUES ('The Elder Scrolls V: Skyrim', '2011-11-11', 40.00, 'Skyrim is an open-world RPG known for its vast and immersive fantasy world.', 2, 'M', 'https://upload.wikimedia.org/wikipedia/en/thumb/1/15/The_Elder_Scrolls_V_Skyrim_cover.png/220px-The_Elder_Scrolls_V_Skyrim_cover.png');
---
----- Studios
---INSERT INTO studio (studio_name) VALUES ('Supergiant Games');
---INSERT INTO studio (studio_name) VALUES ('Bethesda Game Studios');
---INSERT INTO studio (studio_name) VALUES ('Team Cherry');
---INSERT INTO studio (studio_name) VALUES ('CD Projekt Red');
---INSERT INTO studio (studio_name) VALUES ('Ubisoft');
---
----- Genres
---INSERT INTO genre (genre_name) VALUES ('Action Adventure');
---INSERT INTO genre (genre_name) VALUES ('RPG');
---INSERT INTO genre (genre_name) VALUES ('Metroidvania');
---INSERT INTO genre (genre_name) VALUES ('Open World');
---INSERT INTO genre (genre_name) VALUES ('Stealth');
---
----- Publishers
---INSERT INTO company (company_name) VALUES ('Annapurna Interactive');
---INSERT INTO company (company_name) VALUES ('CD Projekt');
---INSERT INTO company (company_name) VALUES ('Square Enix');
---INSERT INTO company (company_name) VALUES ('Electronic Arts');
---INSERT INTO company (company_name) VALUES ('Capcom');
---
----- Video Game Genres
---INSERT INTO vg_genre (vg_id, genre_id) VALUES (11, 1);
---INSERT INTO vg_genre (vg_id, genre_id) VALUES (12, 1);
---INSERT INTO vg_genre (vg_id, genre_id) VALUES (13, 2);
---INSERT INTO vg_genre (vg_id, genre_id) VALUES (14, 2);
---INSERT INTO vg_genre (vg_id, genre_id) VALUES (15, 3);
---
----- Video Game Studios
---INSERT INTO vg_studio (vg_id, studio_id) VALUES (11, 1);
---INSERT INTO vg_studio (vg_id, studio_id) VALUES (12, 2);
---INSERT INTO vg_studio (vg_id, studio_id) VALUES (13, 3);
---INSERT INTO vg_studio (vg_id, studio_id) VALUES (14, 4);
---INSERT INTO vg_studio (vg_id, studio_id) VALUES (15, 5);
---
----- Video Game Publishers
---INSERT INTO vg_publisher (vg_id, publisher_id) VALUES (11, 6);
---INSERT INTO vg_publisher (vg_id, publisher_id) VALUES (12, 7);
---INSERT INTO vg_publisher (vg_id, publisher_id) VALUES (13, 8);
---INSERT INTO vg_publisher (vg_id, publisher_id) VALUES (14, 9);
---INSERT INTO vg_publisher (vg_id, publisher_id) VALUES (15, 10);
-
-
-
-
-
-
 
 
 COMMIT TRANSACTION;
