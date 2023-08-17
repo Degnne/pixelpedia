@@ -27,7 +27,9 @@ export default {
     },
     methods: {
         updateProfile() {
-
+            this.user.authorities = '';
+            console.log(this.user);
+            UserService.editProfile(this.user);
         }
     },
     created() {

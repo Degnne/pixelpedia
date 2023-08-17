@@ -7,7 +7,7 @@ export default{
     },
 
     editProfile(user) {
-        return user;
+        return axios.put(`/users/${user.id}`, user);
     },
 
     getListsForUser(userId) {
@@ -19,6 +19,8 @@ export default{
     },
 
     removeGameFromList(gameToRemove) {
+        console.log('deleting');
+        console.log(gameToRemove);
         return axios.put(`/users/lists/deletegame`, gameToRemove);
     }
 

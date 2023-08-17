@@ -1,5 +1,5 @@
 <template>
-  <div class="gameinuserlist">
+  <div class="gameinuserlist" v-if="dataLoaded">
       <div class="lists">
           <span v-if="listsGameIsIn.includes('Played')">Played
               <button v-if="isCurrentUser" @click.prevent="removeGameFromList('Played')">X</button>
@@ -34,7 +34,9 @@ export default {
     data() {
         return {
             lists: [],
-            listNameToAdd: ''
+            listNameToAdd: '',
+            thisUserId: 0,
+            dataLoaded: false
         }
     },
     computed: {
@@ -64,17 +66,32 @@ export default {
             }            
         },
         removeGameFromList(listName) {
-            UserService.removeGameFromList({userId: this.$store.state.user.id, gameId: this.$route.params.id, listName: listName});
+            console.log(listName);
+            const obj = {userId: this.$store.state.user.id, gameId: this.$route.params.id, listName: listName};
+            console.log(obj);
+            UserService.removeGameFromList(obj).catch(error => {
+                console.error(error);
+            });
             UserService.getListsForUser(this.$store.state.user.id).then(response => {
                     this.lists = response.data;
-                    this.listNameToAdd = '';
+                    console.log('deleted');
                 });
+        },
+        loadLists() {
+            UserService.getListsForUser(this.$store.state.user.id).then(response => {
+                this.lists = response.data;
+                this.thisUserId = this.$store.state.user.id;
+                this.dataLoaded = true;
+                console.log(this.lists);
+                console.log(this.listsGameIsIn);
+            }).catch(error => {
+                console.error(error);
+            });
         }
     },
     created() {
-        UserService.getListsForUser(this.$store.state.user.id).then(response => {
-                this.lists = response.data;
-            });
+        console.log('loading');
+        this.loadLists();
     }
 }
 </script>

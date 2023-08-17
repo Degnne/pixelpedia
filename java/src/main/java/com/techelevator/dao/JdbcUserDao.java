@@ -126,7 +126,7 @@ public class JdbcUserDao implements UserDao {
     public void deleteVideoGameList(VideoGameInListDTO videoGameList) {
         String sql = "DELETE FROM vg_list WHERE user_id = ? AND list_name = ? AND  vg_id = ?;";
 
-        jdbcTemplate.update(sql, videoGameList.getGameId(), videoGameList.getListName(), videoGameList.getGameId());
+        jdbcTemplate.update(sql, videoGameList.getUserId(), videoGameList.getListName(), videoGameList.getGameId());
 
     }
 
